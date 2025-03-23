@@ -1,0 +1,122 @@
+/**
+ * Variables
+ * Contains all variables used across the portfolio site
+ */
+
+// Colors
+$color-red-800: #8A2C12;
+$color-red-700: #AC3619;
+$color-red-600: #C34833;
+$color-red-500: #D36D63;
+$color-red-400: #DF908B;
+$color-red-300: #E8AFAC;
+
+$color-blue-900: #25385C;
+$color-blue-800: #394C71;
+
+$color-gray-1000: #222;
+$color-gray-900: #383838;
+$color-gray-700: #5f5f5f;
+$color-gray-500: #8B8B8B;
+$color-gray-300: #DBDBDB;
+$color-gray-050: #FAFAFA;
+$color-white: #fff;
+
+$color-bg-overlay: rgba(34, 34, 34, 0.8);
+$color-shadow: rgba(0, 0, 0, 0.25);
+
+// Theming - using CSS custom properties for dynamic theme switching
+:root {
+  --color-primary: #{$color-red-700};
+  --color-primary-light: #{$color-red-400};
+  --color-primary-hover: #{$color-red-800};
+  --color-primary-dark: #{$color-red-800};
+  --color-primary-surface: #{$color-red-600};
+  --color-primary-surface-light: #{$color-red-500};
+  --color-prominent-surface: #{$color-blue-800};
+  --color-header-surface: #{$color-gray-050};
+  --color-base-surface: #{$color-gray-050};
+  --color-low-contrast-surface: #{$color-gray-050};
+  --color-text-body: #{$color-gray-1000};
+  --color-text-body-accent: #{$color-gray-700};
+  --color-text-body-accent-on-prominent: #{$color-gray-300};
+  --color-text-on-prominent: #{$color-white};
+  --color-border: #{$color-gray-300};
+}
+
+html[data-theme="dark"] {
+  --color-primary: #{$color-red-400};
+  --color-primary-light: #{$color-red-300};
+  --color-primary-hover: #{$color-red-300};
+  --color-primary-dark: #{$color-red-600};
+  --color-primary-surface: #{$color-red-600};
+  --color-primary-surface-light: #{$color-red-500};
+  --color-prominent-surface: #{$color-gray-1000};
+  --color-base-surface: #{$color-gray-900};
+  --color-low-contrast-surface: #{$color-gray-050};
+  --color-header-surface: #{$color-gray-1000};
+  --color-text-body: #{$color-white};
+  --color-text-body-accent: #{$color-gray-300};
+  --color-text-body-accent-on-prominent: #{$color-gray-300};
+  --color-text-on-prominent: #{$color-white};
+  --color-border: #{$color-gray-700};
+}
+
+// Replace all subsequent SCSS variable references with CSS custom properties
+$color-primary: var(--color-primary);
+$color-primary-light: var(--color-primary-light);
+$color-primary-dark: var(--color-primary-dark);
+$color-primary-hover: var(--color-primary-hover);
+$color-primary-surface: var(--color-primary-surface);
+$color-primary-surface-light: var(--color-primary-surface-light);
+$color-prominent-surface: var(--color-prominent-surface);
+$color-base-surface: var(--color-base-surface);
+$color-low-contrast-surface: var(--color-low-contrast-surface);
+$color-header-surface: var(--color-header-surface);
+$color-text-body: var(--color-text-body);
+$color-text-body-accent: var(--color-text-body-accent);
+$color-text-body-accent-on-prominent: var(--color-text-body-accent-on-prominent);
+$color-text-on-prominent: var(--color-text-on-prominent);
+$color-border: var(--color-border);
+
+// Spacing
+$spacing-xs: 0.25rem;    // 4px
+$spacing-sm: 0.5rem;     // 8px
+$spacing-md: 0.75rem;    // 12px
+$spacing-base: 1rem;     // 16px
+$spacing-lg: 1.5rem;     // 24px
+$spacing-xl: 2rem;       // 32px
+$spacing-2xl: 3rem;      // 48px
+$spacing-3xl: 4rem;      // 64px
+$spacing-4xl: 5rem;      // 80px
+$spacing-5xl: 6rem;      // 96px
+
+// Typography
+$font-family-heading: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+$font-family-body: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+$font-family-icons: 'Font Awesome 5 Pro';
+$font-family-mono: 'Courier New', monospace;
+
+$line-height-tight: 1.2;
+$line-height-base: 1.5;
+$line-height-loose: 1.8;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-2xl: 1440px;
+
+// Border radius
+$border-radius-sm: 0.25rem;
+$border-radius-md: 0.5rem;
+$border-radius-lg: 1rem;
+$border-radius-full: 9999px;
+$border-radius: $border-radius-md;
+
+// Transitions
+$transition-fast: 150ms;
+$transition-normal: 300ms;
+$transition-slow: 500ms;
+$transition-ease: ease-in-out; 

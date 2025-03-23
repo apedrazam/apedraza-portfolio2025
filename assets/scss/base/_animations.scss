@@ -1,0 +1,105 @@
+/**
+ * Animations and transitions
+ * Contains all animation-related styles for the site
+ */
+
+@use '../abstracts/variables';
+
+//Check work and Flashcard trigger animation
+@keyframes toBottomFromTop {
+	49% {
+		transform: translateY(100%);
+	}
+	50% {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+	51% {
+		opacity: 1;
+	}
+}
+
+/* Hero background hexagons */
+.hero__bg-hexagons {
+  opacity: 0;
+  
+  &.animate-fade-in {
+    opacity: 1;
+    transition: opacity 1s ease;
+  }
+}
+
+/* Hero text animation - slide up from bottom */
+@keyframes slideUpFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Falling hexagons animation with subtle side-to-side movement */
+@keyframes fallDown {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.1;
+  }
+  5% {
+    opacity: 1;
+    transform: translate3d(5px, 6vh, 0);
+  }
+  10% {
+    transform: translate3d(-5px, 12vh, 0);
+  }
+  20% {
+    transform: translate3d(8px, 24vh, 0);
+  }
+  40% {
+    transform: translate3d(-10px, 48vh, 0);
+  }
+  60% {
+    transform: translate3d(12px, 66vh, 0);
+  }
+  80% {
+    transform: translate3d(-8px, 96vh, 0) rotate(-1deg);
+  }
+  90% {
+    opacity: 0.8;
+    transform: translate3d(5px, 108vh, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 120vh, 0);
+  }
+}
+
+.slide-up-animation {
+  opacity: 0;
+  transform: translateY(40px);
+  
+  &.animate {
+    animation: slideUpFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  
+  &.delay-1 {
+    animation-delay: 0.1s;
+  }
+  
+  &.delay-2 {
+    animation-delay: 0.5s;
+  }
+  
+  &.delay-3 {
+    animation-delay: 0.8s;
+  }
+  
+  &.delay-4 {
+    animation-delay: 1.2s;
+  }
+}
+
+/* Note: The SVG tilt animation is now implemented directly in svg-tilt.js */
+

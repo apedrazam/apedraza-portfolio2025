@@ -1,0 +1,65 @@
+/**
+ * Scroll to Top Component Styles
+ */
+
+@use '../abstracts/variables';
+
+/* Container styles */
+#scroll-to-top-container {
+  position: relative;
+  z-index: 50;
+  pointer-events: none; /* Allow clicks to pass through to elements behind it */
+}
+
+/* Button base styles */
+#back-to-top {
+  position: fixed;
+  bottom: -100px; /* Hidden by default */
+  right: variables.$spacing-2xl;
+  background-color: variables.$color-primary-surface;
+  /* Reduced size by ~20% */
+  width: 3.3rem;
+  height: 3.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: all variables.$transition-normal;
+  cursor: pointer;
+  border: none;
+  /* Hexagon shape using polygon for better support */
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  pointer-events: auto; /* Ensure button is clickable */
+  
+  /* Icon styling */
+  i {
+    color: variables.$color-text-on-prominent;
+    font-weight: 900;
+    font-size: 1.5rem;
+  }
+  
+  /* Visible state */
+  &.visible {
+    bottom: variables.$spacing-xl; /* Default position when visible */
+  }
+  
+  /* Position above footer - will be overridden by inline styles when needed */
+  &.above-footer {
+    position: fixed; /* Keep it fixed but JS will update bottom position */
+  }
+  
+  /* Hover effects */
+  &:hover {
+    background-color: variables.$color-primary-surface-light;
+    transform: translateY(-3px);
+    scale: 1.05;
+    /* Enhanced shadow on hover */
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+  
+  /* Focus styles for accessibility */
+  &:focus {
+    outline: 2px solid variables.$color-text-body;
+    outline-offset: 2px;
+  }
+}

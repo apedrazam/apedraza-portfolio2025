@@ -1,0 +1,283 @@
+/**
+ * Hero Section Styles
+ * Styles for the homepage hero section
+ */
+
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+@use '../base/animations';
+/* Hero section base */
+.hero-section {
+  color: variables.$color-text-body;
+  position: relative; /* Ensure relative positioning */
+  
+  .hero-container {
+    background-color: variables.$color-prominent-surface;
+    position: relative;
+    display: flex;
+    gap: variables.$spacing-xs;
+    overflow: hidden;
+    justify-content: center;
+    padding-top: clamp(19vw, 19vw, 19.5rem);
+    padding-bottom: 8vw;
+  }
+  
+  /* Background elements */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1; /* Increase z-index to be above falling hexes */
+
+    svg {
+      width: 100%;
+      height: 100%;
+      
+      g.hex {
+        transition: fill variables.$transition-normal variables.$transition-ease;
+      }
+    }
+  }
+  
+  .hero-bg-top {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 2; /* Above other background elements */
+    
+    @media (min-width: 1536px) {
+      transform: translateX(-50%) translateY(calc((100vw - 1536px) / -4));
+    }
+  }
+  
+  /* Falling hexagons background */
+  .falling-hex-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0; /* Below everything else */
+    pointer-events: none;
+    background-color: transparent; /* Ensure transparency */
+    contain: strict; /* Improves performance by isolating this content */
+  }
+  
+  .falling-hex {
+    position: absolute;
+    pointer-events: none; /* Ignore mouse events */
+    /* Use transform for hardware acceleration */
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    
+    &.hidden-hex {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    &.animated-hex {
+      opacity: 1;
+      visibility: visible;
+      animation-name: fallDown;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    
+    svg {
+      width: 50px; /* Base size - scales will be applied to the container */
+      height: 56px;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)); /* Reduced shadow for performance */
+      
+      path {
+        stroke: variables.$color-blue-900;
+        stroke-width: 3px;
+        fill: transparent;
+      }
+      
+      @media (max-width: 768px) {
+        width: 40px;
+        height: 45px;
+      }
+      
+      @media (max-width: 480px) {
+        width: 30px;
+        height: 34px;
+      }
+    }
+  }
+  
+  /* Hero content container */
+  .hero-content {
+    position: relative;
+    z-index: 10; /* This is already high, which is good */
+    align-self: stretch;
+    width: 48vw;
+    max-width: variables.$breakpoint-2xl;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: variables.$color-text-on-prominent;
+
+    h1.hero-title,
+    p.hero-paragraph,
+    h3.hero-subtitle {
+      font-family: variables.$font-family-body;
+      font-size: clamp(1.5rem, 1.75vw, 2rem);
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1.4;
+    }
+    
+    /* Apply slide-up animation classes */
+    .hero-title {
+      @extend .slide-up-animation;
+    }
+    
+    .hero-paragraph {
+      @extend .slide-up-animation;
+    }
+    
+    .hero-subtitle {
+      @extend .slide-up-animation;
+    }
+  }
+  
+  .hero-header {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    font-size: 1.5rem;
+    font-weight: normal;
+  }
+  
+  .hero-title {
+    align-self: stretch;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+  }
+  
+  .hero-paragraph,
+  .hero-subtitle {
+    align-self: stretch;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+    margin-top: variables.$spacing-base;
+  }
+  
+  /* CTA section */
+  .hero-cta-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    margin-top: 5vh;
+    margin-bottom: 3vh;
+    @extend .slide-up-animation;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    gap: variables.$spacing-lg;
+  }
+  
+  /* Button styling */
+  .hero-button {
+    display: flex;
+    color: variables.$color-text-on-prominent;
+    font-style: normal;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem clamp(1rem, 1vw, 2rem);
+    font-weight: 600;
+    position: relative;
+    border: none;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,0 L100,0 L100,100 L0,100 L0,0 L15,0 L100,85 L100,100 L0,100 L0,15 Z' fill='currentColor'/%3E%3C/svg%3E");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      opacity: 0.1;
+      z-index: -1;
+    }
+    
+    &-outline {
+      background: transparent;
+      border: 2px solid variables.$color-text-on-prominent;
+
+      &::before {
+        opacity: 0;
+      }
+
+      &:hover {
+        text-decoration: none;
+        border-color: variables.$color-text-body-accent-on-prominent;
+        color: variables.$color-text-body-accent-on-prominent;
+      }
+    }
+    
+    &-fill {
+      background-color: variables.$color-primary-surface;
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      &::before {
+        opacity: 0.1;
+      }
+    }
+    
+    &-icon {
+      margin-left: variables.$spacing-xs;
+      font-weight: 900;
+    }
+
+    &:hover .hero-button-icon {
+      animation: toBottomFromTop 0.2s forwards;
+    }
+  }
+  
+  /* Mobile styles */
+  @include mixins.mobile {
+    .hero-container {
+      padding-top: 32vw;
+      padding-left: 8vw;
+      overflow: hidden;
+    }
+    
+    .hero-content {
+      width: 72vw;
+    }
+    
+    .hero-cta-container {
+      max-width: 100%;
+      margin-top: 3vh;
+    }
+    
+    .hero-buttons {
+      max-width: 100%;
+    }
+  }
+} 
+
+/* Remove old animation classes since we've replaced them with our new system */
+.hero__title,
+.hero__subtitle,
+.hero__text,
+.hero__cta {
+  &.animate-slide-in-up {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+} 

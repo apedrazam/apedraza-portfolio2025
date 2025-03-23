@@ -1,0 +1,123 @@
+/**
+ * Header Component Styles
+ */
+ @use '../abstracts/variables';
+ @use '../abstracts/mixins';
+/* Base header styles */
+#sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: variables.$color-header-surface;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 50;
+  transition: transform variables.$transition-normal ease;
+  
+  /* Container styles */
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: variables.$spacing-xl;
+    padding-right: variables.$spacing-xl;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+    width: 100%;
+  }
+  
+  /* Logo styles */
+  .logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  img {
+    height: 5rem;
+    margin-bottom: -2rem;
+    width: auto;
+    object-fit: contain;
+
+    @include mixins.mobile {
+      margin-bottom: -1.5rem;
+      height: 4.5rem;
+    }
+
+    @include mixins.mobile {
+      margin-bottom: -.75rem;
+      height: 4rem;
+    }
+  }
+  
+  /* Navigation styles */
+  .main-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: variables.$spacing-lg;
+
+    ul {
+      display: flex;
+      gap: 2rem;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+    }
+    
+    li {
+      position: relative;
+      margin-bottom: 0;
+      transition: transform variables.$transition-normal variables.$transition-ease;
+      
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    
+    a {
+      text-decoration: none;
+      text-transform: uppercase;
+      font-style: normal;
+      font-family: variables.$font-family-heading;
+      color: variables.$color-text-body;
+      font-weight: 900;     
+      letter-spacing: -6%;
+      transition: transform variables.$transition-normal variables.$transition-ease;
+      position: relative;
+      
+      &:hover {
+        color: variables.$color-primary;
+        transition: transform variables.$transition-normal variables.$transition-ease;
+      }
+      &:focus,
+      &:active {
+        color: variables.$color-primary-light;
+      }
+    }
+  }
+  
+  /* Theme toggle button */
+  #theme-toggle {
+    background: none;
+    border: none;
+    padding: variables.$spacing-xs;
+    cursor: pointer;
+    color: var(--color-text-body);
+    transition: transform variables.$transition-normal variables.$transition-ease;
+
+    &:hover {
+      transform: scale(1.1);
+      color: variables.$color-primary;
+    }
+
+    i {
+      transition: transform variables.$transition-normal variables.$transition-ease;
+    }
+  }
+
+
+}

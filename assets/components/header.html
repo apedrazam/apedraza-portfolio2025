@@ -1,0 +1,77 @@
+<!-- Sticky Header Component -->
+<header id="sticky-header">
+  <div class="container">
+    <a href="index.html" class="logo-link">
+      <img src="assets/images/APEDRAZA.NET LOGO color.png" alt="Adrian Pedraza Logo">
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html#case-studies">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="mailto:contact@apedraza.net">Resumé</a></li>
+      </ul>
+    </nav>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+  </div>
+</header>
+
+<script>
+  (function() {
+    // Check if we're on index page by looking at the filename in the URL
+    const currentUrl = window.location.href.toLowerCase();
+    const isIndexPage = currentUrl.includes('index.html') || 
+                       currentUrl.endsWith('/') ||
+                       currentUrl.match(/[^\/]+$/) === null;
+    
+    // Also check for home class on body
+    const hasHomeClass = document.body.classList.contains('home');
+    
+    // This is homepage if either condition is true
+    const isHomePage = isIndexPage || hasHomeClass;
+    
+    const header = document.getElementById('sticky-header');
+    
+    // Set visibility based on page type
+    if (isHomePage) {
+      // Make the header transparent initially and set up scroll listener
+      header.classList.add('transparent');
+      
+      // Add scroll event listener
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+          header.classList.remove('transparent');
+        } else {
+          header.classList.add('transparent');
+        }
+      });
+      
+      // Update on initial load
+      if (window.scrollY > 100) {
+        header.classList.remove('transparent');
+      }
+    } else {
+      // For non-homepage, always solid
+      header.classList.remove('transparent');
+    }
+    
+    // Handle theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', toggleTheme);
+    }
+    
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark-theme');
+      themeToggle.innerHTML = isDark ? '☀️' : '🌙';
+      
+      // Save preference to localStorage
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+    
+    // Check for saved preference on load
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-theme');
+      if (themeToggle) themeToggle.innerHTML = '☀️';
+    }
+  })();
+</script> 

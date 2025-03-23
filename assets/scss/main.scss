@@ -1,0 +1,28 @@
+/**
+ * Main Styles for Adrian Pedraza Portfolio
+ */
+
+// Abstracts
+@use 'abstracts/variables';
+@use 'abstracts/mixins';
+@use 'abstracts/functions';
+
+// Base styles
+@use 'base/reset';
+@use 'base/layout';
+@use 'base/fonts';
+@use 'base/icons';
+@use 'base/animations';
+
+// Components
+@use 'components/header';
+@use 'components/footer';
+@use 'components/scroll-to-top';
+@use 'components/hero';
+@use 'components/work-section';
+@use 'components/flashcards';
+
+// Pages
+@use 'pages/page-template';
+@use 'pages/about';
+@use 'pages/privacy-policy';

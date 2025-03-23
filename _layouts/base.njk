@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if title %}{{ title }}{% else %}Adrian Pedraza - Product Designer & UX Specialist{% endif %}</title>
+    <meta name="description" content="{% if description %}{{ description }}{% else %}Adrian Pedraza - Product Designer and UX Specialist portfolio showcasing selected work and case studies.{% endif %}">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/assets/css/main.css" as="style">
+    <link rel="preload" href="/assets/images/APEDRAZA.NET LOGO color.png" as="image">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/images/favicon.ico">
+    
+    <!-- Main CSS (compiled from SCSS) -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    
+    <!-- Flashcard CSS -->
+    <link rel="stylesheet" href="/assets/css/flashcards.css">
+    
+    <!-- Additional CSS -->
+    {% block additionalCSS %}{% endblock %}
+    
+    <!-- Additional head content -->
+    {% block head %}{% endblock %}
+</head>
+<body class="{% if bodyClass %}{{ bodyClass }}{% endif %}">
+    <!-- Header Component -->
+    {% include "components/header.njk" %}
+    
+    <!-- Main Content -->
+    <main>
+      {{ content | safe }}
+      
+      <!-- Bottom background SVG -->
+      <figure class="bg-block-container">
+        <img src="/assets/images/bottom-bg-block2.svg" class="bottom-bg-block" alt=""/>
+      </figure>
+    </main>
+    
+    <!-- Footer Component -->
+    {% include "components/footer.njk" %}
+    
+    <!-- Scroll to Top Component -->
+    {% include "components/scroll-to-top.njk" %}
+    
+    <!-- Scripts -->
+    <script src="/assets/js/header.js" defer></script>
+    <script src="/assets/js/flashcards.js" defer></script>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/svg-tilt.js" defer></script>
+    <script src="/assets/js/hero-animation.js" defer></script>
+    <script src="/assets/js/falling-hexes-bg.js" defer></script>
+    
+    <!-- Additional Scripts -->
+    {% block additionalScripts %}{% endblock %}
+</body>
+</html> 

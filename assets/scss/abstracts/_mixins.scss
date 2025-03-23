@@ -1,0 +1,98 @@
+/**
+ * Mixins
+ * Reusable style patterns
+ */
+
+ @use '../abstracts/variables';
+
+// Media queries
+@mixin mobile {
+  @media (max-width: #{variables.$breakpoint-sm - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{variables.$breakpoint-sm}) and (max-width: #{variables.$breakpoint-lg - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{variables.$breakpoint-lg}) and (max-width: #{variables.$breakpoint-xl - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop-xl {
+  @media (min-width: #{variables.$breakpoint-xl}) {
+    @content;
+  }
+}
+
+// Layout helpers
+@mixin container {
+  width: 100%;
+  max-width: variables.$breakpoint-2xl;
+}
+
+// Flexbox helpers
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Common patterns
+@mixin card {
+  background-color: #{variables.$color-base-surface};
+  border-radius: #{variables.$border-radius-md};
+  box-shadow: 0 2px 8px #{variables.$color-shadow};
+  padding: #{variables.$spacing-lg};
+}
+
+@mixin button {
+  display: inline-block;
+  padding: #{variables.$spacing-sm} #{variables.$spacing-lg};
+  border-radius: #{variables.$border-radius-sm};
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: all #{variables.$transition-normal};
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+// Hide visually but keep accessible for screen readers
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+} 

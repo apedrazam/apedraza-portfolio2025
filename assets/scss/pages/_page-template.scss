@@ -1,0 +1,44 @@
+/**
+ * Page Template Styles
+ * Common styles for content pages
+ */
+
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+main{
+  overflow: hidden;
+  position: relative;
+}
+
+.top-bg-block {
+  margin-bottom: -15rem;
+  width: 100%;
+  position: relative;
+  z-index: -1;
+
+  @include mixins.desktop {
+    margin-bottom: -8rem;
+  }
+
+  @include mixins.tablet {
+    margin-bottom: -6rem;
+  }
+  @include mixins.mobile {
+    margin-bottom: -4rem;
+  }
+}
+
+.bottom-bg-block {
+  margin-top: -12rem;
+  width: 100%;
+  position: relative;
+  z-index: -1;
+  
+  @include mixins.tablet {
+    margin-top: -6rem;
+  }
+  @include mixins.mobile {
+    margin-top: -8rem;
+  }
+}

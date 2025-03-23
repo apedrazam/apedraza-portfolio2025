@@ -1,0 +1,62 @@
+<!-- Scroll to Top Component -->
+<div id="scroll-to-top-container">
+  <button id="back-to-top" aria-label="Scroll to top">
+    <i class="fa fa-arrow-up"></i>
+  </button>
+</div>
+
+<script>
+  (function() {
+    // Initialize on load
+    function initScrollToTop() {
+      const backToTopButton = document.getElementById('back-to-top');
+      const footer = document.getElementById('footer-component');
+      
+      if (!backToTopButton) {
+        console.error('Scroll to top button not found');
+        return;
+      }
+      
+      // Function to handle scroll and position the button
+      function handleScroll() {
+        // Show button when scrolled down 300px
+        if (window.scrollY > 300) {
+          backToTopButton.classList.add('visible');
+        } else {
+          backToTopButton.classList.remove('visible');
+        }
+        
+        // Hide button when approaching footer
+        if (footer) {
+          const footerTop = footer.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          
+          // If footer is in view or close to being in view
+          if (footerTop < windowHeight + 100) {
+            backToTopButton.classList.add('above-footer');
+          } else {
+            backToTopButton.classList.remove('above-footer');
+          }
+        }
+      }
+      
+      // Initialize scroll handler
+      window.addEventListener('scroll', handleScroll);
+      
+      // Initial position check
+      handleScroll();
+      
+      // Add click event to scroll to top
+      backToTopButton.addEventListener('click', function() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      });
+    }
+    
+    // Initialize component when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initScrollToTop);
+    } else {
+      initScrollToTop();
+    }
+  })();
+</script> 

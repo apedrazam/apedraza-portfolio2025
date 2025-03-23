@@ -1,0 +1,29 @@
+/**
+ * Functions
+ * SCSS utility functions
+ */
+
+// Convert pixel values to rem
+@function rem($pixels, $context: 16) {
+  @return #{$pixels / $context}rem;
+}
+
+// Calculate em values
+@function em($pixels, $context: 16) {
+  @return #{$pixels / $context}em;
+}
+
+// Darken color by percentage
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+// Lighten color by percentage
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+// Strip the unit from a value
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+} 

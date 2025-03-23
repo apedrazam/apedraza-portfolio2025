@@ -1,0 +1,312 @@
+/**
+ * Work Section Styles
+ * Includes both Case Studies and Clients sections
+ */
+
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+@use '../base/animations';
+/* Work section base */
+.work-section {
+  position: relative;
+  padding: 0 clamp(1.5rem, 1.5vw, 3.5rem);
+  margin: 0 auto;
+
+  @include mixins.container;
+}
+
+/* Case Studies section */
+.case-studies-section {
+  padding-top: variables.$spacing-4xl;
+  padding-bottom: variables.$spacing-4xl;
+}
+
+.case-studies-container {
+  max-width: variables.$breakpoint-2xl;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.case-studies-description {
+  font-weight: normal;
+  margin-bottom: variables.$spacing-3xl;
+}
+
+.case-studies-list {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-5xl;
+
+  & a:hover {
+    text-decoration: none;
+  }
+}
+
+/* Case Study Card */
+.case-study-card {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  width: 100%;
+  gap: 4rem;
+  font-style: normal;
+
+  &:hover {
+    .case-study-mockup,
+    .case-study-video {
+      transform: scale(1.04);
+      transition-duration: .4s;
+    }
+    .case-study-content {
+      transform: scale(1.06);
+      transition-duration: .4s;
+    }
+  }
+}
+
+.case-study-image-container {
+  grid-column: span 7 / span 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.case-study-image-container.right-align {
+  grid-column: span 7 / span 7;
+  order: 2;
+}
+
+.case-study-content {
+  color: variables.$color-text-body;
+  grid-column: span 5 / span 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 2rem;
+  transform: scale(1);
+  transition-duration: .4s;
+}
+
+.case-study-content.left-align {
+  grid-column: span 5 / span 5;
+  order: 1;
+}
+
+.case-study-image-wrapper {
+  position: relative;
+  aspect-ratio: 1.59;
+  width: 100%;
+}
+
+.case-study-bg {
+  position: absolute;
+  z-index: -10;
+  width: 80%;
+}
+
+.case-study-mockup {
+  position: absolute;
+  width: 87%;
+  object-fit: contain;
+  transform: scale(1);
+  transition-duration: .4s;
+}
+
+.case-study-mockup.phone {
+  width: 60%;
+  max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.case-study-1 {
+  .case-study-bg{
+    left: 0%;
+    top: -5%;
+  }
+
+  .case-study-mockup{
+    bottom: 0%;
+    right: -5%;
+  }
+  
+}
+
+.case-study-2 {
+  gap: 0;
+  
+  .case-study-content{  
+    padding-left: clamp(1rem, 8vw, 2rem);
+    padding-top: 0;
+  }
+
+  .case-study-image-container{
+    margin-left: clamp(-1rem, -8vw, -2rem);
+  }
+
+  .case-study-bg{
+    width: 95%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .case-study-mockup.phone{
+    left: 22%;
+    top: -2%;
+  }
+  
+}
+
+.case-study-3 {
+  .case-study-bg{
+    left: -5%;
+    top: -5%;
+  }
+
+  .case-study-mockup{
+    bottom: 0%;
+    right: -5%;
+  }
+}
+
+.case-study-4 {
+  .case-study-bg{
+    right: -5%;
+    top: -5%;
+  }
+
+  .case-study-mockup{
+    bottom: 0%;
+    left: -5%;
+  }
+}
+
+.case-study-video {
+  position: absolute;
+  width: 69%;
+  height: 66%;
+  top: 26%;
+  left: 26.5%;
+  object-fit: cover;
+  border-radius: 0.125rem;
+  z-index: 5;
+  pointer-events: none;
+  transition: transform 0.3s ease-out;
+}
+
+.case-study-title {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 600;
+  line-height: 0.925;
+  letter-spacing: -2%;
+}
+
+.case-study-description {
+  margin-top: variables.$spacing-base;
+}
+
+.flashcard-btn {
+  display: flex;
+  gap: variables.$spacing-xs;
+  margin-top: variables.$spacing-base;
+  padding-top: 0.5rem;
+  cursor: pointer;
+  align-items: center;
+  color: variables.$color-primary;
+
+  &:hover {
+
+    .flashcard-trigger-text::after   {
+      content: "";
+      width: 100%;
+      height: 2px;
+      background-color: variables.$color-primary;
+      display: block;
+      margin-top: -0.125rem;
+    }
+
+    i {
+      animation: toBottomFromTop 0.2s forwards;
+    }
+  }
+}
+
+.flashcard-trigger-text {
+  font-weight: bold;
+  letter-spacing: -2%;
+}
+
+/* Clients Section */
+.clients-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.clients-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin-bottom: 12vh;
+
+}
+
+.clients-grid {
+  align-self: center;
+  display: flex;
+  width: 100%;
+  background-color: variables.$color-low-contrast-surface;
+  border-radius: clamp(.5rem, .75vw, 1rem);
+  max-width: variables.$breakpoint-xl;
+  align-items: center;
+  gap: variables.$spacing-3xl;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: clamp(1.5rem, 2vw, 2.5rem);
+  padding-top: variables.$spacing-xl;
+  padding-bottom: variables.$spacing-2xl;
+}
+
+.client-logo {
+  object-fit: contain;
+  align-self: stretch;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.client-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 15vw;
+}
+
+// Media queries
+@include mixins.mobile {
+  .case-study-card {
+    grid-template-columns: 1fr;
+    gap: variables.$spacing-xl;
+  }
+  
+  .case-study-image-container, 
+  .case-study-image-container.right-align,
+  .case-study-content,
+  .case-study-content.left-align {
+    grid-column: span 12 / span 12;
+    order: initial;
+  }
+  
+  .clients-grid {
+    gap: variables.$spacing-xl;
+  }
+
+  .client-item {
+    max-width: 25vw;
+  }
+}
+
+// Additional block class for proper linking
+.block {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}

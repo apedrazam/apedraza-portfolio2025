@@ -1,0 +1,120 @@
+/**
+ * Page Template Styles
+ * Common styles for content pages
+ */
+
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+/* About Page */
+.about-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 variables.$spacing-base;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: variables.$spacing-3xl;
+  
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: variables.$spacing-base;
+    color: variables.$color-text-body;
+  }
+  
+  .lead {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    max-width: 700px;
+    margin: 0 auto;
+    color: variables.$color-text-body;
+  }
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: variables.$spacing-3xl;
+  
+  @include mixins.mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about-image {
+  img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: variables.$border-radius-md;
+    box-shadow: 0 5px 15px variables.$color-shadow;
+  }
+}
+
+.about-text {
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: variables.$spacing-base;
+    margin-top: variables.$spacing-2xl;
+    color: variables.$color-text-body;
+    
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  
+  p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-bottom: variables.$spacing-lg;
+    color: variables.$color-text-body;
+  }
+}
+
+.skills-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: variables.$spacing-xl;
+  margin-bottom: variables.$spacing-2xl;
+  
+  @include mixins.mobile {
+    grid-template-columns: 1fr;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: variables.$spacing-sm;
+    color: variables.$color-text-body;
+  }
+  
+  ul {
+    list-style-type: disc;
+    padding-left: variables.$spacing-lg;
+    
+    li {
+      margin-bottom: variables.$spacing-xs;
+      color: variables.$color-text-body;
+    }
+  }
+}
+
+.about-social {
+  display: flex;
+  gap: variables.$spacing-lg;
+  margin-top: variables.$spacing-xl;
+  
+  .social-link {
+    display: inline-block;
+    padding: variables.$spacing-sm variables.$spacing-lg;
+    background-color: variables.$color-primary;
+    color: variables.$color-text-body;
+    text-decoration: none;
+    border-radius: variables.$border-radius-sm;
+    font-weight: 500;
+    transition: background-color variables.$transition-normal;
+    
+    &:hover {
+      background-color: variables.$color-primary-light;
+    }
+  }
+}
