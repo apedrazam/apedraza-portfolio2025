@@ -19,6 +19,34 @@
 	}
 }
 
+//Check work and Flashcard trigger animation
+@keyframes toRightFromLeft {
+	49% {
+		transform: translateX(100%);
+	}
+	50% {
+		opacity: 0;
+		transform: translateX(-100%);
+	}
+	51% {
+		opacity: 1;
+	}
+}
+
+//Check work and Flashcard trigger animation
+@keyframes toLeftFromRight {
+	49% {
+		transform: translateX(-100%);
+	}
+	50% {
+		opacity: 0;
+		transform: translateX(100%);
+	}
+	51% {
+		opacity: 1;
+	}
+}
+
 /* Hero background hexagons */
 .hero__bg-hexagons {
   opacity: 0;

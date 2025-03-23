@@ -1,0 +1,58 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+@use '../base/animations';
+
+.case-study-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: clamp(4rem, 10vw, 8rem);
+
+    .case-study-nav-title {
+        font-style: normal;
+        display: flex;
+        gap: clamp(.5rem, 1vw, 1rem);
+        align-items: center;
+
+        & i {
+            font-size: .875em;
+        }
+    }
+
+    .case-study-nav-link.next {
+        text-align: right;
+    }
+
+   .case-study-nav-link:hover {
+        text-decoration: none;
+    
+        &> .case-study-nav-title > div {
+                position: relative;
+
+                &::after {
+                content: '';
+                height:clamp(2px, 0.2vw, 4px);
+                background-color: variables.$color-primary;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            } 
+        }
+    }
+
+    .next:hover i {
+        animation: toRightFromLeft .2s forwards;
+    }
+
+    .prev:hover i {
+        animation: toLeftFromRight .2s forwards;
+    }
+
+    
+    @include mixins.mobile {
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-bottom: 2rem
+    }
+}

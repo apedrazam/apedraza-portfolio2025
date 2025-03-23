@@ -6,15 +6,25 @@
 {%- set nextStudy = (currentIndex < (allCaseStudies | length - 1)) and allCaseStudies[currentIndex + 1] or null -%}
 
 <div class="case-study-nav">
+  <div class="case-study-link-wrapper">
   {%- if prevStudy -%}
     <a href="{{ prevStudy.url }}" class="case-study-nav-link prev">
-      <span class="case-study-nav-title">{{ prevStudy.data.title }}</span>
+      <h4 class="case-study-nav-title">
+        <i class="fa-solid fa-arrow-left"></i>
+        <div>{{ prevStudy.data.title }}</div>
+      </h4>
     </a>
-  {%- endif -%}
+  {%- endif -%}yo
+  </div>
 
+  <div class="case-study-link-wrapper"></div>
   {%- if nextStudy -%}
     <a href="{{ nextStudy.url }}" class="case-study-nav-link next">
-      <span class="case-study-nav-title">{{ nextStudy.data.title }}</span>
+      <h4 class="case-study-nav-title">
+        <div>{{ nextStudy.data.title }}</div>
+        <i class="fa-solid fa-arrow-right"></i>
+      </h4>
     </a>
   {%- endif -%}
+  </div>
 </div>

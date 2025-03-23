@@ -3,7 +3,7 @@
  */
 
 @use '../abstracts/variables';
-
+@use '../abstracts/mixins';
 /* Container styles */
 #scroll-to-top-container {
   position: relative;
@@ -61,5 +61,9 @@
   &:focus {
     outline: 2px solid variables.$color-text-body;
     outline-offset: 2px;
+  }
+
+  @include mixins.mobile {
+    right: 20px;
   }
 }
