@@ -34,6 +34,10 @@
       
       g.hex {
         transition: fill variables.$transition-normal variables.$transition-ease;
+        // Ensure hardware acceleration for hexagon animations
+        transform: translateZ(0);
+        will-change: transform;
+        backface-visibility: hidden;
       }
     }
   }
@@ -120,6 +124,8 @@
     margin-top: auto;
     margin-bottom: auto;
     color: variables.$color-text-on-prominent;
+    // Ensure content has visible overflow for animations
+    overflow: visible;
 
     h1.hero-title,
     p.hero-paragraph,
@@ -129,19 +135,24 @@
       font-weight: 400;
       letter-spacing: 0;
       line-height: 1.4;
+      // Ensure visibility
+      visibility: visible;
     }
     
     /* Apply slide-up animation classes */
     .hero-title {
       @extend .slide-up-animation;
+      transform-style: preserve-3d;
     }
     
     .hero-paragraph {
       @extend .slide-up-animation;
+      transform-style: preserve-3d;
     }
     
     .hero-subtitle {
       @extend .slide-up-animation;
+      transform-style: preserve-3d;
     }
   }
   
@@ -180,6 +191,7 @@
     margin-top: 5vh;
     margin-bottom: 3vh;
     @extend .slide-up-animation;
+    transform-style: preserve-3d;
   }
   
   .hero-buttons {

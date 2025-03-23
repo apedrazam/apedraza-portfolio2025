@@ -27,14 +27,6 @@ module.exports = function(eleventyConfig) {
     return collectionApi.getFilteredByGlob("pages/*.njk").filter(item => item.data.category === "Case Study");
   });
 
-  // Add passthrough copy for flashcard pages
-  eleventyConfig.addPassthroughCopy({
-    "pages/case-studies/devex-design-process/flashcard.njk": "case-study/devex-design-process/flashcard.html",
-    "pages/case-studies/devex-job-posting/flashcard.njk": "case-study/devex-job-posting/flashcard.html",
-    "pages/case-studies/devex-design-system/flashcard.njk": "case-study/devex-design-system/flashcard.html",
-    "pages/case-studies/adamo-wholesale-billing/flashcard.njk": "case-study/adamo-wholesale-billing/flashcard.html"
-  });
-
   // ✅ Compute correct permalink for homepage & case studies
   eleventyConfig.addGlobalData("eleventyComputed", {
     permalink: data => {

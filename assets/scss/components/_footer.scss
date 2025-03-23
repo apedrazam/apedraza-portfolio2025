@@ -112,11 +112,12 @@
     gap: variables.$spacing-sm;
   }
   
-  .footer-credits-icon {
+  .footer-credits i {
     width: auto;
     display: inline;
     vertical-align: middle;
     margin: 0 2px;
+    font-size: clamp(1.125rem, 1.75vw, 1.5rem);
   }
   
   .footer-copyright {

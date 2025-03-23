@@ -23,6 +23,14 @@
     if (e.key === 'Escape') closeModal();
     else if (e.key === 'ArrowLeft') navigate(-1);
     else if (e.key === 'ArrowRight') navigate(1);
+    else if (e.key === 'Enter') {
+      e.preventDefault();
+      // Use the link in the current flashcard content
+      const readMoreLink = document.querySelector('.flashcard-content a.read-more-link');
+      if (readMoreLink) {
+        window.location.href = readMoreLink.href;
+      }
+    }
     else if (['ArrowUp', 'ArrowDown'].includes(e.key)) {
       e.preventDefault();
       document.querySelector('.flashcard-content')?.scrollBy({ top: e.key === 'ArrowUp' ? -100 : 100, behavior: 'smooth' });
@@ -32,7 +40,7 @@
   function loadFlashcardContent(caseStudyId) {
     try {
       const xhr = new XMLHttpRequest();
-      xhr.open('GET', `/case-study/${caseStudyId}/flashcard.html`, false);
+      xhr.open('GET', `/flashcards/flashcard-${caseStudyId}.html`, false);
       xhr.send();
       return xhr.status === 200 ? xhr.responseText : '<div class="error">Failed to load flashcard content</div>';
     } catch {
@@ -58,6 +66,13 @@
     if (!content) return;
     content.scrollTop = 0;
     content.innerHTML = loadFlashcardContent(caseStudyId);
+    
+    // Add click handler for close button
+    const closeBtn = content.querySelector('#flashcard-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeModal);
+    }
+    
     updateNavigationButtons();
   }
 

@@ -145,9 +145,10 @@ h6 {
 }
 
 h1 {
-  font-size: clamp(2.5rem, 4vw, 4rem);
-  line-height: 0.925;
+  font-size: clamp(2.5rem, 4.75vw, 4rem);
+  line-height: 1.1;
   letter-spacing: -2%;
+  margin-bottom: 1em;
 }
 
 h2{
