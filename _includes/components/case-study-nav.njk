@@ -11,7 +11,7 @@
     <a href="{{ prevStudy.url }}" class="case-study-nav-link prev">
       <h4 class="case-study-nav-title">
         <i class="fa-solid fa-arrow-left"></i>
-        <div>{{ prevStudy.data.title }}</div>
+        <div>{{ prevStudy.data.title.slice(0, -17) }}</div>
       </h4>
     </a>
   {%- endif -%}
@@ -21,7 +21,7 @@
   {%- if nextStudy -%}
     <a href="{{ nextStudy.url }}" class="case-study-nav-link next">
       <h4 class="case-study-nav-title">
-        <div>{{ nextStudy.data.title }}</div>
+        <div>{{ nextStudy.data.title.slice(0, -17) }}</div>
         <i class="fa-solid fa-arrow-right"></i>
       </h4>
     </a>
