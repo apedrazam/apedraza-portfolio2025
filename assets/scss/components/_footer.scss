@@ -83,6 +83,11 @@
     height: auto;
     align-self: center;
     margin: 0 variables.$spacing-xl;
+    transition: transform variables.$transition-normal;
+
+    &:hover{
+      transform: scale(1.05);
+    }
     
     @include mixins.mobile {
       order: -1;
