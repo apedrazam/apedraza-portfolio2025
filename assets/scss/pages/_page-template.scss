@@ -11,6 +11,10 @@ main{
   position: relative;
 }
 
+.top-bg-block-container {
+  height: clamp(80px, 12vw, 200px);
+}
+
 .top-bg-block {
   margin-bottom: -15rem;
   width: 100%;

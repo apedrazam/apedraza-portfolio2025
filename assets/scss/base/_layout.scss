@@ -17,7 +17,7 @@ main {
 .page-content-wrapper {
   flex: 1;
   margin: clamp(1.5rem, 2vw, 6rem) auto clamp(1.5rem, 5vh, 4rem);
-  padding: 0 clamp(3rem,25vw, 8rem);
+  padding: 0 clamp(3rem, 25vw, 16rem);
 
   @include mixins.container;
 
