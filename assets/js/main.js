@@ -1,4 +1,39 @@
-document.addEventListener('DOMContentLoaded', function() {
+// Prevent layout shift for top background SVG
+(() => {
+  if (window.location.pathname !== '/') {
+    // Method 1: Force immediate download with high priority
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = '/assets/images/top-bg-block2.svg';
+    link.fetchpriority = 'high';
+    document.head.appendChild(link);
+    
+    // Method 2: Apply inline dimensions to any container that has this as background
+    window.addEventListener('load', () => {
+      // Find elements with the background SVG
+      const bgElements = Array.from(document.querySelectorAll('*')).filter(el => {
+        const style = window.getComputedStyle(el);
+        return style.backgroundImage.includes('top-bg-block2.svg');
+      });
+      
+      // For each element with our SVG background, ensure dimensions are set
+      bgElements.forEach(el => {
+        if (!el.style.height) {
+          // Get the natural dimensions of the SVG (2560x768 from the file)
+          const aspectRatio = 768 / 2560;
+          const width = el.offsetWidth;
+          const height = width * aspectRatio;
+          
+          // Set min-height to reserve space
+          el.style.minHeight = `${height}px`;
+        }
+      });
+    });
+  }
+})();
+
+document.addEventListener('DOMContentLoaded', () => {
   console.log('Checking Font Awesome icons in footer...');
   
   // Get all Font Awesome icons in the footer
@@ -31,53 +66,38 @@ document.addEventListener('DOMContentLoaded', function() {
   let heroHeight = heroSection ? heroSection.offsetHeight : 0;
   
   // Theme handling
-  function setTheme(theme) {
+  const setTheme = (theme) => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
-    
-    // Update icon
-    if (theme === 'dark') {
-      themeToggleIcon.classList.remove('fa-moon');
-      themeToggleIcon.classList.add('fa-sun');
-    } else {
-      themeToggleIcon.classList.remove('fa-sun');
-      themeToggleIcon.classList.add('fa-moon');
-    }
-  }
+    themeToggleIcon.classList.toggle('fa-sun', theme === 'dark');
+    themeToggleIcon.classList.toggle('fa-moon', theme === 'light');
+  };
   
   // Initialize theme
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  setTheme(savedTheme);
+  setTheme(localStorage.getItem('theme') || 'light');
   
   // Theme toggle click handler
-  themeToggle.addEventListener('click', function() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
+  themeToggle.addEventListener('click', () => {
+    setTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
   });
   
   // Scroll handler for sticky header and back to top button
-  window.addEventListener('scroll', function() {
+  window.addEventListener('scroll', () => {
     const currentScrollY = window.scrollY;
     
     // Show/hide header after hero section
-    if (currentScrollY > heroHeight) {
-      header.classList.add('header--visible');
-      
-      // Show back to top with delay
-      setTimeout(() => {
-        backToTop.classList.add('back-to-top--visible');
-      }, 500);
-    } else {
-      header.classList.remove('header--visible');
-      backToTop.classList.remove('back-to-top--visible');
-    }
+    header.classList.toggle('header--visible', currentScrollY > heroHeight);
+    
+    // Show back to top with delay
+    setTimeout(() => {
+      backToTop.classList.toggle('back-to-top--visible', currentScrollY > heroHeight);
+    }, 500);
     
     lastScrollY = currentScrollY;
   });
   
   // Back to top button click handler
-  backToTop.addEventListener('click', function() {
+  backToTop.addEventListener('click', () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
@@ -86,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Flashcard handlers
   flashcardBtns.forEach((btn, index) => {
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', () => {
       const flashcard = flashcards[index];
       if (flashcard) {
         flashcard.classList.add('flashcard--open');
@@ -95,8 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  flashcardCloseBtns.forEach((btn) => {
-    btn.addEventListener('click', function() {
+  flashcardCloseBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
       const flashcard = btn.closest('.flashcard');
       if (flashcard) {
         flashcard.classList.remove('flashcard--open');
@@ -106,8 +126,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // Close flashcard when clicking outside content
-  flashcards.forEach((flashcard) => {
-    flashcard.addEventListener('click', function(e) {
+  flashcards.forEach(flashcard => {
+    flashcard.addEventListener('click', e => {
       if (e.target === flashcard) {
         flashcard.classList.remove('flashcard--open');
         document.body.style.overflow = '';
@@ -116,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // Hero animation
-  function animateHero() {
+  const animateHero = () => {
     const heroContent = document.querySelector('.hero__intro');
     const heroBgHexagons = document.querySelector('.hero__bg-hexagons');
     
@@ -126,8 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Animate hero content with delay
       setTimeout(() => {
-        const heroElements = heroContent.children;
-        Array.from(heroElements).forEach((element, index) => {
+        Array.from(heroContent.children).forEach((element, index) => {
           setTimeout(() => {
             element.classList.add('animate-slide-in-up');
           }, index * 200); // Stagger animation for each element
@@ -137,10 +156,10 @@ document.addEventListener('DOMContentLoaded', function() {
       // Start falling hexagons animation
       createFallingHexagons();
     }
-  }
+  };
   
   // Create falling hexagons
-  function createFallingHexagons() {
+  const createFallingHexagons = () => {
     const fallingHexagonsContainer = document.querySelector('.hero__falling-hexagons');
     
     if (fallingHexagonsContainer) {
@@ -157,22 +176,24 @@ document.addEventListener('DOMContentLoaded', function() {
         const delay = Math.floor(Math.random() * 10);
         const duration = Math.floor(Math.random() * 10) + 10; // 10-20s
         
-        hexagon.style.width = `${size}px`;
-        hexagon.style.height = `${size}px`;
-        hexagon.style.left = `${left}px`;
-        hexagon.style.animationDelay = `${delay}s`;
-        hexagon.style.animationDuration = `${duration}s`;
+        Object.assign(hexagon.style, {
+          width: `${size}px`,
+          height: `${size}px`,
+          left: `${left}px`,
+          animationDelay: `${delay}s`,
+          animationDuration: `${duration}s`
+        });
         
         fallingHexagonsContainer.appendChild(hexagon);
       }
     }
-  }
+  };
   
   // Initialize hero animation
   animateHero();
   
   // Handle window resize
-  window.addEventListener('resize', function() {
+  window.addEventListener('resize', () => {
     heroHeight = heroSection ? heroSection.offsetHeight : 0;
   });
   
@@ -180,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const workCards = document.querySelectorAll('.work-card');
   
   workCards.forEach(card => {
-    card.addEventListener('mousemove', function(e) {
+    card.addEventListener('mousemove', e => {
       const cardRect = card.getBoundingClientRect();
       const cardMedia = card.querySelector('.work-card__media');
       
@@ -198,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    card.addEventListener('mouseleave', function() {
+    card.addEventListener('mouseleave', () => {
       const cardMedia = card.querySelector('.work-card__media');
       if (cardMedia) {
         // Reset tilt
