@@ -6,48 +6,85 @@ category: "Case Study"
 order: 3
 ---
 
-<div class="case-study">
-  <section class="hero">
-    <h1>Devex Design System</h1>
-    <p class="lead">A comprehensive design system that unified Devex's digital presence and improved development efficiency.</p>
+<article class="case-study">
+  <section>
+    <h1>Design System at Devex</h1>
+    <p class="subtitle">Reading time 4 minutes</p>
   </section>
-
-  <section class="overview">
-    <h2>Overview</h2>
-    <p>Led the development of Devex's first comprehensive design system, creating a unified visual language and component library that improved consistency and development efficiency across all digital products.</p>
+  
+  <section>
+    <h2>Project overview</h2>
+    <p>Soon after joining Devex, designers saw a clear consistency issue. By working in separate squads <strong>different UIs for the same elements</strong> had been created. This struck us as a big risk for the user experience, making the site harder to understand. I proposed to start <strong>building an integrated Design System</strong> to eventually solve these inconsistencies.</p>
   </section>
-
-  <section class="challenge">
-    <h2>The Challenge</h2>
-    <p>Devex's digital products were experiencing inconsistencies in design and development, leading to:</p>
+  
+  <section>
+    <h2>Auditing without an audit</h2>
+    <p>Devex defines itself as a news media platform, but its platform includes five other products related to the global development market, each of them targeting different user personas. At the time (and even now), you could clearly find <strong>three different approaches to the design</strong> within the platform: one for news- and marketing-related content, other for the jobs- and recruitment-related content and finally the funding-related content, closer to jobs but with its own unique design patterns.</p>
+    <p>In order to successfully <strong>close that gap</strong>, we needed to gain perspective of what visual and functional patterns were alike, which were close enough and which ones were unique to their area. I proposed making a <strong>UI audit</strong> of the platform to collect all those items and then analyze how they related with each other.</p>
+    <figure class="img__full-width">
+      <img decoding="async" width="1347" height="875" src="https://apedraza.net/wp-content/uploads/2024/12/news-auditing.png" alt="">
+      <figcaption>UI audit collection of components found in News section pages</figcaption>
+    </figure>
+    <p>There were too many elements and we already had projects waiting for us in the pipeline. We agreed on three actions to be done when facing any UI project:</p>
     <ul>
-      <li>Inconsistent user experiences across different sections of the platform</li>
-      <li>Redundant development work for similar components</li>
-      <li>Difficulty in maintaining brand consistency</li>
-      <li>Slower development cycles due to lack of reusable components</li>
+      <li>When working over an existing page, create a component replicating existing reused elements as they are at the moment.</li>
+      <li>While creating new elements, look for similar items within that same domain.</li>
+      <li>If none of the above applies, discuss with the rest of the team about this addition's value and get agreement, or look for alternatives.</li>
     </ul>
+    <p>After a year in the job, we had the most common components of the Devex platform scattered along different project files.</p>
   </section>
-
-  <section class="solution">
-    <h2>The Solution</h2>
-    <p>Developed a comprehensive design system that included:</p>
+  
+  <section>
+    <h2>Scaling the pre-existing UI toolkit</h2>
+    <p>The front-end engineers were working with a <strong>UI toolkit based on Bootstrap 5</strong> components. Some of them were basic Bootstrap components modifying the styles to match the Devex brand, others had a wrapper around them to expand their functionality. None of them had cases of use.</p>
+    <p>We started working by downloading a Bootstrap 5 UI toolkit for Figma and scaled by adapting those assets <strong>into our own Devex UI toolkit file</strong>.</p>
+    <div class="case-study__card">
+      <figure class="cs-card__image">
+      <img decoding="async" width="2592" height="1944" src="https://apedraza.net/wp-content/uploads/2024/12/ui-toolkit-bs5.png" alt="">
+    </figure>
+      <div class="cs-card__content">
+        <h4>Setting the scope</h4>
+        <p>The frontend team used various technologies, but all new implementations are built with Bootstrap5. We decided that the system would be <strong>applied to migrated content only</strong>.</p>
+      </div>
+    </div>
+    <div class="case-study__card">
+      <figure class="cs-card__image">
+        <img loading="lazy" decoding="async" width="2592" height="1944" src="https://apedraza.net/wp-content/uploads/2024/12/atomic-design.png" alt="">
+      </figure>
+      <div class="cs-card__content">
+        <h4>Atomic 2.0</h4>
+        <p>I created a document defining work proccess and proposed <a href="https://medium.com/@hannah.heinson/atomic-2-0-d94e5601200c" target="_blank" rel="noreferrer noopener"><strong>Atomic 2.0</strong></a> approach for being a clear standard applicable to the existing Bootstrap library.</p>
+      </div>
+    </div>
+    <div class="case-study__card">
+      <figure class="cs-card__image">
+      <img loading="lazy" decoding="async" width="2592" height="1944" src="https://apedraza.net/wp-content/uploads/2024/12/adding-variables.png" alt="">
+      </figure>
+      <div class="cs-card__content">
+        <h4>Creating Figma variables and styles</h4>
+        <p>I began <strong>replicating all the size, font, and color variables</strong> from our UI Toolkit as Figma styles, making them <strong>easy to reuse and update</strong> in the future.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <h2>Getting bigger</h2>
+    <p>We had gathered all tokens and had at our disposition all Bootstrap assets as well as all the components resulting from our on-the-spot auditings. We were ready to get serious about <strong>building the Design System</strong>.</p>
+    <p>However, on the implementation side things weren't so easy: what for the Design team was one single environment, for the Front-end team involved juggling up to three different technologies. Getting to the point of having reusable components applicable throughout the platform wasn't something feasible yet.</p>
+    <p>Regardless, the Design team thought that there was still value in evolving this system within the Figma environment. We have continued to pursue a <strong>standardized and cohesive design language</strong>, working to make our components reusable and consistent, at least when it comes to design work. As a result, we have replicated most of Devex's components and patterns in Figma and defined use cases for them.</p>
+  </section>
+  
+  <section>
+    <h2>Conclusions</h2>
+    <p>Design systems are never done and this one is far from mature. While it is applied in some areas of the Devex platform, it is far from being used throughout the platform. Nevertheless, </p>
     <ul>
-      <li>Core design tokens for colors, typography, spacing, and breakpoints</li>
-      <li>Component library with detailed documentation</li>
-      <li>Usage guidelines and best practices</li>
-      <li>Implementation examples and code snippets</li>
+      <li>Around <strong>70% of the patterns</strong> of the site have already been gathered into the Design System Figma's file.</li>
+      <li>We have <strong>improved UI design delivery speed</strong> by avoiding the need of creating low-fidelity mock-ups (we already have high-fidelity assets at our disposal) nor specifying interactions, when already available within the UI toolkit.</li>
+      <li>We also have some <strong>responsive templates</strong> in place, allowing us to work in some projects within their UI context without the need of replicating those pages.</li>
+      <li>Freeing our time of UI design gives designers the chance to put <strong>more effort into research</strong>, resulting in <strong>better UX work</strong>.</li>
     </ul>
+    <p>There is still a lot to work when it comes to rule and define cases of use, as there are many projected standardizations waiting for the right project to be implemented. In anyway, the road towards a systematic UI design is already paved and it goes towards a consistent platform.</p>
   </section>
-
-  <section class="impact">
-    <h2>Impact</h2>
-    <ul>
-      <li>Reduced development time by 40% for new features</li>
-      <li>Improved design consistency across all products</li>
-      <li>Streamlined onboarding for new team members</li>
-      <li>Enhanced brand recognition and user trust</li>
-    </ul>
-  </section>
-</div> 
+</article>
 
 {% include "components/case-study-nav.njk" %}

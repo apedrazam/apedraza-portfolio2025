@@ -6,48 +6,94 @@ category: "Case Study"
 order: 2
 ---
 
-<div class="case-study">
-  <section class="hero">
-    <h1>Revamping the job posting experience</h1>
-    <p class="lead">A redesigned job posting experience that improved user engagement and conversion rates.</p>
+<article class="case-study">
+  <section>
+    <h1>Devex Job Posting Flow</h1>
+    <p class="subtitle">Reading time 4 minutes</p>
   </section>
-
-  <section class="overview">
-    <h2>Overview</h2>
-    <p>Led the redesign of Devex's job posting experience, focusing on improving user engagement and conversion rates through better UX and visual design.</p>
+  
+  <section>
+    <h2>Project Overview</h2>
+    <p>Devex is the go-to media platform for Global Development professionals. Along with their news pieces, they have other specialized products, including job postings focused on Global Development positions. In the last couple years, the amount of posted jobs has been decreasing.</p>
+    <p>It was my task to analyze the state of job posting processes nowadays and come up with actionable proposals to <strong>improve the job posting flow to reduce drop-off during the process and increase engagement</strong>.</p>
   </section>
-
-  <section class="challenge">
-    <h2>The Challenge</h2>
-    <p>The existing job posting experience had several issues:</p>
+  
+  <section>
+    <h2>Discovery</h2>
+    <p>We already knew that we had <strong>two different personas</strong> interacting with our job posting flow: big recruiters with expensive accounts that post jobs regularly and professionals from smaller organizations that post jobs per unit.</p>
+    <p>We conducted a <strong>survey to gain insight</strong> from users who dropped-off of the process, but the response rate was very low.</p>
+    <p>While we were waiting for the results of this survey, I continued research on two fronts:</p>
+    <div class="case-study__card">
+      <figure class="cs-card__image">
+        <img loading="lazy" decoding="async" src="https://apedraza.net/wp-content/uploads/2024/12/competitors.png" alt="Competitors Benchmark">
+      </figure>
+      <div class="cs-card__content">
+        <h4>Competitors Benchmark</h4>
+        <p>I researched how other organizations —both direct competitors and large generalist platforms— handle job postings.</p>
+      </div>
+    </div>
+    <div class="case-study__card">
+      <figure class="cs-card__image">
+        <img loading="lazy" decoding="async" src="https://apedraza.net/wp-content/uploads/2024/12/Screenshot-2024-12-12-at-23-47-25-SJP-Usage-data-Q1-2024-Product-Development-Confluence.png" alt="Usage data">
+      </figure>
+      <div class="cs-card__content">
+        <h4>Usage data</h4>
+        <p>I also checked on <strong>users behavior</strong> through Devex' job posting funnel, to find out where the most obvious pain points were.</p>
+      </div>
+    </div>
+    <p>There were many things we could do to improve our job posting process: from big drop off levels at the top of the funnel to lack of error prevention mechanisms through the posting process, amongst many functional bugs and many other issues.</p>
+    <p>I met with the PO, Product VP and recruitment business stakeholders to share findings and agree on how much effort we wanted to put into this project and what changes we wanted to prioritize.</p>
+  </section>
+  
+  <section>
+    <h2>High level definition</h2>
+    <p>I created a <strong>list of actionable items</strong> that we could implement to improve our process and divide them following the <strong>MoSCoW method</strong>. This prioritization was shared with the rest of the squad and we ordered them in a <strong>Risk vs Effort matrix</strong>, focusing on the technical implications for each item.</p>
+    <figure class="img__full-width">
+      <img loading="lazy" decoding="async" src="https://apedraza.net/wp-content/uploads/2024/12/Screenshot-2024-12-12-at-23-37-48-MoSCoW-Prioritisation-Trello.png" alt="MoSCoW Prioritization">
+      <figcaption>MoSCoW Prioritization</figcaption>
+    </figure>
+    <p>Finally, we shared it with the rest of stakeholders for the project and started working on these items by priority.</p>
+  </section>
+  
+  <section>
+    <h2>Defining and developing iteratively</h2>
+    <p>We started with the <strong>low hanging fruit</strong>. The <strong>biggest drop-off point</strong> of out flow was at the very beginning:</p>
     <ul>
-      <li>Low engagement with job postings</li>
-      <li>Poor conversion rates for job applications</li>
-      <li>Unclear value proposition for employers</li>
-      <li>Outdated visual design</li>
+      <li>The marketing page where users are meant to learn about job posting was dull and outdated.</li>
+      <li>It had a 3 steps main CTA intended to make users feel invested in the task by the time they arrived at the main form, but that in most cases had to be refilled a second time.</li>
+      <li>The actual information was below the fold, and by the time users reached it, we had already lost 30% of our page viewers.</li>
+    </ul>
+    <figure class="img__full-width">
+      <img loading="lazy" decoding="async" src="https://apedraza.net/wp-content/uploads/2024/12/posting-options-1.png" alt="Comparative between old and new marketing page">
+      <figcaption>Comparative between old and new marketing page</figcaption>
+    </figure>
+    <p>While I was working on the redesign, the development team took some time into fixing already identified bugs from the process that needed to be fixed independently of the redesign and I also aligned with the marketing stakeholders to <strong>review the communications</strong> users encountered throughout the job posting process.</p>
+    <p>Then we got into the main course:</p>
+    <p>Our <strong>job form</strong> was one single page. It was huge and daunting for any unsuspecting recruiter, so I propose to split it <strong>into manageable bits</strong> to improve the experience.</p>
+    <p>I started working on an iterative proposal of different flows to move from the current one step form into a three step one that would structure the date in a more contextual way and make it more digestible.</p>
+    <p>Given the technology with which the old job posting form was built, it was impossible to modify the flow in smaller steps without introducing technical debt into the system. Because of that, we decided to develop the version of the form that included the <strong>major number of changes in the job posting flow but wouldn't imply working in other sections</strong> of the site.</p>
+    <figure class="img__full-width">
+      <img loading="lazy" decoding="async" src="https://apedraza.net/wp-content/uploads/2024/12/new-flow_-iteration-3.png" alt="New flow definition">
+      <figcaption>New flow definition</figcaption>
+    </figure>
+  </section>
+  
+  <section>
+    <h2>Delivery</h2>
+    <p>It took about 4 months to fully migrate and split the job posting flow. The process was long and tedious, but it included many other changes that aimed to <strong>give users more control</strong> over their job posting experience and <strong>increased the data integrity</strong> that Devex has about their users. In the end, we thrived.</p>
+  </section>
+  
+  <section>
+    <h2>Impact and further work</h2>
+    <p>The new version of Devex job posting process was released early November 2024. The changes in the communications, the marketing page and other small changes have been in production since October 2024. In that time:</p>
+    <ul>
+      <li>The <strong>engagement</strong> within the job posting form <strong>increased by 28%</strong>, although drop-off levels in the registration step were quite high.</li>
+      <li>The percentage of users who visited the marketing page and <strong>started a job posting</strong> process <strong>increased by 6%</strong>.</li>
+      <li>The number of people who inquiried about <strong>job bundles</strong> from the jobs marketing page <strong>tripled</strong> in the first month. </li>
+      <li>Roughly 70% of our recruiter accounts were held by USAID contractors. Up to the moment Donald Trump ordered USAID freeze in <strong>February 2025</strong>, the job posting flow was recording its <strong>best numbers of the last 6 months</strong>.</li>
+      <li>There were several <strong>pending changes</strong> aiming to improve the <strong>quality of the options</strong> in the form (clearer and new values) and <strong>simplify it further</strong> (automatize organization information step). </li>
     </ul>
   </section>
-
-  <section class="solution">
-    <h2>The Solution</h2>
-    <p>Implemented a comprehensive redesign that included:</p>
-    <ul>
-      <li>Improved visual hierarchy and readability</li>
-      <li>Enhanced job search and filtering</li>
-      <li>Better mobile experience</li>
-      <li>Clearer call-to-actions</li>
-    </ul>
-  </section>
-
-  <section class="impact">
-    <h2>Impact</h2>
-    <ul>
-      <li>Increased job posting engagement by 45%</li>
-      <li>Improved application conversion rates by 30%</li>
-      <li>Enhanced mobile user experience</li>
-      <li>Better employer satisfaction</li>
-    </ul>
-  </section>
-</div> 
+</article>
 
 {% include "components/case-study-nav.njk" %}

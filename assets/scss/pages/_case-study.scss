@@ -1,0 +1,71 @@
+@use '../abstracts/variables';
+
+.case-study {
+  h1 {
+    margin-bottom: .5rem;
+  }
+  .subtitle {
+    color: variables.$color-text-body-accent;
+  }
+
+  h2 {
+    letter-spacing: -4%;
+  }
+
+  section {
+    margin-bottom: clamp(2rem, 5vw, 4rem);
+  }
+
+  figure {
+    margin:clamp(1rem, 2vw, 1.5rem) auto;
+  }
+
+  figcaption {
+    text-align: center;
+    color: variables.$color-text-body-accent;
+  }
+
+  .img__full-width {
+    width: 90vw;
+    max-width: variables.$breakpoint-3xl;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: clamp(1.5rem, 4vw, 3rem);
+    margin-top: clamp(1rem, 2.5vw, 2rem);
+
+    img {
+      width: 90vw;
+    }
+  }
+
+  .case-study__card {
+    display: flex;
+    gap: clamp(1rem, 2.5vw, 2rem);
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+    flex-wrap: wrap;
+    align-items: center;
+
+    &:first-child {
+      margin-top: clamp(1.5rem, 3vw, 2.5rem);
+    }
+    
+    &:nth-child(odd) {
+      flex-direction: row;
+    }
+
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .cs-card__image {
+      width: calc(50% - clamp(.5rem, 1.25vw, 1rem));
+      img {
+        width: 100%;
+      }
+    }
+    .cs-card__content {
+      width: calc(50% - clamp(.5rem, 1.25vw, 1rem));
+    }
+  }
+}

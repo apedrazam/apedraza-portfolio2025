@@ -6,48 +6,83 @@ category: "Case Study"
 order: 4
 ---
 
-<div class="case-study">
-  <section class="hero">
+<article class="case-study">
+  <section>
     <h1>Adamo Wholesale Billing</h1>
-    <p class="lead">A comprehensive billing system designed for wholesale customers.</p>
+    <p class="subtitle">Reading time 3 minutes</p>
   </section>
-
-  <section class="overview">
-    <h2>Overview</h2>
-    <p>Led the design of a comprehensive billing system for wholesale customers, focusing on usability and efficiency.</p>
+  
+  <section>
+    <h2>Project Overview</h2>
+    <p>Adamo is a telecommunications company focused on bringing the Internet to the "Empty Spain". They lend their network to smaller local internet providers, known as wholesale sales, which is the company's main source of income. They were doing a great job and had managed to triplicate their wholesale selling volume. The Wholesale invoicing was managed by the Finance team, specifically by 2 people in charge of reviewing all orders month after month. It was getting tricky.</p>
+    <p>I was tasked with the <strong>design of a tool dedicated to streamlining the Wholesale monthly billing process</strong>.</p>
   </section>
-
-  <section class="challenge">
-    <h2>The Challenge</h2>
-    <p>The existing billing system had several limitations:</p>
-    <ul>
-      <li>Complex and confusing interface</li>
-      <li>Limited functionality for wholesale customers</li>
-      <li>Poor mobile experience</li>
-      <li>Lack of automation features</li>
-    </ul>
+  
+  <section>
+    <h2>Discovery</h2>
+    <p>For starters, I needed to understand the context. I <strong>didn't have the opportunity to conduct extensive benchmarking</strong>, as most similar applications required some form of subscription. Fortunately, I had easy access to all business knowledge and all the potential audience right down the hall.</p>
+    <div class="case-study__card">
+      <figure class="cs-card__image">
+        <img decoding="async" width="864" height="648" src="https://apedraza.net/wp-content/uploads/2024/12/discovery-scope.png" alt="">
+      </figure>
+      <div class="cs-card__content">
+        <h4>Setting the scope</h4>
+        <p>The wholesale infrastructure involved many actors. I needed to learn what parts of it should go into our tool and who were the rest of stakeholders.</p>
+      </div>
+    </div>
+    <div class="case-study__card">
+      <figure class="cs-card__image">
+        <img decoding="async" width="864" height="648" src="https://apedraza.net/wp-content/uploads/2024/12/discovery-gathering.png" alt="">
+      </figure>
+      <div class="cs-card__content">
+        <h4>Requirements gathering</h4>
+        <p><strong>Many business rules</strong> needed to be gathered and translated: from contracts to order exceptions, custom charges, and invoice generation. The thrilling world of finance!</p>
+      </div>
+    </div>
+    <div class="case-study__card">
+      <figure class="cs-card__image">
+        <img decoding="async" width="864" height="648" src="https://apedraza.net/wp-content/uploads/2024/12/discovery-gathering.png" alt="">
+      </figure>
+      <div class="cs-card__content">
+        <h4>Requirements gathering</h4>
+        <p><strong>Many business rules</strong> needed to be gathered and translated: from contracts to order exceptions, custom charges, and invoice generation. The thrilling world of finance!</p>
+      </div>
+    </div>
+    <div class="case-study__card">
+      <figure class="cs-card__image">
+        <img loading="lazy" decoding="async" width="864" height="648" src="https://apedraza.net/wp-content/uploads/2024/12/discovery-interviews.png" alt="">
+        <figcaption>image by rawpixel.com</figcaption>
+      </figure>
+      <div class="cs-card__content">
+        <h4>User interviews</h4>
+        <p>Finance <strong>team members</strong> were really supporting and on board, becoming the most <strong>valuable source of information</strong> and showing the actual ropes of the process.</p>
+      </div>
+    </div>
+    <p>It became obvious that the main pain points for the user was the <strong>need to easily locate and approve or reject changes to orders</strong>, whether it was for an exceptional change in prices (a common selling strategy), a late addition from the previous months or any custom extra that could be added.</p>
+    <p>They needed a reliable tool that would bring them flexibility to overrule the system when necessary and ignore it the rest of the time.</p>
   </section>
-
-  <section class="solution">
-    <h2>The Solution</h2>
-    <p>Developed a new billing system that included:</p>
-    <ul>
-      <li>Streamlined billing interface</li>
-      <li>Automated payment processing</li>
-      <li>Enhanced reporting features</li>
-      <li>Mobile-friendly design</li>
-    </ul>
+  
+  <section>
+    <h2>Definition</h2>
+    <p>With all the context now available, it was time to make sense out of it and start creating flows and <strong>defining the Information Architecture</strong> of the billing tool.</p>
+    <figure class="img__full-width">
+      <img loading="lazy" decoding="async" width="864" height="487" src="https://apedraza.net/wp-content/uploads/2024/12/definition-ia.png" alt="">
+    </figure>
+    <p>When it comes to visual design of the tool, we had already developed an <strong>in-house UI toolkit</strong> for all the internal projects the Product Team was involved in. This was the second project in which said toolkit was used and it filled most of the needs of the projects. For those cases where it didn't, we took the chance to <strong>scale the existing components</strong> to cover all the missing gaps (complex table cells with nested elements).</p>
   </section>
-
-  <section class="impact">
-    <h2>Impact</h2>
-    <ul>
-      <li>Reduced billing errors by 60%</li>
-      <li>Improved customer satisfaction</li>
-      <li>Faster payment processing</li>
-      <li>Better reporting capabilities</li>
-    </ul>
+  
+  <section>
+    <h2>Development</h2>
+    <p>For the next few months we started working on the development of the tool. I was in charge of the design and the <strong>HTML &amp; CSS development</strong> but also of <strong>translating the requirements</strong> that I had been gathering during the Discovery phase.</p>
+    <p>I collaborated with the back-end team in the definition of the <strong>data modeling</strong> to ensure that the creation of new entities accurately represented the project needs and their reality.</p>
+    <p>While the tool was being developed, we had <strong>periodic meetings with the finance team</strong> to ensure that the tool was covering their needs. These meetings helped keep the project lean and lead to some relevant changes on the design, like modifying the navigation to improve efficiency or moving the exceptional orders to the top of the grid for quicker discovery. Others, like orders' bulk selection weren't included due to technology limitations.</p>
   </section>
-</div> 
+  
+  <section>
+    <h2>Delivery and impact</h2>
+    <p>Once the tool was built, the finance team started using it while still keep their old 'checking the spreadsheet' method to ensure data integrity. After 3 months, they switched completely to the new solution.</p>
+    <p>A year later, the Wholesale billing team had moved <strong>from +80,000 monthly orders to +220,000</strong> while still being only <strong>2 people</strong> and with a <strong>smaller number of incidents</strong>.</p>
+  </section>
+</article>
 
 {% include "components/case-study-nav.njk" %}
