@@ -6,7 +6,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: clamp(4rem, 10vw, 8rem);
+    gap: 1rem;
+    margin-top: clamp(4rem, 10vw, 6rem);
 
     .case-study-nav-title {
         font-style: normal;
@@ -14,31 +15,25 @@
         gap: clamp(.5rem, 1vw, 1rem);
         align-items: center;
 
-        & i {
+        & i.fa-solid {
             font-size: .875em;
+
+            &:hover{
+                text-decoration: none;
+            }
+        }
+    }
+    
+    .case-study-nav-link:hover {
+        text-decoration: none;
+
+        & .case-study-nav-title > div{
+            text-decoration: underline;
         }
     }
 
     .case-study-nav-link.next {
         text-align: right;
-    }
-
-   .case-study-nav-link:hover {
-        text-decoration: none;
-    
-        &> .case-study-nav-title > div {
-                position: relative;
-
-                &::after {
-                content: '';
-                height:clamp(2px, 0.2vw, 4px);
-                background-color: variables.$color-primary;
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
-            } 
-        }
     }
 
     .next:hover i {

@@ -1,5 +1,5 @@
 {%- set currentOrder = order -%}
-{%- set allCaseStudies = collections.caseStudies | sort(false, 'order') -%}
+{%- set allCaseStudies = collections.caseStudies | sortByOrder -%}
 {%- set currentIndex = allCaseStudies | findIndex("order", currentOrder) -%}
 
 {%- set prevStudy = (currentIndex > 0) and allCaseStudies[currentIndex - 1] or null -%}
