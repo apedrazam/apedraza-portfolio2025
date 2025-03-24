@@ -196,6 +196,10 @@ p {
   }
 }
 
+.font-bold {
+  font-weight: 900;
+}
+
 a {
   color: variables.$color-primary;
   font-style: italic;
