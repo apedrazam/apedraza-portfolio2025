@@ -22,6 +22,11 @@
     <!-- Additional CSS -->
     {% block additionalCSS %}{% endblock %}
     
+    <!-- Analytics scripts (loaded conditionally based on cookie consent) -->
+    <div id="analytics-scripts" style="display:none;">
+        <!-- Replace these with your actual analytics scripts -->
+    </div>
+    
     <!-- Additional head content -->
     {% block head %}{% endblock %}
 </head>
@@ -45,6 +50,9 @@
     <!-- Scroll to Top Component -->
     {% include "components/scroll-to-top.njk" %}
     
+    <!-- Cookie Consent Banner -->
+    {% include "components/cookie-consent.njk" %}
+    
     <!-- Scripts -->
     <script src="/assets/js/header.js" defer></script>
     <script src="/assets/js/flashcards.js" defer></script>
@@ -52,6 +60,7 @@
     <script src="/assets/js/svg-tilt.js" defer></script>
     <script src="/assets/js/hero-animation.js" defer></script>
     <script src="/assets/js/falling-hexes-bg.js" defer></script>
+    <script src="/assets/js/cookie-consent.js" defer></script>
     
     <!-- Additional Scripts -->
     {% block additionalScripts %}{% endblock %}

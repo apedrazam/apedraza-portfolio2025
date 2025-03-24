@@ -10,15 +10,18 @@ $color-red-600: #C34833;
 $color-red-500: #D36D63;
 $color-red-400: #DF908B;
 $color-red-300: #E8AFAC;
+$color-red-100: #FFEDEC;
 
 $color-blue-900: #25385C;
 $color-blue-800: #394C71;
+$color-blue-100: #ECEEF1;
 
 $color-gray-1000: #222;
 $color-gray-900: #383838;
 $color-gray-700: #5f5f5f;
 $color-gray-500: #8B8B8B;
 $color-gray-300: #DBDBDB;
+$color-gray-100: #eee;
 $color-gray-050: #FAFAFA;
 $color-white: #fff;
 
@@ -35,6 +38,7 @@ $color-shadow: rgba(0, 0, 0, 0.25);
   --color-primary-surface-light: #{$color-red-500};
   --color-prominent-surface: #{$color-blue-800};
   --color-header-surface: #{$color-gray-050};
+  --color-cookies-surface: #{$color-blue-100};
   --color-base-surface: #{$color-gray-050};
   --color-low-contrast-surface: #{$color-gray-050};
   --color-text-body: #{$color-gray-1000};
@@ -55,6 +59,7 @@ html[data-theme="dark"] {
   --color-base-surface: #{$color-gray-900};
   --color-low-contrast-surface: #{$color-gray-050};
   --color-header-surface: #{$color-gray-1000};
+  --color-cookies-surface: #{$color-gray-1000};
   --color-text-body: #{$color-white};
   --color-text-body-accent: #{$color-gray-300};
   --color-text-body-accent-on-prominent: #{$color-gray-300};
@@ -73,6 +78,7 @@ $color-prominent-surface: var(--color-prominent-surface);
 $color-base-surface: var(--color-base-surface);
 $color-low-contrast-surface: var(--color-low-contrast-surface);
 $color-header-surface: var(--color-header-surface);
+$color-cookies-surface: var(--color-cookies-surface);
 $color-text-body: var(--color-text-body);
 $color-text-body-accent: var(--color-text-body-accent);
 $color-text-body-accent-on-prominent: var(--color-text-body-accent-on-prominent);
@@ -96,10 +102,6 @@ $font-family-heading: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe 
 $font-family-body: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 $font-family-icons: 'Font Awesome 5 Pro';
 $font-family-mono: 'Courier New', monospace;
-
-$line-height-tight: 1.2;
-$line-height-base: 1.5;
-$line-height-loose: 1.8;
 
 // Breakpoints
 $breakpoint-sm: 576px;

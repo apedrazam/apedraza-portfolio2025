@@ -36,63 +36,38 @@
   max-width: variables.$breakpoint-3xl;
 }
 
-// Flexbox helpers
-@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+@mixin button-fill {
+  border: none;
   display: flex;
-  flex-direction: $direction;
-  justify-content: $justify;
-  align-items: $align;
-  flex-wrap: $wrap;
-}
-
-@mixin flex-center {
-  display: flex;
+  color: variables.$color-text-on-prominent;
+  font-style: normal;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-}
+  padding: .5rem clamp(1rem, 1vw, 2rem);
+  font-weight: 600;
+  position: relative;
+  background-color: variables.$color-primary-surface;
 
-@mixin flex-between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-@mixin flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-// Common patterns
-@mixin card {
-  background-color: #{variables.$color-base-surface};
-  border-radius: #{variables.$border-radius-md};
-  box-shadow: 0 2px 8px #{variables.$color-shadow};
-  padding: #{variables.$spacing-lg};
-}
-
-@mixin button {
-  display: inline-block;
-  padding: #{variables.$spacing-sm} #{variables.$spacing-lg};
-  border-radius: #{variables.$border-radius-sm};
-  font-weight: 500;
-  text-align: center;
-  cursor: pointer;
-  transition: all #{variables.$transition-normal};
-  
   &:hover {
-    transform: translateY(-2px);
+    text-decoration: none;
   }
 }
 
-// Hide visually but keep accessible for screen readers
-@mixin visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-} 
+@mixin button-outline {
+  display: flex;
+  color: variables.$color-text-on-prominent;
+  font-style: normal;
+  align-items: center;
+  justify-content: center;
+  padding: .5rem clamp(1rem, 1vw, 2rem);
+  font-weight: 600;
+  position: relative;
+  background: transparent;
+  border: 2px solid variables.$color-text-on-prominent;
+
+  &:hover {
+    text-decoration: none;
+    border-color: variables.$color-text-body-accent-on-prominent;
+    color: variables.$color-text-body-accent-on-prominent;
+  }
+}

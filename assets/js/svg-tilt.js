@@ -19,61 +19,71 @@ document.addEventListener('DOMContentLoaded', function() {
   // Wait for all SVG objects to load
   caseStudyBgs.forEach((objElement, containerIndex) => {
     // For object elements, we need to wait for them to load
-    objElement.addEventListener('load', function() {
-      // Access the SVG document inside the object
-      const svgDoc = objElement.contentDocument;
-      if (!svgDoc) {
-        return;
-      }
-      
-      const svg = svgDoc.querySelector('svg');
-      if (!svg) {
-        return;
-      }
-      
-      // Find all .hex elements within this SVG
-      const hexElements = svg.querySelectorAll('.hex');
-      
-      if (hexElements.length === 0) return;
-      
-      // Store each hexagon with its properties
-      const hexagons = [...hexElements].map((hex, i) => {
-        return {
-          element: hex,
-          isGroup: hex.tagName.toLowerCase() === 'g',
-          index: i,
-          // Store original transform if any
-          originalTransform: hex.getAttribute('transform') || '',
-          // Depth based on position in DOM - later elements are visually on top
-          depth: i / (hexElements.length - 1)
-        };
+    if (objElement.contentDocument && objElement.contentDocument.readyState === 'complete') {
+      // SVG is already loaded, process it immediately
+      processSvgObject(objElement, containerIndex);
+    } else {
+      // SVG isn't loaded yet, add a load listener
+      objElement.addEventListener('load', function() {
+        processSvgObject(objElement, containerIndex);
       });
-      
-      // Find the parent card element that contains both image and content
-      let cardElement = objElement.closest('.case-study-card');
-      if (!cardElement) {
-        return;
-      }
-      
-      // Add smooth transition style to all hex elements for animations
-      hexagons.forEach(hex => {
-        hex.element.style.transition = 'transform 0.3s ease-out';
-      });
-      
-      // Store this SVG's data
-      allSvgData.push({
-        svg: svg,
-        hexagons: hexagons,
-        card: cardElement,
-        object: objElement
-      });
-      
-      // If all SVGs are loaded, set up the work section tracking
-      if (allSvgData.length === caseStudyBgs.length) {
-        setupWorkSectionTracking();
-      }
-    });
+    }
   });
+  
+  function processSvgObject(objElement, containerIndex) {
+    // Access the SVG document inside the object
+    const svgDoc = objElement.contentDocument;
+    if (!svgDoc) {
+      return;
+    }
+    
+    const svg = svgDoc.querySelector('svg');
+    if (!svg) {
+      return;
+    }
+    
+    // Find all .hex elements within this SVG
+    const hexElements = svg.querySelectorAll('.hex');
+    
+    if (hexElements.length === 0) return;
+    
+    // Store each hexagon with its properties
+    const hexagons = [...hexElements].map((hex, i) => {
+      return {
+        element: hex,
+        isGroup: hex.tagName.toLowerCase() === 'g',
+        index: i,
+        // Store original transform if any
+        originalTransform: hex.getAttribute('transform') || '',
+        // Depth based on position in DOM - later elements are visually on top
+        depth: i / (hexElements.length - 1)
+      };
+    });
+    
+    // Find the parent card element that contains both image and content
+    let cardElement = objElement.closest('.case-study-card');
+    if (!cardElement) {
+      return;
+    }
+    
+    // Add smooth transition style to all hex elements for animations
+    hexagons.forEach(hex => {
+      hex.element.style.transition = 'transform 0.3s ease-out';
+    });
+    
+    // Store this SVG's data
+    allSvgData.push({
+      svg: svg,
+      hexagons: hexagons,
+      card: cardElement,
+      object: objElement
+    });
+    
+    // If all SVGs are loaded, set up the work section tracking
+    if (allSvgData.length === caseStudyBgs.length) {
+      setupWorkSectionTracking();
+    }
+  }
   
   function setupWorkSectionTracking() {
     // Add event listener to the work section for mouse movement
