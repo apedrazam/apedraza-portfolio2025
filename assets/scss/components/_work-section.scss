@@ -2,10 +2,10 @@
  * Work Section Styles
  * Includes both Case Studies and Clients sections
  */
-
 @use '../abstracts/variables';
 @use '../abstracts/mixins';
 @use '../base/animations';
+
 /* Work section base */
 .work-section {
   position: relative;
@@ -50,15 +50,24 @@
   font-style: normal;
 
   &:hover {
-    .case-study-mockup,
-    .case-study-video {
-      transform: scale(1.04);
-      transition-duration: .4s;
-    }
     .case-study-content {
       transform: scale(1.06);
       transition-duration: .4s;
     }
+    .case-study-mockup{
+      transform: scale(1.04);
+      transition-duration: .4s;
+    }
+    .case-study-video,
+    .case-study-screen-overlay__desktop {
+      transform: scale(1.03);
+      transition-duration: .4s;
+    }
+  }
+
+  &:not(:hover) .case-study-screen-overlay__mobile {
+    transform: scale(.96);
+    transition-duration: .4s;
   }
 }
 
@@ -127,6 +136,19 @@
     bottom: 0%;
     right: -5%;
   }
+
+  .case-study-screen-overlay__desktop {
+    position: absolute;
+    width: 72%;
+    height: 68%;
+    top: 25%;
+    left: 25.5%;
+    object-fit: cover;
+    border-radius: 0.125rem;
+    z-index: 5;
+    pointer-events: none;
+    transition: transform 0.3s ease-out;
+  }
   
 }
 
@@ -153,6 +175,20 @@
     left: 22%;
     top: -2%;
   }
+
+
+  .case-study-screen-overlay__mobile {
+    position: absolute;
+    width: 29.5%;
+    height: 85%;
+    top: 5%;
+    left: 37.2%;
+    object-fit: cover;
+    border-radius: 0.125rem;
+    z-index: 5;
+    pointer-events: none;
+    transition: transform 0.3s ease-out;
+  }
   
 }
 
@@ -166,6 +202,19 @@
     bottom: 0%;
     right: -5%;
   }
+
+  .case-study-video {
+    position: absolute;
+    width: 69%;
+    height: 66%;
+    top: 26%;
+    left: 26.5%;
+    object-fit: cover;
+    border-radius: 0.125rem;
+    z-index: 5;
+    pointer-events: none;
+    transition: transform 0.3s ease-out;
+  }
 }
 
 .case-study-4 {
@@ -178,19 +227,19 @@
     bottom: 0%;
     left: -5%;
   }
-}
 
-.case-study-video {
-  position: absolute;
-  width: 69%;
-  height: 66%;
-  top: 26%;
-  left: 26.5%;
-  object-fit: cover;
-  border-radius: 0.125rem;
-  z-index: 5;
-  pointer-events: none;
-  transition: transform 0.3s ease-out;
+  .case-study-screen-overlay__desktop {
+    position: absolute;
+    width: 72%;
+    height: 68%;
+    top: 25%;
+    left: 2.5%;
+    object-fit: cover;
+    border-radius: 0.125rem;
+    z-index: 5;
+    pointer-events: none;
+    transition: transform 0.3s ease-out;
+  }
 }
 
 .case-study-title {
@@ -291,7 +340,16 @@
   .case-study-content,
   .case-study-content.left-align {
     grid-column: span 12 / span 12;
-    order: initial;
+  }
+
+  .case-study-image-container, 
+  .case-study-image-container.right-align {
+    order: 1;
+  }
+
+  .case-study-content,
+  .case-study-content.left-align {
+    padding-left: clamp(1rem, 8vw, 2rem);
   }
   
   .clients-grid {
