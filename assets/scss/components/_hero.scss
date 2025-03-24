@@ -137,6 +137,10 @@
       line-height: 1.4;
       // Ensure visibility
       visibility: visible;
+
+      span {
+        cursor: pointer;
+      }
     }
     
     /* Apply slide-up animation classes */
