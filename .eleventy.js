@@ -6,6 +6,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("assets/fonts");
   eleventyConfig.addPassthroughCopy("assets/videos");
   eleventyConfig.addPassthroughCopy("assets/js");
+  eleventyConfig.addPassthroughCopy("assets/docs");
+  eleventyConfig.addPassthroughCopy(".htaccess");
 
   // ✅ Watch for changes in specific folders
   eleventyConfig.addWatchTarget("./assets/");
