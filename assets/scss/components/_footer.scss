@@ -37,7 +37,7 @@
     padding-bottom: variables.$spacing-lg;
   }
   
-  .footer-social {
+  .footer-actions {
     display: flex;
     gap: variables.$spacing-lg;
     white-space: nowrap;
@@ -110,7 +110,7 @@
   .footer-credits {
     text-align: right;
     margin-top: auto;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
     justify-content: flex-end;
@@ -118,6 +118,7 @@
   }
   
   .footer-credits i {
+    cursor: help;
     width: auto;
     display: inline;
     vertical-align: middle;
@@ -157,18 +158,26 @@
       align-items: center;
     }
     
-    .footer-social{
+    .footer-actions{
       gap: variables.$spacing-lg;
       margin-top: 0;
+      justify-content: center;
     }
 
     .footer-logo{
+      width: clamp(4rem, 17vw, 8rem);
       margin: 2rem auto;
     }
 
     .footer-copyright {
       text-align: center;
       margin-top: variables.$spacing-xl;
+    }
+    
+    .footer-credits{
+      justify-content: center;
+      gap: variables.$spacing-xs;
+      font-size: clamp(0.875rem, 1.25vw, 1rem);
     }
   }
 
