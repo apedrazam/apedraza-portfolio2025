@@ -90,6 +90,20 @@
         return;
       }
       
+      // Clear any existing analytics scripts
+      const existingScripts = document.querySelectorAll('script[src*="heap-api.com"], script[src*="clarity.ms"]');
+      existingScripts.forEach(script => script.remove());
+      
+      // Clear any existing analytics data
+      if (window.heap) {
+        window.heap.stopTracking();
+        window.heap = undefined;
+      }
+      if (window.clarity) {
+        window.clarity.stop();
+        window.clarity = undefined;
+      }
+      
       analyticsContainer.querySelectorAll('script-data').forEach(scriptData => {
         const script = document.createElement('script');
         
