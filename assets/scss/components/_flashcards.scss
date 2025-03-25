@@ -30,9 +30,14 @@
   box-shadow: 0px 4px 4px variables.$color-shadow;
   display: flex;
   width: auto;
-  min-width: 76vw;
+  min-width: 79vw;
   max-width: 90vw;
   position: relative;
+
+  @include mixins.mobile {
+    min-width: 95vw;
+    max-width: 95vw;
+  }
 }
 
 .flashcard-prev-btn, 
@@ -55,6 +60,11 @@
   &:disabled {
     display: none;
   }
+
+
+  @include mixins.mobile {
+    padding: 0 .25rem;
+  }
 }
 
 .flashcard-prev-btn {
@@ -71,6 +81,15 @@
   flex: 1;
   overflow-y: auto;
   max-height: 90vh;
+
+  @include mixins.mobile {
+    padding: variables.$spacing-sm variables.$spacing-sm variables.$spacing-sm;
+    font-size: .6em;
+
+    .highlight {
+      font-size: 1.125rem;
+    }
+  }
 }
 
 .flashcard-header {
@@ -80,6 +99,14 @@
   border-bottom: 2px solid variables.$color-primary;
   padding-bottom:0;
   margin-bottom: variables.$spacing-xl;
+
+  @include mixins.mobile {
+    margin-bottom: variables.$spacing-base;
+  
+    h2, button {
+      font-size: 1.625rem;
+    }
+  }
 }
 
 .flashcard-title {
@@ -112,6 +139,10 @@
   ul {
     margin: 0;
   }
+
+  @include mixins.mobile {
+    margin-bottom: variables.$spacing-sm;
+  }
 }
 
 .content-grid {
@@ -134,6 +165,10 @@
     margin-bottom: 0;
     line-height: 1.5;
   }
+
+  @include mixins.mobile {
+    margin-bottom: variables.$spacing-xs;
+  }
 }
 
 .flashcard-footer {
@@ -143,6 +178,11 @@
   border-top: 2px solid variables.$color-border;
   padding-top: variables.$spacing-xl;
   margin-top: variables.$spacing-2xl;
+
+  @include mixins.mobile {
+    margin-top: variables.$spacing-lg;
+    padding: 1rem .5rem .5rem;
+  }
 }
 
 .read-more-link {

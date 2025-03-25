@@ -9,7 +9,7 @@
 /* Work section base */
 .work-section {
   position: relative;
-  padding: 0 clamp(2rem, 5vw, 4rem);
+  padding: 0 clamp(1rem, 5vw, 4rem);
   margin: 0 auto;
 
   @include mixins.container;
@@ -17,8 +17,8 @@
 
 /* Case Studies section */
 .case-studies-section {
-  padding-top: variables.$spacing-4xl;
-  padding-bottom: variables.$spacing-4xl;
+  padding-top: clamp(variables.$spacing-base  , 5vw, variables.$spacing-4xl);
+  padding-bottom: clamp(variables.$spacing-xl, 5vw, variables.$spacing-4xl);
 }
 
 .case-studies-container {
@@ -28,7 +28,7 @@
 
 .case-studies-description {
   font-weight: normal;
-  margin-bottom: variables.$spacing-3xl;
+  margin-bottom: clamp(variables.$spacing-base, 5vw, variables.$spacing-3xl);
 }
 
 .case-studies-list {
@@ -158,6 +158,10 @@
   .case-study-content{  
     padding-left: clamp(1rem, 8vw, 2rem);
     padding-top: 0;
+
+    @include mixins.mobile {
+      padding-left: 0;
+    }
   }
 
   .case-study-image-container{
@@ -243,7 +247,7 @@
 }
 
 .case-study-title {
-  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 600;
   line-height: 0.925;
   letter-spacing: -2%;
@@ -309,9 +313,9 @@
   gap: variables.$spacing-3xl;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: clamp(1.5rem, 2vw, 2.5rem);
-  padding-top: variables.$spacing-xl;
-  padding-bottom: variables.$spacing-2xl;
+  margin-top: clamp(.75rem, 2vw, 2.5rem);
+  padding-top: clamp(1.25rem, 2vw, 2rem);
+  padding-bottom: clamp(1.5rem, 2vw, 3rem);
 }
 
 .client-logo {
@@ -339,17 +343,12 @@
   .case-study-image-container.right-align,
   .case-study-content,
   .case-study-content.left-align {
-    grid-column: span 12 / span 12;
+    grid-column: span 10 / span 12;
   }
 
   .case-study-image-container, 
   .case-study-image-container.right-align {
     order: 1;
-  }
-
-  .case-study-content,
-  .case-study-content.left-align {
-    padding-left: clamp(1rem, 8vw, 2rem);
   }
   
   .clients-grid {

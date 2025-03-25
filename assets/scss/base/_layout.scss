@@ -25,7 +25,7 @@ main {
     padding: 0 clamp(2.5rem, 12vw, 5rem);
   }
   @include mixins.mobile {
-    padding: 0 3rem;
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
   }
 }
 
