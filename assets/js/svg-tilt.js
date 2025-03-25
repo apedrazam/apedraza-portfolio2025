@@ -3,49 +3,152 @@
  * Animated effect for hexagon SVG elements in case studies
  */
 
-document.addEventListener('DOMContentLoaded', function() {
+// Store SVG data globally
+let allSvgData = [];
+let isInitialized = false;
+let retryCount = 0;
+const MAX_RETRIES = 5;
+
+function initializeSvgTilt() {
+  console.log('Initializing SVG tilt...');
+  
   // Find the work section
   const workSection = document.querySelector('.work-section');
   if (!workSection) {
+    console.warn('Work section not found, will retry when available');
+    scheduleRetry();
     return;
   }
+  console.log('Found work section');
   
   // Target object elements with the case-study-bg class
   const caseStudyBgs = document.querySelectorAll('.case-study-bg');
+  console.log(`Found ${caseStudyBgs.length} case study backgrounds`);
   
-  // Collect data for all SVGs
-  const allSvgData = [];
+  if (caseStudyBgs.length === 0) {
+    console.warn('No case study backgrounds found, will retry when available');
+    scheduleRetry();
+    return;
+  }
   
-  // Wait for all SVG objects to load
+  // Process any existing SVGs
   caseStudyBgs.forEach((objElement, containerIndex) => {
-    // For object elements, we need to wait for them to load
-    if (objElement.contentDocument && objElement.contentDocument.readyState === 'complete') {
-      // SVG is already loaded, process it immediately
-      processSvgObject(objElement, containerIndex);
-    } else {
-      // SVG isn't loaded yet, add a load listener
-      objElement.addEventListener('load', function() {
-        processSvgObject(objElement, containerIndex);
-      });
-    }
+    console.log(`Processing SVG ${containerIndex + 1} of ${caseStudyBgs.length}`);
+    processSvgObject(objElement, containerIndex);
   });
   
-  function processSvgObject(objElement, containerIndex) {
+  // Set up observer for dynamically added SVGs
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node.classList && node.classList.contains('case-study-bg')) {
+          console.log('New case-study-bg element detected');
+          processSvgObject(node, allSvgData.length);
+        }
+      });
+    });
+  });
+  
+  // Start observing the work section for new SVGs
+  observer.observe(workSection, {
+    childList: true,
+    subtree: true
+  });
+  console.log('Set up MutationObserver for new SVGs');
+  
+  // Set up work section tracking
+  setupWorkSectionTracking(workSection);
+  
+  isInitialized = true;
+  console.log('SVG tilt initialization complete');
+}
+
+function scheduleRetry() {
+  if (retryCount < MAX_RETRIES) {
+    retryCount++;
+    console.log(`Scheduling retry ${retryCount} of ${MAX_RETRIES} in 500ms`);
+    setTimeout(initializeSvgTilt, 500);
+  }
+}
+
+function processSvgObject(objElement, containerIndex) {
+  console.log(`Processing SVG object ${containerIndex}`);
+  
+  // Skip if already processed
+  if (allSvgData.some(data => data.object === objElement)) {
+    console.log('SVG already processed, skipping');
+    return;
+  }
+  
+  try {
+    // For object elements, we need to wait for them to load
+    if (objElement.contentDocument && 
+        objElement.contentDocument.readyState === 'complete' && 
+        objElement.contentDocument.querySelector('svg')) {
+      console.log('SVG already loaded, processing immediately');
+      processLoadedSvg(objElement, containerIndex);
+    } else {
+      console.log('Waiting for SVG to load...');
+      
+      // Safari and some browsers may not trigger load properly
+      // Add multiple ways to detect when the SVG is ready
+      
+      // 1. Traditional load event listener
+      objElement.addEventListener('load', function() {
+        console.log('SVG load event fired');
+        processLoadedSvg(objElement, containerIndex);
+      });
+      
+      // 2. Also check with a timeout (for Safari)
+      setTimeout(function() {
+        try {
+          if (!allSvgData.some(data => data.object === objElement) && 
+              objElement.contentDocument && 
+              objElement.contentDocument.querySelector('svg')) {
+            console.log('SVG found after timeout');
+            processLoadedSvg(objElement, containerIndex);
+          }
+        } catch (e) {
+          console.error('Error checking SVG on timeout:', e);
+        }
+      }, 1000);
+    }
+  } catch (e) {
+    console.error('Error in processSvgObject:', e);
+  }
+}
+
+function processLoadedSvg(objElement, containerIndex) {
+  console.log(`Processing loaded SVG ${containerIndex}`);
+  
+  try {
+    // Skip if already processed
+    if (allSvgData.some(data => data.object === objElement)) {
+      console.log('SVG already processed in another call, skipping');
+      return;
+    }
+    
     // Access the SVG document inside the object
     const svgDoc = objElement.contentDocument;
     if (!svgDoc) {
+      console.error('SVG document not found for object element');
       return;
     }
     
     const svg = svgDoc.querySelector('svg');
     if (!svg) {
+      console.error('SVG element not found in document');
       return;
     }
     
     // Find all .hex elements within this SVG
     const hexElements = svg.querySelectorAll('.hex');
+    console.log(`Found ${hexElements.length} hex elements`);
     
-    if (hexElements.length === 0) return;
+    if (hexElements.length === 0) {
+      console.error('No hex elements found in SVG');
+      return;
+    }
     
     // Store each hexagon with its properties
     const hexagons = [...hexElements].map((hex, i) => {
@@ -53,20 +156,19 @@ document.addEventListener('DOMContentLoaded', function() {
         element: hex,
         isGroup: hex.tagName.toLowerCase() === 'g',
         index: i,
-        // Store original transform if any
         originalTransform: hex.getAttribute('transform') || '',
-        // Depth based on position in DOM - later elements are visually on top
         depth: i / (hexElements.length - 1)
       };
     });
     
-    // Find the parent card element that contains both image and content
+    // Find the parent card element
     let cardElement = objElement.closest('.case-study-card');
     if (!cardElement) {
+      console.error('Parent card element not found for SVG');
       return;
     }
     
-    // Add smooth transition style to all hex elements for animations
+    // Add smooth transition style to all hex elements
     hexagons.forEach(hex => {
       hex.element.style.transition = 'transform 0.3s ease-out';
     });
@@ -79,29 +181,43 @@ document.addEventListener('DOMContentLoaded', function() {
       object: objElement
     });
     
-    // If all SVGs are loaded, set up the work section tracking
-    if (allSvgData.length === caseStudyBgs.length) {
-      setupWorkSectionTracking();
+    console.log(`Successfully processed SVG ${containerIndex}`);
+  } catch (error) {
+    console.error(`Error processing SVG ${containerIndex}:`, error);
+  }
+}
+
+function setupWorkSectionTracking(workSection) {
+  if (!workSection) {
+    workSection = document.querySelector('.work-section');
+    if (!workSection) {
+      console.error('Work section not found for tracking');
+      return;
     }
   }
   
-  function setupWorkSectionTracking() {
-    // Add event listener to the work section for mouse movement
-    workSection.addEventListener('mousemove', handleMouseMove);
-    
-    // Add event listener to the document to reset when mouse leaves work section
-    document.addEventListener('mousemove', function(e) {
-      const rect = workSection.getBoundingClientRect();
-      if (e.clientX < rect.left || e.clientX > rect.right || 
-          e.clientY < rect.top || e.clientY > rect.bottom) {
-        resetAllHexagons();
-      }
-    });
-  }
+  console.log('Setting up mouse tracking for work section');
   
-  function handleMouseMove(e) {
-    // Process each SVG
-    allSvgData.forEach(data => {
+  // Add event listener to the work section for mouse movement
+  workSection.addEventListener('mousemove', handleMouseMove);
+  
+  // Add event listener to the document to reset when mouse leaves work section
+  document.addEventListener('mousemove', function(e) {
+    const rect = workSection.getBoundingClientRect();
+    if (e.clientX < rect.left || e.clientX > rect.right || 
+        e.clientY < rect.top || e.clientY > rect.bottom) {
+      resetAllHexagons();
+    }
+  });
+}
+
+function handleMouseMove(e) {
+  // Don't do anything if we don't have SVGs
+  if (allSvgData.length === 0) return;
+
+  // Process each SVG
+  allSvgData.forEach(data => {
+    try {
       // Get the card's bounding rect
       const cardRect = data.card.getBoundingClientRect();
       
@@ -146,26 +262,30 @@ document.addEventListener('DOMContentLoaded', function() {
         // Scale up card when hovering directly over it
         if (e.clientX >= cardRect.left && e.clientX <= cardRect.right && 
             e.clientY >= cardRect.top && e.clientY <= cardRect.bottom) {
-          data.card.querySelector('.case-study-mockup').style.transform = 'scale(1.04)';
+          const mockup = data.card.querySelector('.case-study-mockup');
+          if (mockup) mockup.style.transform = 'scale(1.04)';
+          
           // Also scale video if present
           const video = data.card.querySelector('.case-study-video');
-          if (video) {
-            video.style.transform = 'scale(1.04)';
-          }
+          if (video) video.style.transform = 'scale(1.04)';
         } else {
-          data.card.querySelector('.case-study-mockup').style.transform = '';
+          const mockup = data.card.querySelector('.case-study-mockup');
+          if (mockup) mockup.style.transform = '';
+          
           // Reset video scale if present
           const video = data.card.querySelector('.case-study-video');
-          if (video) {
-            video.style.transform = '';
-          }
+          if (video) video.style.transform = '';
         }
       }
-    });
-  }
-  
-  function resetAllHexagons() {
-    allSvgData.forEach(data => {
+    } catch (error) {
+      console.error('Error in handleMouseMove:', error);
+    }
+  });
+}
+
+function resetAllHexagons() {
+  allSvgData.forEach(data => {
+    try {
       data.hexagons.forEach(hex => {
         // Add transition for smooth return
         hex.element.style.transition = 'transform 0.4s ease-out';
@@ -175,13 +295,36 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       
       // Reset card scale
-      data.card.querySelector('.case-study-mockup').style.transform = '';
+      const mockup = data.card.querySelector('.case-study-mockup');
+      if (mockup) mockup.style.transform = '';
       
       // Reset video scale if present
       const video = data.card.querySelector('.case-study-video');
-      if (video) {
-        video.style.transform = '';
-      }
-    });
+      if (video) video.style.transform = '';
+    } catch (error) {
+      console.error('Error in resetAllHexagons:', error);
+    }
+  });
+}
+
+// Initialize when DOM is ready
+console.log('Setting up DOMContentLoaded listener');
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOMContentLoaded fired');
+  initializeSvgTilt();
+});
+
+// Also try to initialize immediately in case DOMContentLoaded already fired
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  console.log('Document already loaded, initializing immediately');
+  initializeSvgTilt();
+}
+
+// Add a final fallback to retry after a delay when all resources are loaded
+window.addEventListener('load', () => {
+  console.log('Window load event fired');
+  if (allSvgData.length === 0) {
+    console.log('No SVGs processed yet, retrying after window load');
+    setTimeout(initializeSvgTilt, 1000);
   }
 }); 
