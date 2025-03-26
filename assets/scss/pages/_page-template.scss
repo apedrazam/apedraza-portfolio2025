@@ -46,3 +46,49 @@ main{
     margin-top: -6rem;
   }
 }
+
+img#hero-bg-svg-mobile,
+img.top-bg-block-mobile,
+img.bottom-bg-block-mobile{
+  display: none;
+}
+
+@include mixins.mobile{
+  #hero-bg-svg,
+  .top-bg-block,
+  .bottom-bg-block {
+    display: none;
+  }
+
+  img#hero-bg-svg-mobile,
+  img.top-bg-block-mobile,
+  img.bottom-bg-block-mobile{
+    display: block;
+    width: 100%;
+    position: absolute;
+    left: 0;
+  }
+
+  img#hero-bg-svg-mobile{
+    top: 0;
+    z-index: 1;
+  }
+
+  img.top-bg-block-mobile{
+    top: .875rem;
+    z-index: -1;
+  }
+
+  img.bottom-bg-block-mobile{
+    bottom: 0;
+    z-index: 1;
+  }
+
+  [data-theme="dark"]{ 
+    & #hero-bg-svg-mobile,
+    & .top-bg-block-mobile,
+    & .bottom-bg-block-mobile{
+      opacity: .65;
+    }
+  }
+}

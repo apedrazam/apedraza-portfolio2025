@@ -127,9 +127,14 @@
     // Ensure content has visible overflow for animations
     overflow: visible;
 
-    h1.hero-title,
-    p.hero-paragraph,
-    h3.hero-subtitle {
+    .hero-title {
+      display: flex;
+      gap: variables.$spacing-sm;
+    }
+
+    .hero-title > h1,
+    .hero-paragraph,
+    .hero-subtitle {
       font-family: variables.$font-family-body;
       font-size: clamp(1.125rem, 1.75vw, 1.75rem);
       font-weight: 400;
@@ -137,10 +142,10 @@
       line-height: 1.4;
       // Ensure visibility
       visibility: visible;
+    }
 
-      span {
-        cursor: help;
-      }
+    .hero-icon {
+      cursor: help;
     }
     
     /* Apply slide-up animation classes */
@@ -164,24 +169,16 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    font-size: 1.5rem;
     font-weight: normal;
   }
   
   .hero-title {
     align-self: stretch;
-    font-size: 1.5rem;
-    font-weight: bold;
-    line-height: 1.2;
-    letter-spacing: -0.05em;
   }
   
   .hero-paragraph,
   .hero-subtitle {
     align-self: stretch;
-    font-size: 1.5rem;
-    line-height: 1.2;
-    letter-spacing: -0.05em;
     margin-top: variables.$spacing-base;
   }
   
@@ -236,25 +233,30 @@
   /* Mobile styles */
   @include mixins.mobile {
     .hero-container {
-      padding-top: 32vw;
-      padding-left: 8vw;
+      padding-top: 38vw;
       overflow: hidden;
+      position: relative;
     }
     
     .hero-content {
-      width:80vw;
-      position: relative;
-      left: 40%;
-      transform: translateX(-50%);
+      width:82vw;
+    
+      .hero-title > h1,
+      .hero-subtitle,
+      .hero-paragraph,
+      .hero-icon {
+        font-size: clamp(1.25rem, 5.5vw, 2rem);
+        margin-bottom: 0;
+  
+        .secondary-description {
+          display: none;
+        }
+      }
     }
     
     .hero-cta-container {
       max-width: 100%;
-      margin-top: 3vh;
-    }
-    
-    .hero-buttons {
-      max-width: 100%;
+      margin-top: 3vh;;
     }
   }
 } 

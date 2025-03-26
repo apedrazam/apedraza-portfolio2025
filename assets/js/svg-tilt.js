@@ -258,24 +258,7 @@ function handleMouseMove(e) {
           const newTransform = `${hex.originalTransform} translate(${translateX}, ${translateY})`;
           hex.element.setAttribute('transform', newTransform);
         });
-        
-        // Scale up card when hovering directly over it
-        if (e.clientX >= cardRect.left && e.clientX <= cardRect.right && 
-            e.clientY >= cardRect.top && e.clientY <= cardRect.bottom) {
-          const mockup = data.card.querySelector('.case-study-mockup');
-          if (mockup) mockup.style.transform = 'scale(1.04)';
-          
-          // Also scale video if present
-          const video = data.card.querySelector('.case-study-video');
-          if (video) video.style.transform = 'scale(1.04)';
-        } else {
-          const mockup = data.card.querySelector('.case-study-mockup');
-          if (mockup) mockup.style.transform = '';
-          
-          // Reset video scale if present
-          const video = data.card.querySelector('.case-study-video');
-          if (video) video.style.transform = '';
-        }
+    
       }
     } catch (error) {
       console.error('Error in handleMouseMove:', error);

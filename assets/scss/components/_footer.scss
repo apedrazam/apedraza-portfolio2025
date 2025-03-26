@@ -37,7 +37,7 @@
     padding-bottom: variables.$spacing-lg;
   }
   
-  .footer-actions {
+  .footer-links {
     display: flex;
     gap: variables.$spacing-lg;
     white-space: nowrap;
@@ -158,7 +158,7 @@
       align-items: center;
     }
     
-    .footer-actions{
+    .footer-links{
       gap: variables.$spacing-lg;
       margin-top: 0;
       justify-content: center;
