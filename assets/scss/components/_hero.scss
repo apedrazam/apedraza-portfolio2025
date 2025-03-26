@@ -18,7 +18,7 @@
     gap: variables.$spacing-xs;
     overflow: hidden;
     justify-content: center;
-    padding-top: clamp(11rem, 27rem - (2vh + 1vw) * 8, 25vh)
+    padding-top: clamp(11rem, 27rem - (2vh + 1vw) * 8, 25vh);
     padding-bottom: 6vw;
   }
   
