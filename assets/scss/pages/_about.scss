@@ -7,3 +7,119 @@
 @use '../abstracts/mixins';
 
 /* About Page */
+
+.about-page {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 76vw;
+    max-width: variables.$breakpoint-3xl;
+    margin-top: clamp(-6rem, (-8vh - -10vw) / 2, -2rem);
+    margin-bottom: clamp(2rem, 10vh, 4rem);
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.about-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-intro {
+  display: flex;
+  gap: 2rem;
+  flex-direction: row;
+
+  @include mixins.mobile {
+    flex-direction: column;
+  }
+  @include mixins.tablet {
+    flex-direction: column;
+  }
+
+  &__text {
+    flex: calc(58% - 1rem);
+
+    p {
+        margin-bottom: clamp(.5rem, 2vw, 1rem);
+    }
+
+    .spinning-animation-trigger {
+      cursor: pointer;
+      color: variables.$color-primary;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:active {
+        color: variables.$color-primary-light;
+      }
+      
+    }
+
+    @include mixins.mobile {
+      order: 1;
+    }
+    @include mixins.tablet {
+      order: 1;
+    }
+  }
+
+  &__image {
+    flex: calc(42% - 1rem);
+    align-content: center;
+  }
+
+  &__image-wrapper {
+    position: relative;
+    text-align: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    will-change: transform;
+    backface-visibility: visible;
+    padding: 0 clamp(1rem, 3vw, 3rem);
+
+  }
+
+  &__image-me {
+    cursor: pointer;
+    transform: translateZ(0);
+    will-change: transform;
+    max-width: 100%;
+    height: auto;
+    max-height: 31.25rem;
+    transition: opacity 0.1s ease-out;
+    
+    &.spinning {
+      animation: pulse 0.5s infinite alternate;
+    }
+
+    @include mixins.tablet {
+        max-height: 30vh;
+    }
+  }
+
+  &__image-caption {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateZ(20px);
+    font-size: 0.875rem;
+    font-weight: 600;
+    width: max-content;
+    font-family: variables.$font-family-heading;
+    text-transform: uppercase;
+    background-color: variables.$color-header-surface;
+    border: 2px solid variables.$color-border;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease-out, opacity 0.2s ease-out;
+  }
+}
