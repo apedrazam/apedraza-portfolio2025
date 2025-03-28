@@ -37,6 +37,9 @@ module.exports = function(eleventyConfig) {
       } else if (data.category === "Case Study") {
         let basePath = data.page.filePathStem.replace(/^\/pages\//, ""); // Remove "/pages/"
         return `/case-study/${basePath}/index.html`; // ✅ Ensures case study URLs are correct
+      } else if (data.page.filePathStem === "/about" || data.page.filePathStem === "/privacy-policy") {
+        // ✅ Create clean URLs for about and privacy-policy pages
+        return `${data.page.filePathStem}/index.html`;
       }
       return data.permalink || `${data.page.filePathStem}.html`; // ✅ Ensures default pages use `.html`
     }
