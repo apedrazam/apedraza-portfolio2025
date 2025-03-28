@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if title %}{{ title }}{% else %}Adrian Pedraza - Product Designer & UX Specialist{% endif %}</title>
@@ -8,6 +6,7 @@
     
     <!-- Preload critical assets -->
     <link rel="preload" href="/assets/css/main.css" as="style">
+    <link rel="preload" href="/assets/fonts/Inter-roman.var.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/images/apedraza-logo.svg" as="image">
     
     <!-- Favicon -->
@@ -16,7 +15,7 @@
     <!-- Main CSS (compiled from SCSS) -->
     <link rel="stylesheet" href="/assets/css/main.css">
     
-    <!-- Flashcard CSS -->
+    <!-- Flashcard CSS always loaded to ensure functionality -->
     <link rel="stylesheet" href="/assets/css/flashcards.css">
     
     <!-- Additional CSS -->
@@ -33,8 +32,7 @@
     
     <!-- Additional head content -->
     {% block head %}{% endblock %}
-</head>
-<body class="{% if bodyClass %}{{ bodyClass }}{% endif %}">
+</head><body class="{% if bodyClass %}{{ bodyClass }}{% endif %}">
     <!-- Header Component -->
     {% include "components/header.njk" %}
     
@@ -44,8 +42,8 @@
       
       <!-- Bottom background SVG -->
       <figure class="bottom-bg-block-container">
-        <img src="/assets/images/bottom-bg-block2.svg" class="bottom-bg-block" alt=""/>
-        <img src="/assets/images/bottom-bg-block.svg" class="bottom-bg-block-mobile" alt=""/>
+        <img src="/assets/images/bottom-bg-block2.svg" class="bottom-bg-block" alt="" width="1920" height="300" loading="lazy">
+        <img src="/assets/images/bottom-bg-block.svg" class="bottom-bg-block-mobile" alt="" width="768" height="200" loading="lazy">
       </figure>
     </main>
     
@@ -58,18 +56,18 @@
     <!-- Cookie Consent Banner -->
     {% include "components/cookie-consent.njk" %}
     
-    <!-- Scripts -->
+    <!-- Critical Scripts - Load immediately -->
     <script src="/assets/js/header.js" defer></script>
-    <script src="/assets/js/flashcards.js" defer></script>
     <script src="/assets/js/main.js" defer></script>
-    <script src="/assets/js/svg-tilt.js" defer></script>
+    <script src="/assets/js/cookie-consent.js" defer></script>
+    
+    <!-- Animation Scripts - Now loaded directly to ensure functionality -->
+    <script src="/assets/js/flashcards.js" defer></script>
     <script src="/assets/js/hero-animation.js" defer></script>
     <script src="/assets/js/falling-hexes-bg.js" defer></script>
-    <script src="/assets/js/cookie-consent.js" defer></script>
     <script src="/assets/js/about-animation.js" defer></script>
-    <script src="/assets/js/clarity-bundle.js" defer></script>
+    <script src="/assets/js/svg-tilt.js" defer></script>
     
     <!-- Additional Scripts -->
     {% block additionalScripts %}{% endblock %}
-</body>
-</html> 
+</body></html> 

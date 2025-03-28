@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const createFallingHexagons = () => {
     const fallingHexagonsContainer = document.querySelector('.hero__falling-hexagons');
     
-    if (fallingHexagonsContainer) {
+    if (fallingHexagonsContainer && heroSection) {
       const heroWidth = heroSection.offsetWidth;
       const numHexagons = Math.floor(heroWidth / 100); // Approximate number based on width
       
@@ -189,8 +189,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
   
-  // Initialize hero animation
-  animateHero();
+  // Initialize hero animation if on home page
+  if (document.body.classList.contains('home')) {
+    animateHero();
+  }
   
   // Handle window resize
   window.addEventListener('resize', () => {

@@ -1,4 +1,32 @@
 const fs = require("fs");
+const Image = require("@11ty/eleventy-img");
+
+// Image shortcode for optimized images - skip SVGs to preserve animations
+async function imageShortcode(src, alt, sizes) {
+  // Skip processing for SVG files to preserve animations
+  if (src.toLowerCase().endsWith('.svg')) {
+    return `<img src="${src}" alt="${alt || ''}" ${sizes ? `sizes="${sizes}"` : ''} loading="lazy">`;
+  }
+
+  let metadata = await Image(src, {
+    widths: [300, 600, 900, 1200],
+    formats: ["webp", "jpeg"],
+    outputDir: "./_site/assets/img/",
+    urlPath: "/assets/img/",
+    sharpOptions: {
+      quality: 80
+    }
+  });
+
+  let imageAttributes = {
+    alt,
+    sizes,
+    loading: "lazy",
+    decoding: "async",
+  };
+
+  return Image.generateHTML(metadata, imageAttributes);
+}
 
 module.exports = function(eleventyConfig) {
   // ✅ Passthrough copy for assets
@@ -58,6 +86,10 @@ module.exports = function(eleventyConfig) {
       }
     }
   });
+
+  // Add image shortcode
+  eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
+  eleventyConfig.addJavaScriptFunction("image", imageShortcode);
 
   // ✅ Return Eleventy configuration
   return {
