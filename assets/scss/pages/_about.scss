@@ -141,17 +141,17 @@
 
   &__image-caption {
     position: absolute;
-    bottom: 2rem;
+    bottom: clamp(1.25rem, 3vw, 2rem);
     left: 50%;
     transform: translateX(-50%) translateZ(20px);
-    font-size: 0.875rem;
+    font-size: clamp(0.625rem, 1.75vw,0.875rem);
     font-weight: 600;
     width: max-content;
     font-family: variables.$font-family-heading;
     text-transform: uppercase;
     background-color: variables.$color-header-surface;
     border: 2px solid variables.$color-border;
-    padding: 0.5rem 1rem;
+    padding: clamp(.25rem,1vw,.5rem) 1rem;
     text-align: center;
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
     cursor: pointer;
