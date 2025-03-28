@@ -104,22 +104,10 @@
         window.clarity = undefined;
       }
       
-      analyticsContainer.querySelectorAll('script-data').forEach(scriptData => {
-        const script = document.createElement('script');
-        
-        if (scriptData.getAttribute('src')) {
-          script.src = scriptData.getAttribute('src');
-        }
-        
-        if (scriptData.textContent) {
-          script.textContent = scriptData.textContent;
-        }
-        
-        if (scriptData.getAttribute('async') !== null) {
-          script.async = true;
-        }
-        
-        document.head.appendChild(script);
+      // Clone and append each script from the container
+      analyticsContainer.querySelectorAll('script').forEach(script => {
+        const newScript = script.cloneNode(true);
+        document.head.appendChild(newScript);
         console.log('Added analytics script to head');
       });
     }
