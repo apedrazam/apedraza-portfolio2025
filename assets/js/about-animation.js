@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     imageWrapper.addEventListener('mousemove', (e) => {
       if (isSpinning) return;
       const rect = imageWrapper.getBoundingClientRect();
-      const tiltX = (0.5 - (e.clientY - rect.top) / rect.height) * 10;
-      const tiltY = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
+      const tiltX = (0.5 - (e.clientY - rect.top) / rect.height) * 20;
+      const tiltY = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
       imageWrapper.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
     });
   

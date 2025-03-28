@@ -12,10 +12,21 @@
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    width: 76vw;
-    max-width: variables.$breakpoint-3xl;
     margin-top: clamp(-6rem, (-8vh - -10vw) / 2, -2rem);
     margin-bottom: clamp(2rem, 10vh, 4rem);
+
+    @include mixins.desktop {
+        width: 76vw;
+        max-width: variables.$breakpoint-3xl;
+    }
+    @include mixins.desktop-xl {
+        width: 76vw;
+        max-width: variables.$breakpoint-3xl;
+    }
+
+    section {
+        margin-bottom: 1rem;
+    }
 }
 
 .about-header {
@@ -27,23 +38,51 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  position: relative;
 }
 
 .about-intro {
   display: flex;
   gap: 2rem;
-  flex-direction: row;
+  flex-direction: column;
 
-  @include mixins.mobile {
-    flex-direction: column;
+  @include mixins.desktop-xl {
+    width: calc(58% - 1rem);
+
+    &__image{
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: calc(42% - 1rem);
+        align-items: center;
+    }
   }
+  @include mixins.desktop {
+    width: calc(58% - 1rem);
+
+    &__image{
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: calc(42% - 1rem);
+        align-items: center;
+    }
+  }
+
   @include mixins.tablet {
-    flex-direction: column;
+    width: calc(58% - 1rem);
+
+    &__image{
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: calc(42% - 1rem);
+        align-items: center;
+    }
   }
+
 
   &__text {
-    flex: calc(58% - 1rem);
-
     p {
         margin-bottom: clamp(.5rem, 2vw, 1rem);
     }
@@ -60,13 +99,6 @@
         color: variables.$color-primary-light;
       }
       
-    }
-
-    @include mixins.mobile {
-      order: 1;
-    }
-    @include mixins.tablet {
-      order: 1;
     }
   }
 
@@ -102,6 +134,9 @@
     @include mixins.tablet {
         max-height: 30vh;
     }
+    @include mixins.mobile {
+        max-height: 30vh;
+    }
   }
 
   &__image-caption {
@@ -121,5 +156,106 @@
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3);
     cursor: pointer;
     transition: transform 0.3s ease-out, opacity 0.2s ease-out;
+  }
+}
+
+.about-skills {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  h4 {
+    margin-bottom: 1rem;
+  }
+
+  &__lists {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    column-gap: clamp(1rem, 10vw, 5rem);
+    row-gap: inherit;
+    justify-content: center;
+
+    .expertise {
+        grid-row: 1 / span 3;
+    }
+    .developing {
+        grid-row: 1 / span 1;
+    }
+    .connect {
+        grid-row: 2 / span 1;
+        margin-top: 1rem;
+    }
+
+    @include mixins.mobile {
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto;
+        justify-content: left;
+        margin-top: 0;
+        .expertise, .developing, .connect {
+            grid-row: auto;
+        }
+    }
+  }
+
+  &__list {
+    margin-bottom: clamp(.75rem, 2vw, 1rem);
+  }
+
+  &__items li{
+    margin-left: clamp(1.25rem, 2vw, 1.5rem);
+    margin-bottom: .5rem;
+    list-style: disc;
+  }
+
+  .connect ul {
+    display: flex;
+    flex-direction: row;
+    gap: 1.25rem;
+    align-items: end;
+
+    li {
+        margin-left: 0;
+        list-style: none;
+        
+        a{
+            background-color: variables.$color-primary-surface;
+            display: flex;
+            width: 3.3rem;
+            height: 3.7rem;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: all 300ms;
+            cursor: pointer;
+            border: none;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+
+            &:hover {
+                transform: scale(1.1);
+                text-decoration: none;
+
+                i{
+                    animation: toBottomFromTop .2s forwards;
+                }
+            }
+
+            &:active {
+                background-color: variables.$color-primary-dark;
+            }
+
+            &:not([href*="https://apedraza.net"])::after{
+                content: '';
+                margin: 0;
+            }
+
+            i{
+                font-size: 1.75rem;
+                color: variables.$color-white;
+            }
+            
+        }
+}
   }
 }

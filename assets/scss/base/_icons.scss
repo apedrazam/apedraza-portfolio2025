@@ -78,14 +78,6 @@
   content: "\f00d";
 }
 
-.fa-moon:before {
-  content: "\f186";
-}
-
-.fa-sun:before {
-  content: "\f185";
-}
-
 .fa-circle-half-stroke:before {
   content: "\f042";
 }
@@ -109,6 +101,22 @@
 
 .fa-hand:before, .fa-solid.fa-hand:before, .fa-hand-paper:before {
   content: "\f256";
+}
+
+.fa-envelope:before, .fa-solid.fa-envelope:before {
+  content: "\f0e0";
+}
+
+.fa-github:before, .fa-brands.fa-github:before {
+  content: "\f09b";
+}
+
+.fa-behance:before, .fa-brands.fa-behance:before {
+  content: "\f1b4";
+}
+
+.fa-linkedin:before, .fa-brands.fa-linkedin:before {
+  content: "\f0e1";
 }
 
 /**

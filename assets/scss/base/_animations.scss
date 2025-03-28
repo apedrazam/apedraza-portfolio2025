@@ -19,6 +19,19 @@
 	}
 }
 
+@keyframes toTopFromBottom {
+	49% {
+		transform: translateY(-100%);
+	}
+	50% {
+		opacity: 0;
+		transform: translateY(100%);
+	}
+	51% {
+		opacity: 1;
+	}
+}
+
 //Check work and Flashcard trigger animation
 @keyframes toRightFromLeft {
 	49% {
