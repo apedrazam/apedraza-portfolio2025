@@ -42,6 +42,24 @@ ErrorDocument 404 /404.html
   AddOutputFilterByType DEFLATE text/xml
 </IfModule>
 
+# HTTP/2 Server Push for homepage critical resources
+<IfModule mod_headers.c>
+  <FilesMatch "index\.html$">
+    # Push CSS files
+    Header add Link "</assets/css/main.css>;rel=preload;as=style"
+    
+    # Push critical images
+    Header add Link "</assets/images/apedraza-logo.svg>;rel=preload;as=image"
+    Header add Link "</assets/images/hero-bg-block2.svg>;rel=preload;as=image"
+    Header add Link "</assets/images/top-bg-block.svg>;rel=preload;as=image"
+    
+    # Push critical JS
+    Header add Link "</assets/js/hero-animation.js>;rel=preload;as=script"
+    Header add Link "</assets/js/falling-hexes-bg.js>;rel=preload;as=script"
+    Header add Link "</assets/js/main.js>;rel=preload;as=script"
+  </FilesMatch>
+</IfModule>
+
 # Browser caching
 <IfModule mod_expires.c>
   ExpiresActive On
@@ -112,16 +130,22 @@ Options -Indexes
 
 # Security headers
 <IfModule mod_headers.c>
-    Header set X-Content-Type-Options "nosniff"
-    Header set X-XSS-Protection "1; mode=block"
-    Header set X-Frame-Options "SAMEORIGIN"
-    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.us.heap-api.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://heapanalytics.com; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self';"
     Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 </IfModule>
 
 # Protect against XSS attacks
-<IfModule mod_headers.c>
-    Header set X-XSS-Protection "1; mode=block"
-    Header set X-Frame-Options "SAMEORIGIN"
-    Header set X-Content-Type-Options "nosniff"
-</IfModule> 
+<IfModule mod_rewrite.c>
+    RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+    RewriteRule ^(.*)$ index.php [F,L]
+</IfModule>
+
+# Custom error pages
+ErrorDocument 404 /404.html 

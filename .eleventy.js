@@ -1,5 +1,6 @@
 const fs = require("fs");
 const Image = require("@11ty/eleventy-img");
+const path = require("path");
 
 // Image shortcode for optimized images - skip SVGs to preserve animations
 async function imageShortcode(src, alt, sizes) {
@@ -8,24 +9,34 @@ async function imageShortcode(src, alt, sizes) {
     return `<img src="${src}" alt="${alt || ''}" ${sizes ? `sizes="${sizes}"` : ''} loading="lazy">`;
   }
 
-  let metadata = await Image(src, {
-    widths: [300, 600, 900, 1200],
-    formats: ["webp", "jpeg"],
-    outputDir: "./_site/assets/img/",
-    urlPath: "/assets/img/",
-    sharpOptions: {
-      quality: 80
-    }
-  });
+  try {
+    let metadata = await Image(src, {
+      widths: [300, 600, 900, 1200],
+      formats: ["webp", "jpeg"],
+      outputDir: "./_site/assets/img/",
+      urlPath: "/assets/img/",
+      filenameFormat: function (id, src, width, format, options) {
+        const extension = path.extname(src);
+        const name = path.basename(src, extension);
+        return `${name}-${width}w.${format}`;
+      },
+      sharpOptions: {
+        quality: 80
+      }
+    });
 
-  let imageAttributes = {
-    alt,
-    sizes,
-    loading: "lazy",
-    decoding: "async",
-  };
+    let imageAttributes = {
+      alt,
+      sizes,
+      loading: "lazy",
+      decoding: "async",
+    };
 
-  return Image.generateHTML(metadata, imageAttributes);
+    return Image.generateHTML(metadata, imageAttributes);
+  } catch (e) {
+    console.error(`Error processing image: ${src}`, e);
+    return `<img src="${src}" alt="${alt || ''}" ${sizes ? `sizes="${sizes}"` : ''} loading="lazy">`;
+  }
 }
 
 module.exports = function(eleventyConfig) {

@@ -4,14 +4,79 @@
     <title>{% if title %}{{ title }}{% else %}Adrian Pedraza - Product Designer & UX Specialist{% endif %}</title>
     <meta name="description" content="{% if description %}{{ description }}{% else %}Adrian Pedraza - Product Designer and UX Specialist portfolio showcasing selected work and case studies.{% endif %}">
     
+    <!-- Resource hints for faster loading -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    {% if bodyClass === "home" %}
+    <link rel="preload" href="/assets/images/hero-bg-block2.svg" as="image" fetchpriority="high">
+    <link rel="preload" href="/assets/images/top-bg-block.svg" as="image" fetchpriority="high">
+    <link rel="preload" href="/assets/js/hero-animation.js" as="script">
+    <link rel="preload" href="/assets/js/falling-hexes-bg.js" as="script">
+    
+    <!-- Early animation initialization -->
+    <script>
+      // Start downloading critical images as early as possible
+      (function() {
+        const criticalImages = [
+          '/assets/images/hero-bg-block.svg',
+          '/assets/images/hero-bg-block2.svg',
+          '/assets/images/falling-hex.svg'
+        ];
+        
+        // Create hidden image elements to force immediate loading
+        criticalImages.forEach(function(src) {
+          const img = new Image();
+          img.src = src;
+          img.style.position = 'absolute';
+          img.style.width = '1px';
+          img.style.height = '1px';
+          img.style.opacity = '0.01';
+          document.head.appendChild(img);
+        });
+      })();
+    </script>
+    {% endif %}
+    
+    {% if bodyClass === "about" %}
+    <!-- Preload about page images -->
+    <link rel="preload" href="/assets/images/about/fearless_researcher.webp" as="image" fetchpriority="high">
+    <link rel="preload" href="/assets/images/about/meticulous_architect.webp" as="image" fetchpriority="high">
+    <link rel="preload" href="/assets/images/about/pragmatic_designer.webp" as="image" fetchpriority="high">
+    <link rel="preload" href="/assets/images/about/visionary_strategist.webp" as="image" fetchpriority="high">
+    <link rel="preload" href="/assets/images/about/well-round_generalist.webp" as="image" fetchpriority="high">
+    <link rel="preload" href="/assets/js/about-animation.js" as="script">
+    
+    <!-- Early about image loading -->
+    <script>
+      // Start downloading about page images as early as possible
+      (function() {
+        const aboutImages = [
+          '/assets/images/about/fearless_researcher.webp',
+          '/assets/images/about/meticulous_architect.webp',
+          '/assets/images/about/pragmatic_designer.webp',
+          '/assets/images/about/visionary_strategist.webp',
+          '/assets/images/about/well-round_generalist.webp'
+        ];
+        
+        // Create image objects and store them in a global variable for the animation script to use
+        window.preloadedAboutImages = [];
+        
+        aboutImages.forEach(function(src, index) {
+          window.preloadedAboutImages[index] = new Image();
+          window.preloadedAboutImages[index].src = src;
+        });
+      })();
+    </script>
+    {% endif %}
+    
     <!-- Preload critical assets -->
     <link rel="preload" href="/assets/css/main.css" as="style">
     <link rel="preload" href="/assets/fonts/Inter-roman.var.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/assets/images/apedraza-logo.svg" as="image">
+    <link rel="preload" href="/assets/images/apedraza-logo.svg" as="image" fetchpriority="high">
     
     <!-- Favicon -->
     <link rel="icon" href="/assets/images/apedraza-logo.svg" type="image/svg+xml">
-    
+
     <!-- Main CSS (compiled from SCSS) -->
     <link rel="stylesheet" href="/assets/css/main.css">
     
@@ -61,10 +126,15 @@
     <script src="/assets/js/main.js" defer></script>
     <script src="/assets/js/cookie-consent.js" defer></script>
     
-    <!-- Animation Scripts - Now loaded directly to ensure functionality -->
-    <script src="/assets/js/flashcards.js" defer></script>
+    <!-- Animation Scripts -->
+    {% if bodyClass === "home" %}
+    <!-- Homepage animation scripts -->
     <script src="/assets/js/hero-animation.js" defer></script>
     <script src="/assets/js/falling-hexes-bg.js" defer></script>
+    {% endif %}
+    
+    <!-- Other animation scripts -->
+    <script src="/assets/js/flashcards.js" defer></script>
     <script src="/assets/js/about-animation.js" defer></script>
     <script src="/assets/js/svg-tilt.js" defer></script>
     
