@@ -35,6 +35,10 @@
     border: 4px solid variables.$color-border;
     border-radius: clamp(4px, 3vw, 12px);
 
+    &:not(:last-child) {
+      margin-bottom: clamp(1.5rem, 4vw, 4rem);
+    }
+
     &-header,
     &-content {
       padding: 1rem clamp(1rem, 2vw, 2rem);
@@ -89,7 +93,7 @@
 
     &.isOpen {
       padding-bottom: 8px;
-      
+
       .case-study__highlight-section-content {
         display: block;
         opacity: 1;
