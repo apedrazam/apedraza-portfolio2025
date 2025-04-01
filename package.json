@@ -33,7 +33,9 @@
     "sass": "^1.69.5"
   },
   "dependencies": {
-    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0"
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "micromodal": "^0.6.1",
+    "tiny-slider": "^2.9.4"
   },
   "browserslist": [
     ">0.3%",

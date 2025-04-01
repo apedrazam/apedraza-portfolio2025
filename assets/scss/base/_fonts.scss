@@ -197,6 +197,13 @@ p {
   }
 }
 
+figcaption {
+  font-size: .9em;
+  text-align: center;
+  color: variables.$color-text-body-accent;
+  margin-top: clamp(.125rem, 2vh, .25rem);
+}
+
 .font-bold {
   font-weight: 900;
   font-size: inherit;

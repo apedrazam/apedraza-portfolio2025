@@ -6,94 +6,149 @@ category: "Case Study"
 order: 2
 ---
 
-<article class="case-study">
-  <section>
-    <h1>Devex job posting flow</h1>
-    <p class="subtitle">Reading time 4 minutes</p>
-  </section>
-  
-  <section>
-    <h2>Project Overview</h2>
-    <p>Devex is the go-to media platform for Global Development professionals. Along with their news pieces, they have other specialized products, including job postings focused on Global Development positions. In the last couple years, the amount of posted jobs has been decreasing.</p>
-    <p>It was my task to analyze the state of job posting processes nowadays and come up with actionable proposals to <strong>improve the job posting flow to reduce drop-off during the process and increase engagement</strong>.</p>
-  </section>
-  
-  <section>
-    <h2>Discovery</h2>
-    <p>We already knew that we had <strong>two different personas</strong> interacting with our job posting flow: big recruiters with expensive accounts that post jobs regularly and professionals from smaller organizations that post jobs per unit.</p>
-    <p>We conducted a <strong>survey to gain insight</strong> from users who dropped-off of the process, but the response rate was very low.</p>
-    <p>While we were waiting for the results of this survey, I continued research on two fronts:</p>
-    <div class="case-study__card">
-      <figure class="cs-card__image">
-        <img loading="lazy" decoding="async" src="/assets/images/case-studies/devex-job-posting/competitors.png" alt="Competitors Benchmark">
-      </figure>
-      <div class="cs-card__content">
-        <h4>Competitors Benchmark</h4>
-        <p>I researched how other organizations —both direct competitors and large generalist platforms— handle job postings.</p>
+<article class="case-study job-posting">
+  <section class="case-study__landing">
+    <h1>Revamping a job posting flow</h1>
+    <div class="case-study__project-data">
+      <div class="case-study__project-data-item">
+        <p class="subtitle">Company</p>
+        <p>Devex</p>
+      </div>
+      <div class="case-study__project-data-item">
+        <p class="subtitle">Role</p>
+        <p>Product Designer</p>
+      </div>
+      <div class="case-study__project-data-item">
+        <p class="subtitle">Duration</p>
+        <p>Q2 & Q3 2024</p>
       </div>
     </div>
-    <div class="case-study__card">
-      <figure class="cs-card__image">
-        <img loading="lazy" decoding="async" src="/assets/images/case-studies/devex-job-posting/Screenshot 2024-12-12 at 23-47-25 SJP Usage data (Q1-2024) - Product Development - Confluence.png" alt="Usage data">
-      </figure>
-      <div class="cs-card__content">
-        <h4>Usage data</h4>
-        <p>I also checked on <strong>users behavior</strong> through Devex' job posting funnel, to find out where the most obvious pain points were.</p>
+    <figure class="img__full-width">
+      <img 
+        src="/assets/images/case-studies/devex-job-posting/thumbnail-job-posting.webp" 
+        alt="Phone mockup for job posting flow" 
+        class="job-posting__phone-mockup"
+      />
+    </figure>
+  </section>
+  
+  <section class="job-posting__overview">
+    
+    <div class="job-posting__overview-content">
+      <h2>Project Overview</h2>
+      <p>Devex job posting services had faced a significant decrease in the number of job postings during last couple of years. My task was to redesign the job posting flow to reduce drop-offs and increase engagement. While this project never got to total fruition, initial results were promising:</p>
+      <ul>
+        <li>The engagement within the job posting form increased by <span class="font-bold">28%</span> in the first 50 days after release.</li>
+        <li>The number of users starting the job posting process from the updated marketing page increased by <span class="font-bold">6%</span>.</li>
+        <li>Job bundle inquiries tripled in the first month.</li>
+      </ul>
+    </div>
+
+    <figure class="img__full-width">
+      <img decoding="async" src="/assets/images/case-studies/devex-job-posting/desktop-job-posting.png" alt="Desktop version for job posting form">
+      <figcaption>Desktop version for job posting form</figcaption>
+    </figure>
+  </section>
+  
+  <section>
+    <h2>Starting Point</h2>
+    <p>The job posting flow had seen a significant decrease in activity over the last couple of years. The main issues we identified were:</p>
+    <ul>
+      <li><span class="font-bold">Outdated marketing page</span>: The page wasn't effectively communicating the value of posting a job on Devex.</li>
+      <li><span class="font-bold">A long, intimidating job posting form</span>: The form was a single page with too many fields, which led to high drop-offs.</li>
+      <li><span class="font-bold">Poor error prevention and technical bugs</span>: The form was prone to errors, and users frequently had to refill information.</li>
+      <li><span class="font-bold">Limited user insights</span>: We lacked comprehensive feedback on why users were dropping off at certain stages of the process.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Research and prioritization</h2>
+    <p>We kicked things off by digging into usage data and benchmarking competitors to spot the biggest problem areas. Since we already knew our two main user types, we reached them through a survey to learn more about the issues they were facing when posting jobs at Devex.</p>
+    <p>The next step was getting everyone aligned on what success looked like—boosting revenue and making the value of featured job postings more obvious. To keep things focused, I set up a Trello board with MoSCoW prioritization, mapped out a Risk vs. Effort matrix with the team, and brought the plan to business. Once we had the green light, we got to work.</p>
+
+    <figure>
+      <img decoding="async" src="/assets/images/case-studies/devex-job-posting/moscow-trello.png" alt="Moscow prioritizationTrello board">
+      <figcaption>Moscow prioritizationTrello board</figcaption>
+    </figure>
+    <div class="case-study__highlight-section">
+      <div class="case-study__highlight-section-header">
+        <h3>Doubts around featured jobs value proposition <span class="emoji">💬</span> </h3>
+        <button class="cs-highlight-expand" data-label="Expand"><i class="fa-solid fa-plus"></i></button>
+      </div>
+      <div class="case-study__highlight-section-content">
+        <p>While we agreed on the main goal being revenue increase, I was hesitant about the business's request to highlight the value of featured job postings.</p>
+        <p>Job posting in Devex was already the most expensive one amongst its competitors. The value proposition of featured job postings was not really contrasted nor specified clearly. Finally, the most critical decrease on job posting was with users who didn't have a recruiter account: these users were posting an average of once.</p>
+        <p>My argument was that we should focus on engagement rather than direct revenue, but in the end, it was business's call.</p>
       </div>
     </div>
-    <p>There were many things we could do to improve our job posting process: from big drop off levels at the top of the funnel to lack of error prevention mechanisms through the posting process, amongst many functional bugs and many other issues.</p>
-    <p>I met with the PO, Product VP and recruitment business stakeholders to share findings and agree on how much effort we wanted to put into this project and what changes we wanted to prioritize.</p>
   </section>
-  
+
   <section>
-    <h2>High level definition</h2>
-    <p>I created a <strong>list of actionable items</strong> that we could implement to improve our process and divide them following the <strong>MoSCoW method</strong>. This prioritization was shared with the rest of the squad and we ordered them in a <strong>Risk vs Effort matrix</strong>, focusing on the technical implications for each item.</p>
+    <h2>Designing the new job posting flow</h2>
+    <p>During the planification discussions, we agreed on prioritizing migrating tasks because although probably not the most impactful, those were the ones that enabled us to keep moving forward while reducing the technical debt and applying patterns from the design system. We completed the following initiatives:</p>
+
+    <h3>Review communications</h3>
+    <p>We noticed there was a lot of unknowns around what interactions were part of the job posting flow out of the Devex website. I teamed-up with the PO, Marketing manager and the VP of Product to map those up and defining a new version of mailing milestones through the funnel.</p>
+
     <figure class="img__full-width">
-      <img loading="lazy" decoding="async" src="/assets/images/case-studies/devex-job-posting/Screenshot 2024-12-12 at 23-37-48 MoSCoW Prioritisation Trello.png" alt="MoSCoW Prioritization">
-      <figcaption>MoSCoW Prioritization</figcaption>
+      <img decoding="async" class="img__with-border" src="/assets/images/case-studies/devex-job-posting/mailings-job-posting.png" alt="Mailing funnel review">
+      <figcaption>Reviewed email communications</figcaption>
     </figure>
-    <p>Finally, we shared it with the rest of stakeholders for the project and started working on these items by priority.</p>
-  </section>
-  
-  <section>
-    <h2>Defining and developing iteratively</h2>
-    <p>We started with the <strong>low hanging fruit</strong>. The <strong>biggest drop-off point</strong> of out flow was at the very beginning:</p>
-    <ul>
-      <li>The marketing page where users are meant to learn about job posting was dull and outdated.</li>
-      <li>It had a 3 steps main CTA intended to make users feel invested in the task by the time they arrived at the main form, but that in most cases had to be refilled a second time.</li>
-      <li>The actual information was below the fold, and by the time users reached it, we had already lost 30% of our page viewers.</li>
-    </ul>
+    
+    <h3>Redesigning the marketing page</h3>
+    <p>The first step was overhauling the marketing page, which was outdated and not conveying the right message. I proposed this as the first step for 2 main reasons:</p>
+    <ol>
+      <li>Being mostly static content, it was a simpler and isolated change.</li>
+      <li>The higher in the funnel you make a change, the more people it will reach: This was the first step of the process for non-recruiter job posters.</li>
+      <li>This could be addressed while the most critical bugs of the posti ng form were fixed.</li>
+    </ol>
+    <p>I focused on simplifying the design, making the value proposition clearer, and giving more relevance to the feature jobs, as per business request. This redesign led to a 6% increase in users who started the job posting process, indicating that the updated page was more engaging and tripled the number of job bundle inquiries.</p>
+    <div class="case-study__highlight-section">
+      <div class="case-study__highlight-section-header">
+      <h4>CTA location rationale <span class="emoji">💬</span></h4>
+        <button class="cs-highlight-expand" data-label="Expand"><i class="fa-solid fa-plus"></i></button>
+      </div>
+      <div class="case-study__highlight-section-content">
+        <p>While the card approach is a good way to showcase and compare available options, having a separated button for it was likely to create confusion. However, our payment pages didn't allow for item preselection, so I decided to have the main action separated from the cards. This decision was made with the idea of adding the CTA to the cards after working in the payment component.</p>
+      </div>
+    </div>
+    
     <figure class="img__full-width">
-      <img loading="lazy" decoding="async" src="/assets/images/case-studies/devex-job-posting/posting-options.png" alt="Comparative between old and new marketing page">
-      <figcaption>Comparative between old and new marketing page</figcaption>
+      <img decoding="async" src="/assets/images/case-studies/devex-job-posting/posting-options.png" alt="Old vs New Marketing Page">
+      <figcaption>Comparative view of the old and new marketing page</figcaption>
     </figure>
-    <p>While I was working on the redesign, the development team took some time into fixing already identified bugs from the process that needed to be fixed independently of the redesign and I also aligned with the marketing stakeholders to <strong>review the communications</strong> users encountered throughout the job posting process.</p>
-    <p>Then we got into the main course:</p>
-    <p>Our <strong>job form</strong> was one single page. It was huge and daunting for any unsuspecting recruiter, so I propose to split it <strong>into manageable bits</strong> to improve the experience.</p>
-    <p>I started working on an iterative proposal of different flows to move from the current one step form into a three step one that would structure the date in a more contextual way and make it more digestible.</p>
-    <p>Given the technology with which the old job posting form was built, it was impossible to modify the flow in smaller steps without introducing technical debt into the system. Because of that, we decided to develop the version of the form that included the <strong>major number of changes in the job posting flow but wouldn't imply working in other sections</strong> of the site.</p>
+
+    <h3>Breaking down the job form</h3>
+    <p>The single-page job form was intimidating, so we split it into smaller, more digestible steps. I proposed several iterations to move from the existing flow to the new one. Since the migration was a big effort and it was already in the roadmap, we jumped directly into the third iteration but without detaching the organization info as a conditional step.</p>
+    <p>All the changes were proposed as part of an iterative process. By doing this changes, users would go through the posting form with less congnitive load and more control (jobs are now saved as draft after each step). But there are also counterparts: right now and until a new editing page is created, the process of editing a job is likely to be more painful than it was. Anyhow, the new structure proved being easier to navigate and drove a 28% increase in form engagement.</p>
+    
     <figure class="img__full-width">
-      <img loading="lazy" decoding="async" src="/assets/images/case-studies/devex-job-posting/new flow_ iteration 3.png" alt="New flow definition">
-      <figcaption>New flow definition</figcaption>
+      <img class="img__with-border" decoding="async" src="/assets/images/case-studies/devex-job-posting/job-posting-flows.png" alt="Job Posting Flow proposals">
+      <figcaption>Proposed iterative job posting flow</figcaption>
     </figure>
-  </section>
-  
-  <section>
-    <h2>Delivery</h2>
-    <p>It took about 4 months to fully migrate and split the job posting flow. The process was long and tedious, but it included many other changes that aimed to <strong>give users more control</strong> over their job posting experience and <strong>increased the data integrity</strong> that Devex has about their users. In the end, we thrived.</p>
-  </section>
-  
-  <section>
-    <h2>Impact and further work</h2>
-    <p>The new version of Devex job posting process was released early November 2024. The changes in the communications, the marketing page and other small changes have been in production since October 2024. In that time:</p>
-    <ul>
-      <li>The <strong>engagement</strong> within the job posting form <strong>increased by 28%</strong>, although drop-off levels in the registration step were quite high.</li>
-      <li>The percentage of users who visited the marketing page and <strong>started a job posting</strong> process <strong>increased by 6%</strong>.</li>
-      <li>The number of people who inquiried about <strong>job bundles</strong> from the jobs marketing page <strong>tripled</strong> in the first month. </li>
-      <li>Roughly 70% of our recruiter accounts were held by USAID contractors. Up to the moment Donald Trump ordered USAID freeze in <strong>February 2025</strong>, the job posting flow was recording its <strong>best numbers of the last 6 months</strong>.</li>
-      <li>There were several <strong>pending changes</strong> aiming to improve the <strong>quality of the options</strong> in the form (clearer and new values) and <strong>simplify it further</strong> (automatize organization information step). </li>
-    </ul>
+
+    <h3>Pending actions and external factors</h3>
+    <p>It's worth noting that roughly 70% of our recruiter accounts were held by USAID contractors. This group played a significant role in the success of the job posting flow, and up until the freeze ordered by the Trump administration in February 2025, we were recording the best engagement numbers in six months.</p>
+    <p>These had been the starting steps towards a more engaging job posting flow. However, they were likely not enough to solve the main problem. We had anecdotal evidence of some fields not having the required values recruiters were looking for, or some other missing information (such as language or skills).</p>
+    <p>In my opinion, these changes put together would have a more effective impact on keeping job posting users engaged with Devex, but they had ramifications into other products of the platform and were not part of these first initiatives.</p>
+    <div class="case-study__highlight-section">
+      <div class="case-study__highlight-section-header">
+        <h4>The multi-product trap <span class="emoji">💬</span></h4>
+        <button class="cs-highlight-expand" data-label="Expand"><i class="fa-solid fa-plus"></i></button>
+      </div>
+      <div class="case-study__highlight-section-content">
+        <p>There were many different products living together within the Devex platform, but those were usually not connected between them. To me, that was a lost opportunity to create more engaging experiences for all user personas at Devex.</p>
+        <p>I understand the technical risks of having partial content from many places in each product, but by crossreferencing those data points, we could have created more relevant content for the users and increased engagement.</p>
+      </div>
+    </div>
+
+
+    <figure class="img__full-width">
+      <img decoding="async" src="/assets/images/case-studies/devex-job-posting/mobile-job-posting.png" alt="Mobile version for job posting form">
+      <figcaption>Final mock-ups for mobile version</figcaption>
+    </figure>
   </section>
 </article>
+
 
 {% include "components/case-study-nav.njk" %}
