@@ -224,5 +224,18 @@
   }
 }
 
-.job-posting {
+.wholesale-billing {
+  .case-study__landing-media {
+    max-height: 80vh;
+    width: 100%;
+  }
+
+  img.wholesale-billing__mockups-img-1 {
+    border-radius: clamp(4px, 3vw, 12px) clamp(4px, 3vw, 12px) 0 0;
+  }
+
+  img.wholesale-billing__mockups-img-2 {
+    margin-top: -1rem;
+    border-radius: 0 0 clamp(4px, 3vw, 12px) clamp(4px, 3vw, 12px);
+  }
 }

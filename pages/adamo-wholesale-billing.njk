@@ -1,21 +1,57 @@
 ---
 layout: page-wrapper.njk
 title: Adamo Wholesale Billing - Adrian Pedraza
-description: "Designing a comprehensive billing system for wholesale customers."
+description: "Designing a comprehensive billing system for wholesale customers invoicing."
 category: "Case Study"
 order: 4
 ---
 
-<article class="case-study">
-  <section>
-    <h1>Adamo Wholesale Billing</h1>
-    <p class="subtitle">Reading time 3 minutes</p>
+<article class="case-study wholesale-billing">
+  <section class="case-study__landing">
+    <h1>Helping a finance team to speed-up</h1>
+    
+    <div class="case-study__project-data">
+      <div class="case-study__project-data-item">
+        <p class="subtitle">Company</p>
+        <p>Adamo Telecom</p>
+      </div>
+      <div class="case-study__project-data-item">
+        <p class="subtitle">Role</p>
+        <p>Product Designer & UI Developer</p>
+      </div>
+      <div class="case-study__project-data-item">
+        <p class="subtitle">Duration</p>
+        <p>Q3-Q4 2019</p>
+      </div>
+    </div>
+    <figure class="img__full-width">
+      <img decoding="async" width="864" height="648" src="/assets/images/wholesale-billing.webp" alt="Laptop mockup for wholesale billing project" class="case-study__landing-media">
+    </figure>
+
   </section>
   
   <section>
+    <div class="case-study__highlight-section">
+      <div class="case-study__highlight-section-header">
+        <h3>Why is this case study relevant? <span class="emoji">💬</span> </h3>
+        <button class="cs-highlight-expand" data-label="Expand"><i class="fa-solid fa-plus"></i></button>
+      </div>
+      <div class="case-study__highlight-section-content">
+        <p>This project was done after my first year at Adamo and a lot of time has passed since.</p>
+        <p>Still, I wanted to include it as it showcases my ability to take on multiple roles—from research to front-end implementation. It also highlights my experience in qualitative research, requirements gathering, and my aspirations of design systems, all of which reflect my traits as a designer.</p>
+        <p>Finally, I wanted to include it as it is a good example of how when the user's needs are understood and properly addressed, the results can make people's lives easier.</p>
+      </div>
+    </div>
     <h2>Project Overview</h2>
-    <p>Adamo is a telecommunications company focused on bringing the Internet to the "Empty Spain". They lend their network to smaller local internet providers, known as wholesale sales, which is the company's main source of income. They were doing a great job and had managed to triplicate their wholesale selling volume. The Wholesale invoicing was managed by the Finance team, specifically by 2 people in charge of reviewing all orders month after month. It was getting tricky.</p>
-    <p>I was tasked with the <strong>design of a tool dedicated to streamlining the Wholesale monthly billing process</strong>.</p>
+    <p>I was tasked with the design of a tool dedicated to <span class="font-bold">streamlining the Wholesale monthly billing process</span> of a growing telecommunications company. They had a <span class="font-bold">team of 2 people</span> in charge of reviewing all orders month after month and things were getting harder to handle due to the growing number of orders.</p>
+    <p>A year after release, the Wholesale billing team had moved <strong>from +80,000 monthly orders to +220,000</strong> while still being only <strong>2 people</strong> and with a <strong>smaller number of incidents</strong>.</p>
+
+
+    <figure class="img__full-width wholesale-billing__mockups">
+      <img class="wholesale-billing__mockups-img-1" loading="lazy" decoding="async" src="/assets/images/case-studies/adamo-wholesale-billing/wholesale-billing-1.webp" alt="Wholesale Billing Mock-ups 1">
+      <img class="wholesale-billing__mockups-img-2" loading="lazy" decoding="async" src="/assets/images/case-studies/adamo-wholesale-billing/wholesale-billing-2.webp" alt="Wholesale Billing Mock-ups 2">
+      <figcaption><span class="font-bold">01.</span> Wholesale Operators page; <span class="font-bold">02.</span> Operators' Orders page; <span class="font-bold">03.</span> Operators' Details page; <span class="font-bold">04.</span> Operators' Contracts page; <span class="font-bold">05.</span> Operators' Invoice page</figcaption>
+    </figure>
   </section>
   
   <section>
@@ -23,7 +59,7 @@ order: 4
     <p>For starters, I needed to understand the context. I <strong>didn't have the opportunity to conduct extensive benchmarking</strong>, as most similar applications required some form of subscription. Fortunately, I had easy access to all business knowledge and all the potential audience right down the hall.</p>
     <div class="case-study__card">
       <figure class="cs-card__image">
-        <img decoding="async" width="864" height="648" src="/assets/images/case-studies/adamo-wholesale-billing/discovery-scope.png" alt="">
+        <img decoding="async" width="864" height="648" src="/assets/images/case-studies/adamo-wholesale-billing/discovery-scope.webp" alt="">
       </figure>
       <div class="cs-card__content">
         <h4>Setting the scope</h4>
@@ -32,7 +68,7 @@ order: 4
     </div>
     <div class="case-study__card">
       <figure class="cs-card__image">
-        <img decoding="async" width="864" height="648" src="/assets/images/case-studies/adamo-wholesale-billing/discovery-gathering.png" alt="">
+        <img decoding="async" width="864" height="648" src="/assets/images/case-studies/adamo-wholesale-billing/discovery-gathering.webp" alt="">
       </figure>
       <div class="cs-card__content">
         <h4>Requirements gathering</h4>
@@ -41,7 +77,7 @@ order: 4
     </div>
     <div class="case-study__card">
       <figure class="cs-card__image">
-        <img loading="lazy" decoding="async" width="864" height="648" src="/assets/images/case-studies/adamo-wholesale-billing/discovery-interviews.png" alt="">
+        <img loading="lazy" decoding="async" width="864" height="648" src="/assets/images/case-studies/adamo-wholesale-billing/discovery-interviews.webp" alt="">
         <figcaption>image by rawpixel.com</figcaption>
       </figure>
       <div class="cs-card__content">
@@ -49,30 +85,43 @@ order: 4
         <p>Finance <strong>team members</strong> were really supporting and on board, becoming the most <strong>valuable source of information</strong> and showing the actual ropes of the process.</p>
       </div>
     </div>
+    <div class="case-study__card">
+      <figure class="cs-card__image">
+        <img class="img__with-border" loading="lazy" decoding="async" width="864" height="648" src="/assets/images/case-studies/adamo-wholesale-billing/journey-map-nn.webp" alt="">
+        <figcaption>image by Nielsen/Norman Group</figcaption>
+      </figure>
+      <div class="cs-card__content">
+        <h4>Journey mapping</h4>
+        <p>With all the information gathered, I defined a user journey to <span class="font-bold">keep track of the user's path to the goal</span> and the critical points they might face on their monthly billing process.</p>
+      </div>
+    </div>
     <p>It became obvious that the main pain points for the user was the <strong>need to easily locate and approve or reject changes to orders</strong>, whether it was for an exceptional change in prices (a common selling strategy), a late addition from the previous months or any custom extra that could be added.</p>
     <p>They needed a reliable tool that would bring them flexibility to overrule the system when necessary and ignore it the rest of the time.</p>
   </section>
-  
+
   <section>
-    <h2>Definition</h2>
+    <h2>Definition and development</h2>
     <p>With all the context now available, it was time to make sense out of it and start creating flows and <strong>defining the Information Architecture</strong> of the billing tool.</p>
     <figure class="img__full-width">
-      <img loading="lazy" decoding="async" width="864" height="487" src="/assets/images/case-studies/adamo-wholesale-billing/definition-ia.png" alt="">
+      <img class="img__with-border" loading="lazy" decoding="async" src="/assets/images/case-studies/adamo-wholesale-billing/definition-ia.webp" alt="Definition of Wholesale Billing Information Architecture">
+      <figcaption>Definition of Wholesale Billing Information Architecture</figcaption>
     </figure>
     <p>When it comes to visual design of the tool, we had already developed an <strong>in-house UI toolkit</strong> for all the internal projects the Product Team was involved in. This was the second project in which said toolkit was used and it filled most of the needs of the projects. For those cases where it didn't, we took the chance to <strong>scale the existing components</strong> to cover all the missing gaps (complex table cells with nested elements).</p>
-  </section>
-  
-  <section>
-    <h2>Development</h2>
-    <p>For the next few months we started working on the development of the tool. I was in charge of the design and the <strong>HTML &amp; CSS development</strong> but also of <strong>translating the requirements</strong> that I had been gathering during the Discovery phase.</p>
-    <p>I collaborated with the back-end team in the definition of the <strong>data modeling</strong> to ensure that the creation of new entities accurately represented the project needs and their reality.</p>
-    <p>While the tool was being developed, we had <strong>periodic meetings with the finance team</strong> to ensure that the tool was covering their needs. These meetings helped keep the project lean and lead to some relevant changes on the design, like modifying the navigation to improve efficiency or moving the exceptional orders to the top of the grid for quicker discovery. Others, like orders' bulk selection weren't included due to technology limitations.</p>
-  </section>
-  
-  <section>
-    <h2>Delivery and impact</h2>
-    <p>Once the tool was built, the finance team started using it while still keep their old 'checking the spreadsheet' method to ensure data integrity. After 3 months, they switched completely to the new solution.</p>
-    <p>A year later, the Wholesale billing team had moved <strong>from +80,000 monthly orders to +220,000</strong> while still being only <strong>2 people</strong> and with a <strong>smaller number of incidents</strong>.</p>
+    <figure class="img__full-width">
+      <img class="img__with-border" loading="lazy" decoding="async" src="/assets/images/case-studies/adamo-wholesale-billing/adamo-design-system.webp" alt="Adamo Design System">
+      <figcaption>Adamo UI toolkit collection</figcaption>
+    </figure>
+    <p>For the next few months we worked on the development of the tool. I was in charge of the design and the <strong>HTML &amp; CSS development</strong>, but also of <strong>translating the requirements</strong> that I had been gathering during the Discovery phase.</p>
+    <p>I collaborated with the back-end team in the definition of the <strong>data modeling</strong> to ensure that the creation of new entities <span class="font-bold">accurately represented the project needs and their reality</span>.</p>
+
+    <h2>Design improvements and missed opportunities</h2>
+    <p>While the tool was being developed, we had <strong>periodic meetings with the finance team</strong> to ensure that the tool was covering their needs. These meetings helped <span class="font-bold">keep the project lean</span> and lead to some relevant changes on the design, like <span class="font-bold">modifying the navigation to improve efficiency</span> or show only orders with changes filter.</p>
+    <figure class="img__full-width">
+      <img oading="lazy" decoding="async" src="/assets/images/case-studies/adamo-wholesale-billing/missing-opportunities.webp" alt="Navigation changes">
+      <figcaption>Change from button group to default view + dropdown navigation</figcaption>
+    </figure>
+    <p>There were other things that were not included due to technology limitations, like <span class="font-bold">bulk selection</span> or <span class="font-bold">real-time order status changes</span>, requiring a more complex development effort, like <span class="font-bold">inline editing instead of modal based interactions</span> or simply because I missed them, like <span class="font-bold">placing orders with changes on the top of the table</span>.</p>
+    <p>However, I consider this project a success as it allowed the finance team to <span class="font-bold">reduce the time spent on reviewing orders</span> and <span class="font-bold">reduced the number of incidents</span>. Also, it was a great learning experience for me, since it allowed me to take as many roles as I have ever had within a single project.</p>
   </section>
 </article>
 
