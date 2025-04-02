@@ -47,16 +47,6 @@ ErrorDocument 404 /404.html
   <FilesMatch "index\.html$">
     # Push CSS files
     Header add Link "</assets/css/main.css>;rel=preload;as=style"
-    
-    # Push critical images
-    Header add Link "</assets/images/apedraza-logo.svg>;rel=preload;as=image"
-    Header add Link "</assets/images/hero-bg-block2.svg>;rel=preload;as=image"
-    Header add Link "</assets/images/top-bg-block.svg>;rel=preload;as=image"
-    
-    # Push critical JS
-    Header add Link "</assets/js/hero-animation.js>;rel=preload;as=script"
-    Header add Link "</assets/js/falling-hexes-bg.js>;rel=preload;as=script"
-    Header add Link "</assets/js/main.js>;rel=preload;as=script"
   </FilesMatch>
 </IfModule>
 

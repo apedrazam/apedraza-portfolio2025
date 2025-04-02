@@ -48,7 +48,8 @@ $color-shadow: rgba(0, 0, 0, 0.25);
   --color-text-body-accent-on-prominent: #{$color-gray-300};
   --color-text-on-prominent: #{$color-white};
   --color-border: #{$color-gray-300};
-  --color-subtitle: #{$color-gray-400};
+  --color-subtitle: #{$color-gray-500};
+  --color-highlight: #{$color-gray-400};
 }
 
 html[data-theme="dark"] {
@@ -68,7 +69,8 @@ html[data-theme="dark"] {
   --color-text-body-accent-on-prominent: #{$color-gray-300};
   --color-text-on-prominent: #{$color-white};
   --color-border: #{$color-gray-700};
-  --color-subtitle: #{$color-gray-600};
+  --color-subtitle: #{$color-gray-500};
+  --color-highlight: #{$color-gray-600};
 }
 
 // Replace all subsequent SCSS variable references with CSS custom properties
@@ -89,7 +91,7 @@ $color-text-body-accent-on-prominent: var(--color-text-body-accent-on-prominent)
 $color-text-on-prominent: var(--color-text-on-prominent);
 $color-border: var(--color-border);
 $color-subtitle: var(--color-subtitle);
-
+$color-highlight: var(--color-highlight);
 // Spacing
 $spacing-xs: 0.25rem;    // 4px
 $spacing-sm: 0.5rem;     // 8px

@@ -64,6 +64,7 @@
 
       h3, h4 {
         font-size: 1.5rem;
+        margin-bottom: 0;
 
         .emoji {
           padding-left: 0.5rem;
@@ -87,8 +88,8 @@
     }
     
     &:hover {
-      background-color: variables.$color-subtitle;
-      border-color: variables.$color-subtitle;
+      background-color: variables.$color-highlight;
+      border-color: variables.$color-highlight;
     }
 
     &.isOpen {
@@ -120,6 +121,9 @@
     img, video {
       width: 90vw;
     }
+    img {
+      border-radius: clamp(4px, 3vw, 12px);
+    }
     video {
       max-height: 80vh;
     }
@@ -130,8 +134,12 @@
   }
 
   .img__with-border {
-    border: clamp(8px, 4vw, 16px) solid variables.$color-blue-800;
+    border: clamp(8px, 2.5vw, 16px) solid variables.$color-blue-800;
     border-radius: clamp(4px, 3vw, 12px);
+
+    &.extra-radius {
+      border-radius: clamp(20px, 4vw, 28px);
+    }
   }
 
   &__landing .img__full-width {
@@ -180,7 +188,7 @@
   .case-study__card {
     display: flex;
     gap: clamp(1rem, 2.5vw, 2rem);
-    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
     flex-wrap: wrap;
     align-items: center;
 

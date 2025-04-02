@@ -9,9 +9,7 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     {% if bodyClass === "home" %}
     <link rel="preload" href="/assets/images/hero-bg-block2.svg" as="image" fetchpriority="high">
-    <link rel="preload" href="/assets/images/top-bg-block.svg" as="image" fetchpriority="high">
     <link rel="preload" href="/assets/js/hero-animation.js" as="script">
-    <link rel="preload" href="/assets/js/falling-hexes-bg.js" as="script">
     
     <!-- Early animation initialization -->
     <script>
@@ -44,7 +42,6 @@
     <link rel="preload" href="/assets/images/about/pragmatic_designer.webp" as="image" fetchpriority="high">
     <link rel="preload" href="/assets/images/about/visionary_strategist.webp" as="image" fetchpriority="high">
     <link rel="preload" href="/assets/images/about/well-round_generalist.webp" as="image" fetchpriority="high">
-    <link rel="preload" href="/assets/js/about-animation.js" as="script">
     
     <!-- Early about image loading -->
     <script>
@@ -71,17 +68,13 @@
     
     <!-- Preload critical assets -->
     <link rel="preload" href="/assets/css/main.css" as="style">
-    <link rel="preload" href="/assets/fonts/Inter-roman.var.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/images/apedraza-logo.svg" as="image" fetchpriority="high">
     
     <!-- Favicon -->
     <link rel="icon" href="/assets/images/apedraza-logo.svg" type="image/svg+xml">
 
     <!-- Main CSS (compiled from SCSS) -->
-    <link rel="stylesheet" href="/assets/css/main.css">
-    
-    <!-- Flashcard CSS always loaded to ensure functionality -->
-    <link rel="stylesheet" href="/assets/css/flashcards.css">
+    <link rel="stylesheet" href="/assets/css/main.css">∫
     
     <!-- Additional CSS -->
     {% block additionalCSS %}{% endblock %}

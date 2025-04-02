@@ -6,84 +6,136 @@ category: "Case Study"
 order: 3
 ---
 
-<article class="case-study">
-  <section>
-    <h1>Design System at Devex</h1>
-    <p class="subtitle">Reading time 4 minutes</p>
+<article class="case-study design-system">
+  <section class="case-study__landing">
+    <h1>From UI toolkit to Design System</h1>
+    <div class="case-study__project-data">
+      <div class="case-study__project-data-item">
+        <p class="subtitle">Company</p>
+        <p>Devex</p>
+      </div>
+      <div class="case-study__project-data-item">
+        <p class="subtitle">Role</p>
+        <p>Product Designer</p>
+      </div>
+      <div class="case-study__project-data-item">
+        <p class="subtitle">Duration</p>
+        <p>2023 - 2025</p>
+      </div>
+    </div>
+    <figure class="img__full-width">
+      <video src="/assets/videos/design-system.webm" alt="Laptop mockup for Devex Design System" class="case-study__landing-media" autoplay loop muted playsinline></video>
+    </figure>
   </section>
   
   <section>
     <h2>Project overview</h2>
-    <p>Soon after joining Devex, designers saw a clear consistency issue. By working in separate squads <strong>different UIs for the same elements</strong> had been created. This struck us as a big risk for the user experience, making the site harder to understand. I proposed to start <strong>building an integrated Design System</strong> to eventually solve these inconsistencies.</p>
+    <p>Soon after joining Devex, we designers saw a clear <span class="font-bold">consistency issue</span>. By working in separate squads <strong>different UIs for the same elements</strong> had been created. This made the site harder to understand and I proposed <strong>building an integrated Design System</strong>.</p>
+    <p>This project was <span class="font-bold">built on the sides</span>, taking an extra time while working on other projects to audit the involved UI and creating the related components. Then, we put things together and built the design system into a dedicated file. This is what we achieved:</p>
+    <ul>
+      <li>Around <strong>70% of the patterns</strong> of the site were gathered into the Design System Figma's file.</li>
+      <li>Most <span class="font-bold">patterns applied in new implementations were shared</span> independently of the product branch and the <span class="font-bold">use of design tokens was consistent</span> in all new designs and implementations.</li>
+      <li>We <strong>improved UI design delivery speed</strong> by avoiding the need of creating low-fidelity mock-ups (we already had high-fidelity assets at our disposal) nor specifying interactions, when already available within the UI toolkit.</li>
+      <li>We also had some <strong>responsive templates</strong> in place, allowing us to work in some projects within their UI context without the need of replicating those pages.</li>
+      <li>Freeing our time of UI design gives designers the chance to put <strong>more effort into research</strong>, resulting in <strong>better UX work</strong>.</li>
+    </ul>
+    <figure class="img__full-width">
+      <img decoding="async" width="1347" height="875" src="/assets/images/case-studies/devex-design-system/header-component.webp" alt="">
+      <figcaption>Example of a component from the Design System</figcaption>
+    </figure>
+
   </section>
   
   <section>
-    <h2>Auditing without an audit</h2>
-    <p>Devex defines itself as a news media platform, but its platform includes five other products related to the global development market, each of them targeting different user personas. At the time (and even now), you could clearly find <strong>three different approaches to the design</strong> within the platform: one for news- and marketing-related content, other for the jobs- and recruitment-related content and finally the funding-related content, closer to jobs but with its own unique design patterns.</p>
+    <h2>The building process</h2>
+    <p>The start of the Design System was <span class="font-bold">anything but quick</span>. There was <span class="font-bold">no dedicated team</span> to work on it. This meant that we had to find a way of <span class="font-bold">building while still delivering other projects</span> to the rest of product team without causing any bottlenecks.</p>
+    <h3>Auditing without an audit</h3>
+    <p>Devex platforms includes <span class="font-bold">different products</span> and the development of those products was done by <span class="font-bold">different teams</span>. At the time, you could clearly find <strong>3 different approaches to the design</strong> within the platform: one for news- and marketing-related content, other for the jobs- and recruitment-related content and finally the funding-related content, closer to jobs but with its own unique design patterns.</p>
     <p>In order to successfully <strong>close that gap</strong>, we needed to gain perspective of what visual and functional patterns were alike, which were close enough and which ones were unique to their area. I proposed making a <strong>UI audit</strong> of the platform to collect all those items and then analyze how they related with each other.</p>
     <figure class="img__full-width">
-      <img decoding="async" width="1347" height="875" src="/assets/images/case-studies/devex-design-system/news-auditing.png" alt="">
-      <figcaption>UI audit collection of components found in News section pages</figcaption>
+      <img class="img__with-border extra-radius" decoding="async" width="1347" height="875" src="/assets/images/case-studies/devex-design-system/job-actions-auditing.webp" alt="">
+      <figcaption>UI audit collection of interactive components found in Jobs section pages</figcaption>
     </figure>
-    <p>There were too many elements and we already had projects waiting for us in the pipeline. We agreed on three actions to be done when facing any UI project:</p>
+    <p>There were too many elements and we already had projects waiting for us in the pipeline. We agreed on <span class="font-bold">3 actions</span> to be done when <span class="font-bold">facing any UI</span> project:</p>
     <ul>
-      <li>When working over an existing page, create a component replicating existing reused elements as they are at the moment.</li>
-      <li>While creating new elements, look for similar items within that same domain.</li>
-      <li>If none of the above applies, discuss with the rest of the team about this addition's value and get agreement, or look for alternatives.</li>
+      <li>When working over an existing page, <span class="font-bold">create components</span> replicating existing reused elements <span class="font-bold">as they are</span> at the moment.</li>
+      <li>While creating new elements, <span class="font-bold">look for similar items</span> within that same domain.</li>
+      <li>If none of the above applies, <span class="font-bold">discuss with the rest of the team</span> about this addition's value and get agreement, or look for alternatives.</li>
     </ul>
     <p>After a year in the job, we had the most common components of the Devex platform scattered along different project files.</p>
+    <div class="case-study__highlight-section">
+      <div class="case-study__highlight-section-header">
+        <h4>Aligning between designers <span class="emoji">💬</span></h4>
+        <button class="cs-highlight-expand" data-label="Expand"><i class="fa-solid fa-plus"></i></button>
+      </div>
+      <div class="case-study__highlight-section-content">
+        <p>It took an extra effort between designers to agree on which patterns and components we wanted to keep and extend. We set continuous catch-ups to align and discuss our preferences towards the simplification of existing patterns and replacements for deprecated ones.</p>
+        <p>As the designer with more experience and technical background, I was leading the project and I spent some time mentoring the other designer about best practices of Design Systems, such as Atomic Design or 8pt grid system or 12-column grid. I also drove several pairing sessions on component creation in Figma, explaining how to use variables, styles and autolayout.</p>
+      </div>
+    </div>
+    <figure class="img__full-width">
+      <img class="img__with-border" decoding="async" width="1347" height="875" src="/assets/images/case-studies/devex-design-system/news-auditing.webp" alt="">
+      <figcaption>UI audit collection of components found in News section pages</figcaption>
+    </figure>
   </section>
   
   <section>
-    <h2>Scaling the pre-existing UI toolkit</h2>
-    <p>The front-end engineers were working with a <strong>UI toolkit based on Bootstrap 5</strong> components. Some of them were basic Bootstrap components modifying the styles to match the Devex brand, others had a wrapper around them to expand their functionality. None of them had cases of use.</p>
-    <p>We started working by downloading a Bootstrap 5 UI toolkit for Figma and scaled by adapting those assets <strong>into our own Devex UI toolkit file</strong>.</p>
+    <h3>Scaling the pre-existing UI toolkit</h3>
+    <p>The front-end engineers were working with a <strong>UI toolkit based on Bootstrap 5</strong> components. Some of them were basic Bootstrap components modifying the styles to match the Devex brand, others had a wrapper around them to expand their functionality. There were <span class="font-bold">no use cases in place</span>.</p>
+    <p>We started working by downloading a Bootstrap 5 UI toolkit for Figma and scaled by adapting those assets <strong>into our own design system file</strong>.</p>
     <div class="case-study__card">
       <figure class="cs-card__image">
-      <img decoding="async" width="2592" height="1944" src="/assets/images/case-studies/devex-design-system/ui-toolkit-bs5.png" alt="">
+      <img decoding="async" width="2592" height="1944" src="/assets/images/case-studies/devex-design-system/ui-toolkit-bs5.webp" alt="">
     </figure>
       <div class="cs-card__content">
         <h4>Setting the scope</h4>
-        <p>The frontend team used various technologies, but all new implementations are built with Bootstrap5. We decided that the system would be <strong>applied to migrated content only</strong>.</p>
+        <p>The front-end team used various technologies: We decided that the system would be <span class="font-bold">applied to new implementations</span> only, using the <span class="font-bold">Bootstrap 5 components as a base</span>.</p>
       </div>
     </div>
     <div class="case-study__card">
       <figure class="cs-card__image">
-        <img loading="lazy" decoding="async" width="2592" height="1944" src="/assets/images/case-studies/devex-design-system/atomic-design.png" alt="">
+        <img loading="lazy" decoding="async" width="2592" height="1944" src="/assets/images/case-studies/devex-design-system/atomic-design.webp" alt="">
       </figure>
       <div class="cs-card__content">
         <h4>Atomic 2.0</h4>
-        <p>I created a document defining work proccess and proposed <a href="https://medium.com/@hannah.heinson/atomic-2-0-d94e5601200c" target="_blank" rel="noreferrer noopener"><strong>Atomic 2.0</strong></a> approach for being a clear standard applicable to the existing Bootstrap library.</p>
+        <p>I created a document defining work proccess and proposed <a href="https://medium.com/@hannah.heinson/atomic-2-0-d94e5601200c" target="_blank" rel="noreferrer noopener"><strong>Atomic 2.0</strong></a> approach for being a <span class="font-bold">clear standard</span> applicable to the existing Bootstrap library.</p>
       </div>
     </div>
     <div class="case-study__card">
       <figure class="cs-card__image">
-      <img loading="lazy" decoding="async" width="2592" height="1944" src="/assets/images/case-studies/devex-design-system/adding-variables.png" alt="">
+      <img loading="lazy" decoding="async" width="2592" height="1944" src="/assets/images/case-studies/devex-design-system/adding-variables.webp" alt="">
       </figure>
       <div class="cs-card__content">
-        <h4>Creating Figma variables and styles</h4>
-        <p>I began <strong>replicating all the size, font, and color variables</strong> from our UI Toolkit as Figma styles, making them <strong>easy to reuse and update</strong> in the future.</p>
+        <h4>Building design tokens</h4>
+        <p>I began <strong>replicating all primitive tokens</strong> from our platform and defining them as <span class="font-bold">Figma styles and variables</span>, making them <strong>easy to reuse and update</strong> in the future.</p>
       </div>
     </div>
   </section>
   
   <section>
-    <h2>Getting bigger</h2>
-    <p>We had gathered all tokens and had at our disposition all Bootstrap assets as well as all the components resulting from our on-the-spot auditings. We were ready to get serious about <strong>building the Design System</strong>.</p>
-    <p>However, on the implementation side things weren't so easy: what for the Design team was one single environment, for the Front-end team involved juggling up to three different technologies. Getting to the point of having reusable components applicable throughout the platform wasn't something feasible yet.</p>
-    <p>Regardless, the Design team thought that there was still value in evolving this system within the Figma environment. We have continued to pursue a <strong>standardized and cohesive design language</strong>, working to make our components reusable and consistent, at least when it comes to design work. As a result, we have replicated most of Devex's components and patterns in Figma and defined use cases for them.</p>
-  </section>
-  
-  <section>
-    <h2>Conclusions</h2>
-    <p>Design systems are never done and this one is far from mature. While it is applied in some areas of the Devex platform, it is far from being used throughout the platform. Nevertheless, </p>
-    <ul>
-      <li>Around <strong>70% of the patterns</strong> of the site have already been gathered into the Design System Figma's file.</li>
-      <li>We have <strong>improved UI design delivery speed</strong> by avoiding the need of creating low-fidelity mock-ups (we already have high-fidelity assets at our disposal) nor specifying interactions, when already available within the UI toolkit.</li>
-      <li>We also have some <strong>responsive templates</strong> in place, allowing us to work in some projects within their UI context without the need of replicating those pages.</li>
-      <li>Freeing our time of UI design gives designers the chance to put <strong>more effort into research</strong>, resulting in <strong>better UX work</strong>.</li>
-    </ul>
-    <p>There is still a lot to work when it comes to rule and define cases of use, as there are many projected standardizations waiting for the right project to be implemented. In anyway, the road towards a systematic UI design is already paved and it goes towards a consistent platform.</p>
+    <h3>Getting bigger</h3>
+    <p>We had <span class="font-bold">gathered all</span> tokens and had at our disposition all Bootstrap assets as well as all the components resulting from our on-the-spot auditings. Our next step was to govern all those components and patterns into an <span class="font-bold">understandable and cohesive design language</span>.</p>
+    <figure class="img__full-width">
+      <img decoding="async" width="1347" height="875" src="/assets/images/case-studies/devex-design-system/use-cases.webp" alt="">
+      <figcaption>Progress stepper component with use cases and examples</figcaption>
+    </figure>
+    <p>We did so by defining <span class="font-bold">use cases</span> for components, to be used as <span class="font-bold">reference</span> when creating new UIs and as <span class="font-bold">available documentation</span> for the front-end team. We kept all that as part of the <span class="font-bold">Design System file in Figma</span>, given that the front-end would be built differently depending on the technology involved (React or Rails). We had plans on start looking at <span class="font-bold">documentation platforms</span> like Zeroheight or Storybook, but those never came to fruition.</p>
+    <div class="case-study__highlight-section">
+      <div class="case-study__highlight-section-header">
+        <h4>Aligning with engineers<span class="emoji">💬</span></h4>
+        <button class="cs-highlight-expand" data-label="Expand"><i class="fa-solid fa-plus"></i></button>
+      </div>
+      <div class="case-study__highlight-section-content">
+        <p>When it came to align with developers, there were some reluctances about how scalable the Design System approach would be given the different technologies involved in the front-end: React, AngularJS, Ruby on Rails, Bootstrap 3 and Bootstrap 5. We agreed on start by introducing only the primitive tokens and keep scaling only in pages using Bootstrap 5.</p>
+        <p>The next step was to modify the Bootstrap 5 components to our convenience without the need of creating new components. This allowed us to make modifications on the existing components within some limits. From my perspective, this approach was unsufficient in some cases, but due to concerns in code maintainability, we never went past this limit.</p>
+        <p>Luckly, there was some cases where the patterns were extended beyond their default functionalities, to comply with the use cases that were agreed.</p>
+      </div>
+    </div>
+    <p>To keep adoption high in the design front, we built several <span class="font-bold">responsive templates</span> for the most common pages, to be used as <span class="font-bold">starting point</span> for new projects. This way, we could <span class="font-bold">focus on more complex patterns</span> and <span class="font-bold">research</span> instead of spending time on replicating already existing UIs.</p>
+    <figure class="img__full-width">
+      <img decoding="async" width="1347" height="875" src="/assets/images/case-studies/devex-design-system/templates.webp" alt="">
+      <figcaption>Some examples of responsive templates</figcaption>
+    </figure>
   </section>
 </article>
 
