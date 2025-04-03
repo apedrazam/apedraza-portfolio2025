@@ -9,7 +9,7 @@
   }
 
   function updateOpacity(theme) {
-    const opacity = !theme || theme === 'dark' ? '0.65' : '1'; // Explicitly set opacity to 1 if no theme
+    const opacity = theme === 'dark' ? '0.65' : '1'; // Fixed - Always use 1 for light theme (default)
     document.querySelectorAll('.top-bg-block, .bottom-bg-block, .top-bg-block-mobile, .bottom-bg-block-mobile')
       .forEach(bg => bg.style.opacity = opacity);
 

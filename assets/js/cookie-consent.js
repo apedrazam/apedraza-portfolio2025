@@ -26,7 +26,7 @@
     if (!consentStatus) {
       console.log('No consent found, showing banner');
       cookieBanner.style.display = 'block';
-      adjustBannerPosition();
+      setTimeout(adjustBannerPosition, 100);
     } else {
       console.log('Consent already given:', consentStatus);
       cookieBanner.style.display = 'none';
@@ -62,41 +62,30 @@
 
     // Analytics Management
     function loadAnalytics() {
-      console.log('✅ Loading analytics scripts...');
-  
-      // Get the analytics container
-      const analyticsContainer = document.getElementById('analytics-scripts');
-      if (!analyticsContainer) {
-          console.error('❌ Analytics container not found');
-          return;
-      }
-  
-      // Process all analytics scripts (from hidden div)
-      analyticsContainer.querySelectorAll('script[type="text/plain"]').forEach(scriptData => {
-          const analytics = scriptData.getAttribute('data-analytics');
-          console.log(`Loading: ${analytics}`);
-          
-          // Standard handling for analytics
-          const newScript = document.createElement('script');
-          newScript.setAttribute('data-analytics', analytics);
-  
-          // Handle external vs inline scripts
-          if (scriptData.src) {
-              newScript.src = scriptData.src;
-              newScript.async = true;
-          } else {
-              newScript.innerHTML = scriptData.innerHTML;
-          }
-  
-          // Append to document
-          document.head.appendChild(newScript);
-          console.log(`✅ Activated: ${analytics}`);
+      console.log('Loading analytics');
+      
+      // Remove any existing analytics scripts first
+      clearAnalytics();
+      
+      // Run any analytics scripts that are in the analytics-scripts container
+      const scripts = analyticsContainer.querySelectorAll('script[type="text/plain"]');
+      scripts.forEach(script => {
+        const analytics = script.getAttribute('data-analytics');
+        console.log(`Loading: ${analytics}`);
+        
+        const newScript = document.createElement('script');
+        if (script.src) {
+          newScript.src = script.src;
+          newScript.async = true;
+        } else {
+          newScript.textContent = script.textContent;
+        }
+        
+        document.head.appendChild(newScript);
+        console.log(`Activated: ${analytics}`);
       });
       
-      // Load Clarity when consent is accepted (will be implemented with NPM)
-      if (window.loadClarity && typeof window.loadClarity === 'function') {
-          window.loadClarity();
-      }
+      console.log('Analytics loaded');
     }
 
     function clearAnalytics() {
@@ -104,22 +93,34 @@
       
       // Remove existing heap scripts
       document.querySelectorAll('script[src*="heap-api.com"]').forEach(script => script.remove());
+      
+      // Remove existing clarity scripts
+      document.querySelectorAll('script[src*="clarity.ms"]').forEach(script => script.remove());
 
       // Stop tracking and clean up analytics data
       if (window.heap) {
         window.heap.stopTracking();
         window.heap = undefined;
       }
+      
+      // Clear Clarity if it exists
+      if (window.clarity) {
+        window.clarity = undefined;
+      }
 
       // Clear analytics cookies
-      ['_heap'].forEach(cookie => {
+      ['_heap', '_clarity'].forEach(cookie => {
         document.cookie = `${cookie}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
       });
       
-      // Clear Clarity if it exists (will be implemented with NPM)
-      if (window.clearClarity && typeof window.clearClarity === 'function') {
-          window.clearClarity();
-      }
+      // Clear Microsoft Clarity cookies
+      const clarityCookiePattern = /^_clck|^_clsk|^MUID/;
+      document.cookie.split(';').forEach(cookie => {
+        const cookieName = cookie.split('=')[0].trim();
+        if (clarityCookiePattern.test(cookieName)) {
+          document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        }
+      });
     }
 
     // UI Adjustments
@@ -130,27 +131,32 @@
       const footerRect = footer.getBoundingClientRect();
       const bannerHeight = cookieBanner.offsetHeight;
       const scrollTop = window.scrollY;
+      const viewportHeight = window.innerHeight;
 
-      if (footerRect.top < window.innerHeight) {
+      if (footerRect.top < viewportHeight) {
+        // Footer is in view - position banner above footer
         cookieBanner.classList.add('above-footer');
         cookieBanner.style.position = 'absolute';
-        cookieBanner.style.top = `${footerRect.top + scrollTop - bannerHeight - offset}px`;
+        cookieBanner.style.bottom = '';
+        
+        // Calculate absolute position from top
+        const absoluteTopPosition = footerRect.top + scrollTop - bannerHeight - offset;
+        cookieBanner.style.top = `${absoluteTopPosition}px`;
       } else {
+        // Footer is not in view - reset to fixed position
         cookieBanner.classList.remove('above-footer');
         cookieBanner.style.position = 'fixed';
+        cookieBanner.style.top = '';
         cookieBanner.style.bottom = `${offset}px`;
       }
     }
 
     // Scroll & Resize Handlers
-    let ticking = false;
+    let scrollTimeout;
     window.addEventListener('scroll', () => {
-      if (!ticking && cookieBanner.style.display !== 'none') {
-        requestAnimationFrame(() => {
-          adjustBannerPosition();
-          ticking = false;
-        });
-        ticking = true;
+      if (cookieBanner.style.display !== 'none') {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(adjustBannerPosition, 10);
       }
     });
 
@@ -161,9 +167,9 @@
         resizeTimer = setTimeout(adjustBannerPosition, 100);
       }
     });
-
+    
     // Initial positioning
-    setTimeout(adjustBannerPosition, 100);
+    setTimeout(adjustBannerPosition, 200);
   }
 
   // Initialize when DOM is ready

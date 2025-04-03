@@ -17,9 +17,9 @@
   
   // Class added when positioned above footer
   &.above-footer {
-    position: absolute;
     right: 24px;
     transition: none; // Disable transition for smoother repositioning
+    height: fit-content;
   }
 }
 
@@ -43,7 +43,7 @@
   }
   
   .cookie-title {
-    font-size: clamp(1.25rem, 1.25vw, 1.5rem);
+    font-size: clamp(1.125rem, 1.25vw, 1.5rem);
   }
   
   .cookie-text {

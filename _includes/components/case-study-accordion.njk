@@ -1,0 +1,89 @@
+<!-- Case Study Expandable Blocks Script -->
+<script>
+// Case Study Expandable Blocks
+(function() {
+  function initExpandableBlocks() {
+    const expandableBlocks = document.querySelectorAll('.case-study__highlight-section');
+    if (!expandableBlocks || expandableBlocks.length === 0) return;
+    
+    console.log(`Found ${expandableBlocks.length} expandable blocks`);
+    
+    // For each block, attach click listener
+    expandableBlocks.forEach((block, i) => {
+      const header = block.querySelector('.case-study__highlight-section-header');
+      const content = block.querySelector('.case-study__highlight-section-content');
+      if (!header || !content) return;
+      
+      // Initial state - hide the content
+      if (!block.classList.contains('isOpen')) {
+        content.style.display = 'none';
+        content.style.opacity = '0';
+        content.style.maxHeight = '0';
+      }
+
+      // Add click event
+      header.addEventListener('click', function() {
+        const section = this.parentElement;
+        const isOpen = section.classList.contains('isOpen');
+        
+        // Toggle current section independently
+        if (isOpen) {
+          // Close this section
+          section.classList.remove('isOpen'); 
+          content.style.opacity = '0';
+          content.style.maxHeight = '0';
+          
+          // Set display:none after transition completes
+          setTimeout(() => {
+            if (!section.classList.contains('isOpen')) {
+              content.style.display = 'none';
+            }
+          }, 300);
+          
+          // Change the expand button as needed
+          const expandBtn = section.querySelector('.cs-highlight-expand');
+          if (expandBtn) {
+            expandBtn.querySelector('i').classList.remove('fa-minus');
+            expandBtn.querySelector('i').classList.add('fa-plus');
+          }
+        } else {
+          // Open this section
+          section.classList.add('isOpen'); // Add isOpen class
+          content.style.display = 'block';
+          
+          // Force a reflow before transitioning
+          void content.offsetWidth;
+          
+          content.style.opacity = '1';
+          content.style.maxHeight = content.scrollHeight + 'px';
+          
+          // Change the expand button as needed
+          const expandBtn = section.querySelector('.cs-highlight-expand');
+          if (expandBtn) {
+            expandBtn.querySelector('i').classList.remove('fa-plus');
+            expandBtn.querySelector('i').classList.add('fa-minus');
+          }
+        }
+      });
+    });
+  }
+  
+  // Initialize only once
+  let initialized = false;
+  function safeInit() {
+    if (!initialized) {
+      initialized = true;
+      initExpandableBlocks();
+    }
+  }
+  
+  // Run in multiple ways to ensure it happens
+  if (document.readyState !== 'loading') {
+    safeInit();
+  } else {
+    document.addEventListener('DOMContentLoaded', safeInit);
+  }
+  window.addEventListener('load', safeInit);
+  setTimeout(safeInit, 500);
+})();
+</script> 

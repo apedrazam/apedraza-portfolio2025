@@ -42,35 +42,34 @@ ErrorDocument 404 /404.html
   AddOutputFilterByType DEFLATE text/xml
 </IfModule>
 
-# HTTP/2 Server Push for homepage critical resources
+# Remove HTTP/2 Server Push since it's being deprecated
 <IfModule mod_headers.c>
   <FilesMatch "index\.html$">
-    # Push CSS files
-    Header add Link "</assets/css/main.css>;rel=preload;as=style"
+    Header unset Link
   </FilesMatch>
 </IfModule>
 
-# Browser caching
+# Browser caching - improved values
 <IfModule mod_expires.c>
   ExpiresActive On
   
-  # Default expiration: 1 day
-  ExpiresDefault "access plus 1 day"
+  # Default expiration: 1 week
+  ExpiresDefault "access plus 1 week"
   
-  # CSS and JavaScript: 1 week
-  ExpiresByType text/css "access plus 1 week"
-  ExpiresByType application/javascript "access plus 1 week"
-  ExpiresByType application/x-javascript "access plus 1 week"
-  ExpiresByType text/javascript "access plus 1 week"
+  # CSS and JavaScript: 1 month
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/x-javascript "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
   
-  # Images and media: 1 month
-  ExpiresByType image/jpeg "access plus 1 month"
-  ExpiresByType image/webp "access plus 1 month"
-  ExpiresByType image/png "access plus 1 month"
-  ExpiresByType image/gif "access plus 1 month"
-  ExpiresByType image/svg+xml "access plus 1 month"
-  ExpiresByType video/mp4 "access plus 1 month"
-  ExpiresByType video/webm "access plus 1 month"
+  # Images and media: 1 year
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 year"
+  ExpiresByType video/webm "access plus 1 year"
   
   # Fonts: 1 year
   ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
@@ -94,14 +93,19 @@ ErrorDocument 404 /404.html
     Header set Access-Control-Allow-Origin "*"
   </FilesMatch>
   
-  # Cache control for static assets
+  # Improved cache control for static assets
   <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|webp|js|css|swf|svg|woff|woff2|ttf|otf|eot)$">
-    Header set Cache-Control "max-age=31536000, public"
+    Header set Cache-Control "max-age=31536000, public, immutable"
+  </FilesMatch>
+  
+  # Bundle.js should use version-based caching
+  <FilesMatch "bundle\.js$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
   </FilesMatch>
   
   # Cache control for HTML and XML files
   <FilesMatch "\.(html|htm|xml|txt|xsl)$">
-    Header set Cache-Control "max-age=7200, must-revalidate"
+    Header set Cache-Control "max-age=86400, must-revalidate"
   </FilesMatch>
 </IfModule>
 

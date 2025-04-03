@@ -13,3 +13,7 @@ layout: base.njk
 
 <!-- Page Template System -->
 <script src="/assets/js/page-template.js" defer></script>
+
+{% if category == "Case Study" %}
+  {% include "components/case-study-accordion.njk" %}
+{% endif %}

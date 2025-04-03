@@ -33,6 +33,8 @@
   }
 })();
 
+// NOTE: Accordion functionality has been moved to a dedicated file: accordion.js
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Checking Font Awesome icons in footer...');
   
@@ -229,90 +231,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-});
-
-// Self-executing accordion implementation
-(function() {
-  console.log('Accordion initialization starting...');
-  
-  // Set a small timeout to ensure DOM is fully processed
-  setTimeout(function() {
-    const accordions = document.querySelectorAll('.case-study__highlight-section');
-    console.log('Found accordions:', accordions.length);
-    
-    if (accordions.length > 0) {
-      // First, hide all content sections
-      const contents = document.querySelectorAll('.case-study__highlight-section-content');
-      contents.forEach(content => {
-        content.style.display = 'none';
-        content.style.opacity = '0';
-        content.style.maxHeight = '0';
-      });
-      
-      // Then add click handlers to all headers
-      accordions.forEach(accordion => {
-        const header = accordion.querySelector('.case-study__highlight-section-header');
-        const content = accordion.querySelector('.case-study__highlight-section-content');
-        const button = accordion.querySelector('.cs-highlight-expand');
-        const icon = button?.querySelector('i'); // Using optional chaining
-        
-        if (header && content) {
-          // Function to toggle the accordion
-          const toggleAccordion = function() {
-            // Check if this section is already open
-            const isOpen = accordion.classList.contains('isOpen');
-            
-            if (isOpen) {
-              // Close this section
-              content.style.opacity = '0';
-              content.style.maxHeight = '0';
-              accordion.classList.remove('isOpen');
-              
-              // Wait for transition to complete before hiding
-              setTimeout(() => {
-                content.style.display = 'none';
-              }, 300); // Match this with CSS transition duration
-              
-              // Change icon back to plus
-              if (icon) {
-                icon.className = 'fa-solid fa-plus';
-              }
-            } else {
-              // Open this section
-              content.style.display = 'block';
-              // Force a reflow
-              content.offsetHeight;
-              content.style.opacity = '1';
-              content.style.maxHeight = content.scrollHeight + 'px';
-              accordion.classList.add('isOpen');
-              
-              // Change icon to minus
-              if (icon) {
-                icon.className = 'fa-solid fa-minus';
-              }
-            }
-          };
-          
-          // Add click handler to the header
-          header.addEventListener('click', function(e) {
-            // Only handle clicks on the header itself, not its children
-            if (e.target === header || e.target.tagName === 'H3' || e.target.tagName === 'H4' || e.target.tagName === 'BUTTON' || e.target.tagName === 'SPAN') {
-              toggleAccordion();
-            }
-          });
-          
-          // If there's a button, add specific handler for it
-          if (button) {
-            button.addEventListener('click', function(e) {
-              // Prevent event from bubbling up to the header
-              e.stopPropagation();
-              
-              // Toggle the accordion
-              toggleAccordion();
-            });
-          }
-        }
-      });
-    }
-  }, 100); // Small delay to ensure DOM is ready
-})(); 
+}); 

@@ -7,68 +7,6 @@
     <!-- Resource hints for faster loading -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    {% if bodyClass === "home" %}
-    <link rel="preload" href="/assets/images/hero-bg-block2.svg" as="image" fetchpriority="high">
-    <link rel="preload" href="/assets/js/hero-animation.js" as="script">
-    
-    <!-- Early animation initialization -->
-    <script>
-      // Start downloading critical images as early as possible
-      (function() {
-        const criticalImages = [
-          '/assets/images/hero-bg-block.svg',
-          '/assets/images/hero-bg-block2.svg',
-          '/assets/images/falling-hex.svg'
-        ];
-        
-        // Create hidden image elements to force immediate loading
-        criticalImages.forEach(function(src) {
-          const img = new Image();
-          img.src = src;
-          img.style.position = 'absolute';
-          img.style.width = '1px';
-          img.style.height = '1px';
-          img.style.opacity = '0.01';
-          document.head.appendChild(img);
-        });
-      })();
-    </script>
-    {% endif %}
-    
-    {% if bodyClass === "about" %}
-    <!-- Preload about page images -->
-    <link rel="preload" href="/assets/images/about/fearless_researcher.webp" as="image" fetchpriority="high">
-    <link rel="preload" href="/assets/images/about/meticulous_architect.webp" as="image" fetchpriority="high">
-    <link rel="preload" href="/assets/images/about/pragmatic_designer.webp" as="image" fetchpriority="high">
-    <link rel="preload" href="/assets/images/about/visionary_strategist.webp" as="image" fetchpriority="high">
-    <link rel="preload" href="/assets/images/about/well-round_generalist.webp" as="image" fetchpriority="high">
-    
-    <!-- Early about image loading -->
-    <script>
-      // Start downloading about page images as early as possible
-      (function() {
-        const aboutImages = [
-          '/assets/images/about/fearless_researcher.webp',
-          '/assets/images/about/meticulous_architect.webp',
-          '/assets/images/about/pragmatic_designer.webp',
-          '/assets/images/about/visionary_strategist.webp',
-          '/assets/images/about/well-round_generalist.webp'
-        ];
-        
-        // Create image objects and store them in a global variable for the animation script to use
-        window.preloadedAboutImages = [];
-        
-        aboutImages.forEach(function(src, index) {
-          window.preloadedAboutImages[index] = new Image();
-          window.preloadedAboutImages[index].src = src;
-        });
-      })();
-    </script>
-    {% endif %}
-    
-    <!-- Preload critical assets -->
-    <link rel="preload" href="/assets/css/main.css" as="style">
-    <link rel="preload" href="/assets/images/apedraza-logo.svg" as="image" fetchpriority="high">
     
     <!-- Favicon -->
     <link rel="icon" href="/assets/images/apedraza-logo.svg" type="image/svg+xml">
@@ -85,6 +23,15 @@
         <script type="text/plain" data-analytics="heap">
             window.heapReadyCb=window.heapReadyCb||[],window.heap=window.heap||[],heap.load=function(e,t){window.heap.envId=e,window.heap.clientConfig=t=t||{},window.heap.clientConfig.shouldFetchServerConfig=!1;var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src="https://cdn.us.heap-api.com/config/"+e+"/heap_config.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(a,r);var n=["init","startTracking","stopTracking","track","resetIdentity","identify","identifyHashed","getSessionId","getUserId","getIdentity","addUserProperties","addEventProperties","removeEventProperty","clearEventProperties","addAccountProperties","addAdapter","addTransformer","addTransformerFn","onReady","addPageviewProperties","removePageviewProperty","clearPageviewProperties","trackPageview"],i=function(e){return function(){var t=Array.prototype.slice.call(arguments,0);window.heapReadyCb.push({name:e,fn:function(){heap[e]&&heap[e].apply(heap,t)}})}};for(var p=0;p<n.length;p++)heap[n[p]]=i(n[p])};
             heap.load("4214944802");
+        </script>
+        
+        <!-- Microsoft Clarity -->
+        <script type="text/plain" data-analytics="clarity">
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "qf36xrx4an");
         </script>
     </div>
     
@@ -114,22 +61,8 @@
     <!-- Cookie Consent Banner -->
     {% include "components/cookie-consent.njk" %}
     
-    <!-- Critical Scripts - Load immediately -->
-    <script src="/assets/js/header.js" defer></script>
-    <script src="/assets/js/main.js" defer></script>
-    <script src="/assets/js/cookie-consent.js" defer></script>
-    
-    <!-- Animation Scripts -->
-    {% if bodyClass === "home" %}
-    <!-- Homepage animation scripts -->
-    <script src="/assets/js/hero-animation.js" defer></script>
-    <script src="/assets/js/falling-hexes-bg.js" defer></script>
-    {% endif %}
-    
-    <!-- Other animation scripts -->
-    <script src="/assets/js/flashcards.js" defer></script>
-    <script src="/assets/js/about-animation.js" defer></script>
-    <script src="/assets/js/svg-tilt.js" defer></script>
+    <!-- All JavaScript bundled into one file -->
+    <script src="/assets/js/bundle.js" defer></script>
     
     <!-- Additional Scripts -->
     {% block additionalScripts %}{% endblock %}
