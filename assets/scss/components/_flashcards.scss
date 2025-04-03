@@ -63,12 +63,6 @@
   &:disabled {
     display: none;
   }
-
-  @include mixins.mobile {
-    &:active {
-      background-color: variables.$color-border;
-    }
-  }
 }
 
 .flashcard-prev-btn {
