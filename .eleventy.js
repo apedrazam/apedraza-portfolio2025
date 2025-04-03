@@ -17,33 +17,31 @@ async function imageShortcode(src, alt, sizes, classList) {
   }
 
   try {
+    // Special handling for about animation images - just return them directly, no processing
+    if (src.includes('/about/')) {
+      const aboutSrc = src.replace(/^\/assets\/images\//, '/assets/img/');
+      return `<img src="${aboutSrc}" alt="${alt || ''}" ${sizes ? `sizes="${sizes}"` : ''} ${classList ? `class="${classList}"` : ''} ${!isCriticalImage ? 'loading="lazy"' : ''}>`;
+    }
+
+    // Make sure we're looking in the right directory - use assets/images not assets/img
+    // Convert any references to assets/img back to assets/images for source
+    let imageSrc = src.replace(/^\/assets\/img\//, '/assets/images/');
+    
     // Remove leading slash if present to make the path relative
-    const normalizedSrc = src.startsWith('/') ? src.substring(1) : src;
+    const normalizedSrc = imageSrc.startsWith('/') ? imageSrc.substring(1) : imageSrc;
     
-    // Handle paths for about animation images
-    const isAboutImage = normalizedSrc.includes('about/');
-    
-    // Use the same widths for all images except SVGs
+    // Use the same widths for all images except SVGs and about images
     const widths = [300, 600, 900, 1200, 2000];
     
-    // Only change the path if it's not in the about folder
-    const outputPath = isAboutImage ? `./_site/assets/img/about/` : `./_site/assets/img/`;
-    const urlPath = isAboutImage ? `/assets/img/about/` : `/assets/img/`;
-    
+    // Process images with Eleventy Image
     let metadata = await Image(normalizedSrc, {
       widths: widths,
       formats: ["webp"],
-      outputDir: outputPath,
-      urlPath: urlPath,
+      outputDir: "./_site/assets/img/",
+      urlPath: "/assets/img/",
       filenameFormat: function (id, src, width, format, options) {
         const extension = path.extname(src);
         const name = path.basename(src, extension);
-        
-        // If it's an about image, don't add width suffix to maintain animation compatibility
-        if (isAboutImage) {
-          return `${name}.${format}`;
-        }
-        
         return `${name}-${width}w.${format}`;
       },
       sharpOptions: {
@@ -96,7 +94,7 @@ function videoShortcode(src, alt, sizes, classList, attrs = {}) {
 }
 
 module.exports = function(eleventyConfig) {
-  // ✅ Passthrough copy for assets - copying all SVGs to img directory
+  // ✅ Copy SVGs to the img directory
   eleventyConfig.addPassthroughCopy({
     'assets/images/**/*.svg': 'assets/img' 
   });
@@ -104,6 +102,11 @@ module.exports = function(eleventyConfig) {
   // ✅ Copy about animation images directly without processing
   eleventyConfig.addPassthroughCopy({
     'assets/images/about/*.webp': 'assets/img/about'
+  });
+  
+  // ✅ Copy other webp files to be available for processing
+  eleventyConfig.addPassthroughCopy({
+    'assets/images/**/*.webp': 'assets/img'
   });
 
   // ✅ Other assets that don't need processing
