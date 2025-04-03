@@ -30,7 +30,7 @@
     return `
       <!-- Top background SVG -->
       <figure>
-        <img src="/assets/images/top-bg-block2.svg" class="top-bg-block" alt=""/>
+        <img src="/assets/img/top-bg-block2.svg" class="top-bg-block" alt=""/>
       </figure>
       
       <!-- Page header -->
@@ -47,7 +47,7 @@
         </div>
       </section>
       <figure>
-        <img src="/assets/images/bottom-bg-block2.svg" class="bottom-bg-block" alt=""/>
+        <img src="/assets/img/bottom-bg-block2.svg" class="bottom-bg-block" alt=""/>
       </figure>
     `;
   }

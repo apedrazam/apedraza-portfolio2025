@@ -5,7 +5,7 @@
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'image';
-    link.href = '/assets/images/top-bg-block2.svg';
+    link.href = '/assets/img/top-bg-block2.svg';
     link.fetchpriority = 'high';
     document.head.appendChild(link);
     

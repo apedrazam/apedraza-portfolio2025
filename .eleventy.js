@@ -104,11 +104,6 @@ module.exports = function(eleventyConfig) {
     'assets/images/about/*.webp': 'assets/img/about'
   });
   
-  // ✅ Copy other webp files to be available for processing
-  eleventyConfig.addPassthroughCopy({
-    'assets/images/**/*.webp': 'assets/img'
-  });
-
   // ✅ Other assets that don't need processing
   eleventyConfig.addPassthroughCopy("assets/fonts");
   eleventyConfig.addPassthroughCopy("assets/videos");
