@@ -40,16 +40,14 @@ async function imageShortcode(src, alt, sizes) {
 }
 
 module.exports = function(eleventyConfig) {
-  // ✅ Passthrough copy for assets 
+  // ✅ Passthrough copy for assets
   eleventyConfig.addPassthroughCopy("assets/images");
   eleventyConfig.addPassthroughCopy("assets/fonts");
   eleventyConfig.addPassthroughCopy("assets/videos");
+  eleventyConfig.addPassthroughCopy("assets/js");
   eleventyConfig.addPassthroughCopy("assets/docs");
   eleventyConfig.addPassthroughCopy(".htaccess");
-  
-  // Custom bundle.js handling
-  eleventyConfig.addPassthroughCopy("_site/assets/js/bundle.js");
-  
+
   // ✅ Watch for changes in specific folders
   eleventyConfig.addWatchTarget("./assets/");
   eleventyConfig.addWatchTarget("./_includes/");
@@ -97,39 +95,6 @@ module.exports = function(eleventyConfig) {
           res.end();
         });
       }
-    }
-  });
-
-  // Copy bundle.js post-build to ensure it's in the output
-  eleventyConfig.on('afterBuild', () => {
-    // Ensure the _site/assets/js directory exists
-    if (!fs.existsSync('_site/assets/js')) {
-      fs.mkdirSync('_site/assets/js', { recursive: true });
-    }
-    
-    // Remove nested _site directory if it exists
-    if (fs.existsSync('_site/_site')) {
-      console.log('Found nested _site directory, removing...');
-      try {
-        fs.rmSync('_site/_site', { recursive: true, force: true });
-        console.log('Successfully removed nested _site directory');
-      } catch (err) {
-        console.error('Error removing nested _site directory:', err);
-      }
-    }
-    
-    // Copy bundle.js from the source if it exists
-    if (fs.existsSync('_site/assets/js/bundle.js')) {
-      console.log('bundle.js is already in the output directory');
-    } else if (fs.existsSync('assets/js/bundle.js')) {
-      try {
-        fs.copyFileSync('assets/js/bundle.js', '_site/assets/js/bundle.js');
-        console.log('Successfully copied bundle.js to output directory');
-      } catch (err) {
-        console.error('Error copying bundle.js:', err);
-      }
-    } else {
-      console.warn('bundle.js not found in source or output directory!');
     }
   });
 
