@@ -4,8 +4,8 @@ layout: base.njk
 
 <!-- Top background SVG -->
 <figure class="top-bg-block-container">
-  <img src="/assets/images/top-bg-block2.svg" class="top-bg-block" alt=""/>
-  <img src="/assets/images/top-bg-block.svg" class="top-bg-block-mobile" alt=""/>
+  {% image "/assets/images/top-bg-block2.svg", "", "", "top-bg-block" %}
+  {% image "/assets/img/top-bg-block.webp", "", "", "top-bg-block-mobile" %}
 </figure>
 <div class="page-content-wrapper">
   {{ content | safe }}

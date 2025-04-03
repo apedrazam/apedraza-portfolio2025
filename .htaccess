@@ -20,6 +20,9 @@ ErrorDocument 404 /404.html
 <IfModule mod_deflate.c>
   # Compress HTML, CSS, JavaScript, Text, XML and fonts
   AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE application/ld+json
+  AddOutputFilterByType DEFLATE application/manifest+json
   AddOutputFilterByType DEFLATE application/rss+xml
   AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
   AddOutputFilterByType DEFLATE application/x-font
@@ -40,6 +43,17 @@ ErrorDocument 404 /404.html
   AddOutputFilterByType DEFLATE text/javascript
   AddOutputFilterByType DEFLATE text/plain
   AddOutputFilterByType DEFLATE text/xml
+  
+  # Remove browser bugs
+  BrowserMatch ^Mozilla/4 gzip-only-text/html
+  BrowserMatch ^Mozilla/4\.0[678] no-gzip
+  BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+  Header append Vary User-Agent
+</IfModule>
+
+# Brotli compression (if mod_brotli is available)
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json application/xml application/rss+xml image/svg+xml
 </IfModule>
 
 # Remove HTTP/2 Server Push since it's being deprecated
@@ -114,6 +128,21 @@ ErrorDocument 404 /404.html
   Header unset ETag
 </IfModule>
 FileETag None
+
+# Prioritize loading for important images and videos
+<IfModule mod_headers.c>
+  # Set high priority for hero and background images
+  <FilesMatch ".*-bg-block.*\.webp$">
+    Header set Priority "high"
+    Header set Importance "high"
+  </FilesMatch>
+  
+  # Set high priority for case study landing media
+  <FilesMatch "(design-process|design-system|job-posting|wholesale-billing)\.webm$">
+    Header set Priority "high"
+    Header set Importance "high"
+  </FilesMatch>
+</IfModule>
 
 # Prevent the WWW form
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]

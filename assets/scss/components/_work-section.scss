@@ -250,6 +250,10 @@
 
 .case-study-description {
   margin-top: variables.$spacing-base;
+
+  @include mixins.mobile {
+    margin-bottom: 0;
+  }
 }
 
 .flashcard-btn {

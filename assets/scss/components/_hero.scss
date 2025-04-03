@@ -40,6 +40,17 @@
         backface-visibility: hidden;
       }
     }
+
+    &-top-mobile {
+      display: none;
+
+      @include mixins.mobile {
+        display: block;
+        width: 100vw;
+        position: relative;
+        z-index: 3;
+      }
+    }
   }
   
   .hero-bg-top {

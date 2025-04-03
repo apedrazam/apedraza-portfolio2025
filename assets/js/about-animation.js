@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'visionary_strategist.webp',
       'well-round_generalist.webp'
     ];
-    const basePath = '/assets/images/about/';
+    const basePath = '/assets/img/about/';
     
     // Set initial states
     let isSpinning = false;

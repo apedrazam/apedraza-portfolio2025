@@ -25,7 +25,7 @@ order: 4
       </div>
     </div>
     <figure class="img__full-width">
-      <img decoding="async" width="864" height="648" src="/assets/images/wholesale-billing.webp" alt="Laptop mockup for wholesale billing project" class="case-study__landing-media">
+      {% image "/assets/img/wholesale-billing.webp", "Laptop mockup for wholesale billing project", "(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw", "case-study__landing-media" %}
     </figure>
 
   </section>
@@ -48,8 +48,8 @@ order: 4
 
 
     <figure class="img__full-width wholesale-billing__mockups">
-      <img class="wholesale-billing__mockups-img-1" loading="lazy" decoding="async" src="/assets/images/case-studies/adamo-wholesale-billing/wholesale-billing-1.webp" alt="Wholesale Billing Mock-ups 1">
-      <img class="wholesale-billing__mockups-img-2" loading="lazy" decoding="async" src="/assets/images/case-studies/adamo-wholesale-billing/wholesale-billing-2.webp" alt="Wholesale Billing Mock-ups 2">
+      {% image "/assets/img/case-studies/adamo-wholesale-billing/wholesale-billing-1.webp", "Wholesale Billing Mock-ups 1", "(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw", "wholesale-billing__mockups-img-1" %}
+      {% image "/assets/img/case-studies/adamo-wholesale-billing/wholesale-billing-2.webp", "Wholesale Billing Mock-ups 2", "(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw", "wholesale-billing__mockups-img-2" %}
       <figcaption><span class="font-bold">01.</span> Wholesale Operators page; <span class="font-bold">02.</span> Operators' Orders page; <span class="font-bold">03.</span> Operators' Details page; <span class="font-bold">04.</span> Operators' Contracts page; <span class="font-bold">05.</span> Operators' Invoice page</figcaption>
     </figure>
   </section>
@@ -59,7 +59,7 @@ order: 4
     <p>For starters, I needed to understand the context. I <strong>didn't have the opportunity to conduct extensive benchmarking</strong>, as most similar applications required some form of subscription. Fortunately, I had easy access to all business knowledge and all the potential audience right down the hall.</p>
     <div class="case-study__card">
       <figure class="cs-card__image">
-        <img decoding="async" width="864" height="648" src="/assets/images/case-studies/adamo-wholesale-billing/discovery-scope.webp" alt="">
+        {% image "/assets/img/case-studies/adamo-wholesale-billing/discovery-scope.webp", "", "(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw" %}
       </figure>
       <div class="cs-card__content">
         <h4>Setting the scope</h4>
@@ -68,7 +68,7 @@ order: 4
     </div>
     <div class="case-study__card">
       <figure class="cs-card__image">
-        <img decoding="async" width="864" height="648" src="/assets/images/case-studies/adamo-wholesale-billing/discovery-gathering.webp" alt="">
+        {% image "/assets/img/case-studies/adamo-wholesale-billing/discovery-gathering.webp", "", "(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw" %}
       </figure>
       <div class="cs-card__content">
         <h4>Requirements gathering</h4>
@@ -77,7 +77,7 @@ order: 4
     </div>
     <div class="case-study__card">
       <figure class="cs-card__image">
-        <img loading="lazy" decoding="async" width="864" height="648" src="/assets/images/case-studies/adamo-wholesale-billing/discovery-interviews.webp" alt="">
+        {% image "/assets/img/case-studies/adamo-wholesale-billing/discovery-interviews.webp", "", "(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw" %}
         <figcaption>image by rawpixel.com</figcaption>
       </figure>
       <div class="cs-card__content">
@@ -87,7 +87,7 @@ order: 4
     </div>
     <div class="case-study__card">
       <figure class="cs-card__image">
-        <img class="img__with-border" loading="lazy" decoding="async" width="864" height="648" src="/assets/images/case-studies/adamo-wholesale-billing/journey-map-nn.webp" alt="">
+        {% image "/assets/img/case-studies/adamo-wholesale-billing/journey-map-nn.webp", "", "(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw", "img__with-border" %}
         <figcaption>image by Nielsen/Norman Group</figcaption>
       </figure>
       <div class="cs-card__content">
@@ -103,12 +103,12 @@ order: 4
     <h2>Definition and development</h2>
     <p>With all the context now available, it was time to make sense out of it and start creating flows and <strong>defining the Information Architecture</strong> of the billing tool.</p>
     <figure class="img__full-width">
-      <img class="img__with-border" loading="lazy" decoding="async" src="/assets/images/case-studies/adamo-wholesale-billing/definition-ia.webp" alt="Definition of Wholesale Billing Information Architecture">
+      {% image "/assets/img/case-studies/adamo-wholesale-billing/definition-ia.webp", "Definition of Wholesale Billing Information Architecture", "(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw", "img__with-border" %}
       <figcaption>Definition of Wholesale Billing Information Architecture</figcaption>
     </figure>
     <p>When it comes to visual design of the tool, we had already developed an <strong>in-house UI toolkit</strong> for all the internal projects the Product Team was involved in. This was the second project in which said toolkit was used and it filled most of the needs of the projects. For those cases where it didn't, we took the chance to <strong>scale the existing components</strong> to cover all the missing gaps (complex table cells with nested elements).</p>
     <figure class="img__full-width">
-      <img class="img__with-border" loading="lazy" decoding="async" src="/assets/images/case-studies/adamo-wholesale-billing/adamo-design-system.webp" alt="Adamo Design System">
+      {% image "/assets/img/case-studies/adamo-wholesale-billing/adamo-design-system.webp", "Adamo Design System", "(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw", "img__with-border" %}
       <figcaption>Adamo UI toolkit collection</figcaption>
     </figure>
     <p>For the next few months we worked on the development of the tool. I was in charge of the design and the <strong>HTML &amp; CSS development</strong>, but also of <strong>translating the requirements</strong> that I had been gathering during the Discovery phase.</p>
@@ -117,7 +117,7 @@ order: 4
     <h2>Design improvements and missed opportunities</h2>
     <p>While the tool was being developed, we had <strong>periodic meetings with the finance team</strong> to ensure that the tool was covering their needs. These meetings helped <span class="font-bold">keep the project lean</span> and lead to some relevant changes on the design, like <span class="font-bold">modifying the navigation to improve efficiency</span> or show only orders with changes filter.</p>
     <figure class="img__full-width">
-      <img oading="lazy" decoding="async" src="/assets/images/case-studies/adamo-wholesale-billing/missing-opportunities.webp" alt="Navigation changes">
+      {% image "/assets/img/case-studies/adamo-wholesale-billing/missing-opportunities.webp", "Navigation changes", "(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw" %}
       <figcaption>Change from button group to default view + dropdown navigation</figcaption>
     </figure>
     <p>There were other things that were not included due to technology limitations, like <span class="font-bold">bulk selection</span> or <span class="font-bold">real-time order status changes</span>, requiring a more complex development effort, like <span class="font-bold">inline editing instead of modal based interactions</span> or simply because I missed them, like <span class="font-bold">placing orders with changes on the top of the table</span>.</p>

@@ -3,45 +3,110 @@ const Image = require("@11ty/eleventy-img");
 const path = require("path");
 
 // Image shortcode for optimized images - skip SVGs to preserve animations
-async function imageShortcode(src, alt, sizes) {
+async function imageShortcode(src, alt, sizes, classList) {
+  // Check if this is a critical image that shouldn't be lazy loaded
+  const isCriticalImage = src.includes('-bg-block') || 
+                         (classList && classList.includes('case-study__landing-media'));
+  
   // Skip processing for SVG files to preserve animations
   if (src.toLowerCase().endsWith('.svg')) {
-    return `<img src="${src}" alt="${alt || ''}" ${sizes ? `sizes="${sizes}"` : ''} loading="lazy">`;
+    // SVGs are copied to the img directory without path conversion
+    // so we should use the same path structure
+    const svgSrc = src;
+    return `<img src="${svgSrc}" alt="${alt || ''}" ${sizes ? `sizes="${sizes}"` : ''} ${classList ? `class="${classList}"` : ''} ${!isCriticalImage ? 'loading="lazy"' : ''}>`;
   }
 
   try {
-    let metadata = await Image(src, {
-      widths: [300, 600, 900, 1200],
-      formats: ["webp", "jpeg"],
-      outputDir: "./_site/assets/img/",
-      urlPath: "/assets/img/",
+    // Remove leading slash if present to make the path relative
+    const normalizedSrc = src.startsWith('/') ? src.substring(1) : src;
+    
+    // Handle paths for about animation images
+    const isAboutImage = normalizedSrc.includes('about/');
+    
+    // Use the same widths for all images except SVGs
+    const widths = [300, 600, 900, 1200, 2000];
+    
+    // Only change the path if it's not in the about folder
+    const outputPath = isAboutImage ? `./_site/assets/img/about/` : `./_site/assets/img/`;
+    const urlPath = isAboutImage ? `/assets/img/about/` : `/assets/img/`;
+    
+    let metadata = await Image(normalizedSrc, {
+      widths: widths,
+      formats: ["webp"],
+      outputDir: outputPath,
+      urlPath: urlPath,
       filenameFormat: function (id, src, width, format, options) {
         const extension = path.extname(src);
         const name = path.basename(src, extension);
+        
+        // If it's an about image, don't add width suffix to maintain animation compatibility
+        if (isAboutImage) {
+          return `${name}.${format}`;
+        }
+        
         return `${name}-${width}w.${format}`;
       },
       sharpOptions: {
-        quality: 80
+        quality: 100
       }
     });
 
     let imageAttributes = {
       alt,
       sizes,
-      loading: "lazy",
       decoding: "async",
+      class: classList
     };
+    
+    // Only add lazy loading for non-critical images
+    if (!isCriticalImage) {
+      imageAttributes.loading = "lazy";
+    }
 
     return Image.generateHTML(metadata, imageAttributes);
   } catch (e) {
     console.error(`Error processing image: ${src}`, e);
-    return `<img src="${src}" alt="${alt || ''}" ${sizes ? `sizes="${sizes}"` : ''} loading="lazy">`;
+    // Fallback to original source but with updated path
+    const fallbackSrc = src.replace(/^\/assets\/images\//, '/assets/img/');
+    return `<img src="${fallbackSrc}" alt="${alt || ''}" ${sizes ? `sizes="${sizes}"` : ''} ${classList ? `class="${classList}"` : ''} ${!isCriticalImage ? 'loading="lazy"' : ''}>`;
   }
 }
 
+// Video shortcode for responsive videos
+function videoShortcode(src, alt, sizes, classList, attrs = {}) {
+  // Check if this is a case study video that shouldn't be lazy loaded
+  const isCriticalVideo = classList && classList.includes('case-study__landing-media');
+  
+  // Create a responsive video tag with appropriate attributes
+  const attrStr = Object.entries(attrs)
+    .map(([key, value]) => value === true ? key : `${key}="${value}"`)
+    .join(' ');
+  
+  // Only add lazy loading for non-critical videos
+  const loadingAttr = !isCriticalVideo ? 'loading="lazy"' : '';
+  
+  return `<video 
+    src="${src}" 
+    ${alt ? `alt="${alt}"` : ''} 
+    ${classList ? `class="${classList}"` : ''} 
+    ${sizes ? `sizes="${sizes}"` : ''}
+    ${loadingAttr}
+    ${attrStr}
+  ></video>`;
+}
+
 module.exports = function(eleventyConfig) {
-  // ✅ Passthrough copy for assets
-  eleventyConfig.addPassthroughCopy("assets/images");
+  // ✅ Passthrough copy for assets - copying all SVGs to img directory
+  eleventyConfig.addPassthroughCopy({
+    'assets/images/**/*.svg': 'assets/img' 
+  });
+
+  // ✅ Copy about animation images directly without processing
+  eleventyConfig.addPassthroughCopy({
+    'assets/images/about/*.webp': 'assets/img/about'
+  });
+
+  // ✅ Other assets that don't need processing
   eleventyConfig.addPassthroughCopy("assets/fonts");
   eleventyConfig.addPassthroughCopy("assets/videos");
   eleventyConfig.addPassthroughCopy("assets/js");
@@ -101,6 +166,10 @@ module.exports = function(eleventyConfig) {
   // Add image shortcode
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
   eleventyConfig.addJavaScriptFunction("image", imageShortcode);
+  
+  // Add video shortcode
+  eleventyConfig.addNunjucksShortcode("video", videoShortcode);
+  eleventyConfig.addJavaScriptFunction("video", videoShortcode);
 
   // ✅ Return Eleventy configuration
   return {

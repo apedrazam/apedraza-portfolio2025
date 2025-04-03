@@ -25,7 +25,7 @@ order: 1
     </div>
     
     <figure class="img__full-width">
-      <video src="/assets/videos/design-process.webm" alt="Laptop mockup for Devex Design Process" class="case-study__landing-media" autoplay loop muted playsinline></video>
+      {% video "/assets/videos/design-process.webm", "Laptop mockup for Devex Design Process", "(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw", "case-study__landing-media", { autoplay: true, loop: true, muted: true, playsinline: true } %}
     </figure>
   </section>
   
@@ -70,17 +70,17 @@ order: 1
     <h3>Increasing the velocity</h3>
     <p>Product team velocity was a challenge, with large project scopes slowing things down. To tackle this, I started breaking <span class="font-bold">projects into iterations</span>, structuring Design Critiques around feasibility. While this helped, some iterations still felt too heavy, so I <span class="font-bold">shifted to actionable items</span>, making it easier to prioritize based on impact vs. effort. I teamed up with our PO to leverage <span class="font-bold">asynchronous feedback</span> and streamlined communication, making the process even more efficient.</p>
     <figure class="img__full-width">
-      <img class="img__with-border" decoding="async" src="/assets/images/case-studies/devex-design-process/iterative-proposals.webp" alt="Iterative proposals">
+      {% image "/assets/img/case-studies/devex-design-process/iterative-proposals.webp", "Iterative proposals", "(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw", "img__with-border" %}
       <figcaption>Iterative proposals</figcaption>
     </figure>
     
     <h3>Explaining design work</h3>
     <p>With designers no longer handling UI implementation, we needed to <span class="font-bold">redefine how design work was shared with developers</span> while also improving visibility for business stakeholders. <span class="font-bold">Design Critique sessions</span> provided a structured <span class="font-bold">space for feedback</span>, keeping refinement meetings focused and ensuring alignment with the development team.</p>
     <figure class="img__full-width">
-      <img decoding="async"src="/assets/images/case-studies/devex-design-process/design-critique.webp" alt="Design Critique">
+      {% image "/assets/img/case-studies/devex-design-process/design-critique.webp", "Design Critique", "(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw" %}
       <figcaption>Design Critique session on going</figcaption>
     </figure>
-    <p>At the same time, I introduced <span class="font-bold">process flows</span> to clarify deliverables, touchpoints, and stakeholder involvement, <span class="font-bold">setting clear expectations</span> for business teams. These flows weren’t rigid rules but served as a shared framework, <span class="font-bold">making the design process more transparent</span> and improving communication across teams.</p>
+    <p>At the same time, I introduced <span class="font-bold">process flows</span> to clarify deliverables, touchpoints, and stakeholder involvement, <span class="font-bold">setting clear expectations</span> for business teams. These flows weren't rigid rules but served as a shared framework, <span class="font-bold">making the design process more transparent</span> and improving communication across teams.</p>
 
     <div class="case-study__highlight-section">
       <div class="case-study__highlight-section-header">
@@ -96,7 +96,7 @@ order: 1
     <p>We established <span class="font-bold">Figma as our single source of truth</span>, replacing the messy system of scattered Google Drive folders. Everything—from mock-ups and prototypes to research and feedback was either <span class="font-bold">built in or linked to</span> a single Figma file. To keep things in order, I proposed a <span class="font-bold">file structure</span> that would make it easier to track proposals, iterate on them and collaborate. The structure evolved naturally over time, adapting to our needs as we kept refining the process. With help from our PO, we made <span class="font-bold">Figma comments</span> the de-facto way of <span class="font-bold">giving feedback</span> within the product team.</p>
 
     <figure>
-      <img loading="lazy" decoding="async"src="/assets/images/case-studies/devex-design-process/file-structure.webp" alt="">
+      {% image "/assets/img/case-studies/devex-design-process/file-structure.webp", "File structure comparison", "(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 75vw" %}
       <figcaption>On the left, early file structure. On the right, the one of the latest iterations.</figcaption>
     </figure>
 
