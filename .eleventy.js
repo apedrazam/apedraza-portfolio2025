@@ -8,23 +8,37 @@ async function imageShortcode(src, alt, sizes, classList) {
   const isCriticalImage = src.includes('-bg-block') || 
                          (classList && classList.includes('case-study__landing-media'));
   
+  // Check if this is a high priority image (hero or first case study)
+  const isHighPriority = isCriticalImage || 
+                        (classList && (classList.includes('hero-bg-top') || 
+                                     classList.includes('hero-bg-top-mobile')));
+  
+  // Determine default sizes based on image type
+  let defaultSizes;
+  if (classList && classList.includes('client-logo')) {
+    defaultSizes = "(max-width: 480px) 45vw, (max-width: 768px) 30vw, 250px";
+  } else if (classList && classList.includes('case-study-mockup')) {
+    defaultSizes = "(max-width: 480px) 90vw, (max-width: 768px) 60vw, 600px";
+  } else if (src.includes('-bg-block')) {
+    defaultSizes = "100vw";
+  } else {
+    defaultSizes = "(max-width: 768px) 100vw, (max-width: 1200px) 100vw, (max-width: 1600px) 100vw, 2000px";
+  }
+  
   // Skip processing for SVG files to preserve animations
   if (src.toLowerCase().endsWith('.svg')) {
-    // SVGs are copied to the img directory without path conversion
-    // so we should use the same path structure
     const svgSrc = src;
-    return `<img src="${svgSrc}" alt="${alt || ''}" ${sizes ? `sizes="${sizes}"` : ''} ${classList ? `class="${classList}"` : ''} ${!isCriticalImage ? 'loading="lazy"' : ''}>`;
+    return `<img src="${svgSrc}" alt="${alt || ''}" ${sizes ? `sizes="${sizes}"` : `sizes="${defaultSizes}"`} ${classList ? `class="${classList}"` : ''} ${!isCriticalImage ? 'loading="lazy"' : ''} ${isHighPriority ? 'fetchpriority="high"' : ''}>`;
   }
 
   try {
     // Special handling for about animation images - just return them directly, no processing
     if (src.includes('/about/')) {
       const aboutSrc = src.replace(/^\/assets\/images\//, '/assets/img/');
-      return `<img src="${aboutSrc}" alt="${alt || ''}" ${sizes ? `sizes="${sizes}"` : ''} ${classList ? `class="${classList}"` : ''} ${!isCriticalImage ? 'loading="lazy"' : ''}>`;
+      return `<img src="${aboutSrc}" alt="${alt || ''}" ${sizes ? `sizes="${sizes}"` : `sizes="${defaultSizes}"`} ${classList ? `class="${classList}"` : ''} ${!isCriticalImage ? 'loading="lazy"' : ''} ${isHighPriority ? 'fetchpriority="high"' : ''}>`;
     }
 
     // Make sure we're looking in the right directory - use assets/images not assets/img
-    // Convert any references to assets/img back to assets/images for source
     let imageSrc = src.replace(/^\/assets\/img\//, '/assets/images/');
     
     // Remove leading slash if present to make the path relative
@@ -51,7 +65,7 @@ async function imageShortcode(src, alt, sizes, classList) {
 
     let imageAttributes = {
       alt,
-      sizes,
+      sizes: sizes || defaultSizes,
       decoding: "async",
       class: classList
     };
@@ -60,13 +74,18 @@ async function imageShortcode(src, alt, sizes, classList) {
     if (!isCriticalImage) {
       imageAttributes.loading = "lazy";
     }
+    
+    // Add fetchpriority for high priority images
+    if (isHighPriority) {
+      imageAttributes.fetchpriority = "high";
+    }
 
     return Image.generateHTML(metadata, imageAttributes);
   } catch (e) {
     console.error(`Error processing image: ${src}`, e);
     // Fallback to original source but with updated path
     const fallbackSrc = src.replace(/^\/assets\/images\//, '/assets/img/');
-    return `<img src="${fallbackSrc}" alt="${alt || ''}" ${sizes ? `sizes="${sizes}"` : ''} ${classList ? `class="${classList}"` : ''} ${!isCriticalImage ? 'loading="lazy"' : ''}>`;
+    return `<img src="${fallbackSrc}" alt="${alt || ''}" ${sizes ? `sizes="${sizes}"` : `sizes="${defaultSizes}"`} ${classList ? `class="${classList}"` : ''} ${!isCriticalImage ? 'loading="lazy"' : ''} ${isHighPriority ? 'fetchpriority="high"' : ''}>`;
   }
 }
 
