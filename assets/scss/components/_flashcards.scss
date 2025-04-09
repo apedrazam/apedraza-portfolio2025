@@ -282,6 +282,10 @@ h3.flashcard-title {
   i {
     margin-left: clamp(variables.$spacing-xs, 1.5vw, variables.$spacing-sm);
   }
+
+  &:hover i {
+    animation: toLeftFromRight .2s forwards;
+  }
 }
 
 /* Custom component styles for individual flashcards */
