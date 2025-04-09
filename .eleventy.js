@@ -18,7 +18,7 @@ async function imageShortcode(src, alt, sizes, classList) {
   if (classList && classList.includes('client-logo')) {
     defaultSizes = "(max-width: 480px) 45vw, (max-width: 768px) 30vw, 250px";
   } else if (classList && classList.includes('case-study-mockup')) {
-    defaultSizes = "(max-width: 480px) 90vw, (max-width: 768px) 60vw, 600px";
+    defaultSizes = "(max-width: 480px) 90vw, (max-width: 768px) 100vw, 900px";
   } else if (src.includes('-bg-block')) {
     defaultSizes = "100vw";
   } else {
