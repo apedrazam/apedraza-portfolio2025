@@ -56,12 +56,20 @@
 
   &:hover {
     .case-study-content {
-      transform: scale(1.06);
+      transform: scale(1.05);
       transition-duration: .4s;
     }
     .case-study-mockup{
       transform: scale(1.04);
       transition-duration: .4s;
+    }
+  }
+
+  @include mixins.tablet {
+    &.case-study-1,
+    &.case-study-3,
+    &.case-study-4 {
+      padding-left: clamp(1rem, 8vw, 2rem);
     }
   }
 }
@@ -93,6 +101,32 @@
   grid-column: span 5 / span 5;
   order: 1;
 }
+
+.case-study-tags {
+  display: flex;
+  gap: variables.$spacing-base;
+  margin: variables.$spacing-2xl 0 0;
+}
+
+span.case-study-tag {
+  border: clamp(1px, .2vw, 4px) solid variables.$color-border;
+  background-color: variables.$color-tag-bg;
+  padding: clamp(.25rem,1vw,.5rem) clamp(.5rem, 1.25vw, 1rem) clamp(.375rem,1vw,.5rem);
+  margin-bottom: variables.$spacing-base;
+  border-radius: 0 .375rem;
+  text-transform: uppercase;
+  font-size: clamp(0.75rem, 1.25vw, .875rem);
+  line-height: 1;
+  font-weight: 600; 
+  width: max-content;
+  font-family: variables.$font-family-heading;
+}
+
+.case-study-description {
+  margin-bottom: 0;
+}
+
+
 
 .case-study-image-wrapper {
   position: relative;
@@ -157,7 +191,21 @@
     @include mixins.mobile {
       padding-left: 0;
     }
+
+    @include mixins.desktop {
+      .case-study-tags{
+        margin-top: 0rem;
+      }
+    }
+
+    @include mixins.desktop-xl {
+      .case-study-tags{
+        margin-top: 0rem;
+      }
+    }
   }
+
+  
 
   .case-study-image-container{
     margin-left: clamp(-1rem, -8vw, -2rem);
@@ -340,6 +388,7 @@
   .case-study-card {
     grid-template-columns: 1fr;
     gap: variables.$spacing-xl;
+    margin-bottom: 1rem;
   }
   
   .case-study-image-container, 
@@ -358,6 +407,10 @@
   .case-study-content.left-align {
     order: 2;
     padding-top: 0;
+  }
+
+  .case-study-tags {
+    margin-top: 0rem;
   }
 
 
@@ -411,8 +464,85 @@
   }
 }
 @include mixins.tablet {
-  .case-study-4 .case-study-content {
-    padding-left: clamp(1rem, 8vw, 2rem);
+  .case-studies-title{
+    margin-top: 1.5rem;
+  }
+  
+  .case-study-card {
+    grid-template-columns: 1fr;
+    gap: variables.$spacing-xl;
+    margin-bottom: 2rem;
+  }
+  
+  .case-study-image-container, 
+  .case-study-image-container.right-align,
+  .case-study-content,
+  .case-study-content.left-align {
+    grid-column: span 10 / span 12;
+  }
+
+  .case-study-image-container, 
+  .case-study-image-container.right-align {
+    order: 1;
+  }
+
+  .case-study-content,
+  .case-study-content.left-align {
+    order: 2;
+    padding-top: 0;
+  }
+
+  .case-study-tags {
+    margin-top: .5rem;
+  }
+
+  .case-study-1,
+  .case-study-3 {
+    .case-study-bg{
+      bottom:0;
+      left: 50%;
+      transform: translateX(-35%) translateY(-2%);
+    }
+
+    .case-study-mockup{
+      bottom:0;
+      left: 50%;
+      transform: translateX(-55%);
+    }
+
+    &:hover{
+      .case-study-mockup{
+        transform: translateX(-55%) scale(1.04);
+      }
+    }
+  }
+
+  .case-study-4{
+    .case-study-bg{
+      bottom:0;
+      left: 50%;
+      transform: translateX(-65%) translateY(-2%);
+    }
+
+    .case-study-mockup{
+      bottom:0;
+      left: 50%;
+      transform: translateX(-45%);
+    }
+
+    &:hover{
+      .case-study-mockup{
+        transform: translateX(-45%) scale(1.04);
+      }
+    }
+  }
+  
+  .clients-grid {
+    gap: variables.$spacing-xl;
+  }
+
+  .client-item {
+    max-width: 25vw;
   }
 }
 @include mixins.desktop-xl {

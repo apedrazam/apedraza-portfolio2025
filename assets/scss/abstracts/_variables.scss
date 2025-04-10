@@ -50,6 +50,7 @@ $color-shadow: rgba(0, 0, 0, 0.25);
   --color-border: #{$color-gray-300};
   --color-subtitle: #{$color-gray-500};
   --color-highlight: #{$color-gray-400};
+  --color-tag-bg: #{$color-gray-100};
 }
 
 html[data-theme="dark"] {
@@ -71,6 +72,7 @@ html[data-theme="dark"] {
   --color-border: #{$color-gray-700};
   --color-subtitle: #{$color-gray-500};
   --color-highlight: #{$color-gray-600};
+  --color-tag-bg: #{$color-gray-700};
 }
 
 // Replace all subsequent SCSS variable references with CSS custom properties
@@ -92,6 +94,7 @@ $color-text-on-prominent: var(--color-text-on-prominent);
 $color-border: var(--color-border);
 $color-subtitle: var(--color-subtitle);
 $color-highlight: var(--color-highlight);
+$color-tag-bg: var(--color-tag-bg);
 // Spacing
 $spacing-xs: 0.25rem;    // 4px
 $spacing-sm: 0.5rem;     // 8px
